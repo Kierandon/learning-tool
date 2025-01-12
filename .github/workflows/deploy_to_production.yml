@@ -38,7 +38,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           labels: |
-            "learning_tool"
+            "service=learning_tool"
           tags: |
             "kierandon/learning_tool:latest"
             "kierandon/learning_tool:${{ steps.tag.outputs.tag }}"
