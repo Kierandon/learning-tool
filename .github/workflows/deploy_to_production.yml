@@ -58,4 +58,6 @@ jobs:
         run: bundle exec kamal deploy --skip-push
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-          KAMAL_REGISTRY_PASSWORD: ${{ secrets.DOCKER_REGISTRY_KEY }} 
+          DOCKER_REGISTRY_KEY: ${{ secrets.DOCKER_REGISTRY_KEY }} 
+          KAMAL_SERVER_MOUNTED_VOLUME_PATH: ${{ secrets.KAMAL_SERVER_MOUNTED_VOLUME_PATH }}
+          KAMAL_SERVER_IP: ${{ secrets.KAMAL_SERVER_IP }}
