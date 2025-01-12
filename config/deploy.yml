@@ -4,6 +4,9 @@ image: kierandon/learning_tool
 servers:
   web:
     - <%= ENV['KAMAL_SERVER_IP'] %>
+
+ssh:
+  user: deploy
   
   # job:
   #   hosts:
