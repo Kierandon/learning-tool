@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  step: one
+  question_type: MyString
+  question_text: MyText
+  position: 1
+
+two:
+  step: two
+  question_type: MyString
+  question_text: MyText
+  position: 1
