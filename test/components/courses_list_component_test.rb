@@ -11,7 +11,7 @@ class CoursesListComponentTest < ViewComponent::TestCase
 
     render_inline(CoursesListComponent.new(courses: courses))
 
-    assert_selector "h1", text: "Available Courses"
+    assert_selector "div[data-test-id='courses-list-header']", text: "Available Courses"
     assert_selector "h2", text: "Course 1"
     assert_selector "p", text: "Description 1"
     assert_selector "img[src='https://example.com/image1.jpg']"
