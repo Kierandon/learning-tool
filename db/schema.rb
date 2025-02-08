@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_28_122757) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_08_161537) do
   create_table "choices", force: :cascade do |t|
     t.integer "question_id", null: false
     t.string "content"
@@ -26,6 +26,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_122757) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "matchings", force: :cascade do |t|
