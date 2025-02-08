@@ -4,19 +4,21 @@
   </div>
   <div class="space-y-6">
     <% @courses&.each do |course| %>
-      <div class="flex items-center bg-white shadow rounded p-4">
-        <div class="flex-shrink-0 w-24 h-24 mr-4">
+      <div class="flex items-center bg-white shadow rounded p-4 gap-4">
+        <div class="flex-shrink-0 w-24 h-24">
           <% if course.image_url.present? %>
             <img src="<%= course.image_url %>" alt="Course image" class="w-full h-full object-cover rounded">
           <% else %>
             <img src="https://placehold.co/600x400" alt="Placeholder image" class="w-full h-full object-cover rounded">
           <% end %>
         </div>
-        <div class="flex-grow">
-          <h2 class="text-lg font-bold"><%= course.title %></h2>
-          <p class="text-gray-600"><%= course.description %></p>
+        
+        <div class="flex-grow min-w-0">
+          <h2 class="text-lg font-bold truncate w-full"><%= course.title %></h2>
+          <p class="text-gray-600 line-clamp-3 break-words w-full"><%= course.description %></p>
         </div>
-        <div class="flex-shrink-0 ml-4">
+
+        <div class="flex-shrink-0">
           <button class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
             START NOW
           </button>
