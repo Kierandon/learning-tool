@@ -3,6 +3,7 @@
 one:
   title: MyString
   description: MyText
+  image_url: https://example.com/image.jpg
 
 two:
   title: MyString
