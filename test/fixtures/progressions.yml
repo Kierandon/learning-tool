@@ -4,10 +4,10 @@ one:
   user: one
   course: one
   current_step: one
-  completed: false
+  completed_at: 2025-02-08 16:36:01.894215044 +0000
 
 two:
   user: two
   course: two
   current_step: two
-  completed: false
+  completed_at: ~
