@@ -2,4 +2,12 @@
   <div class="text-xl font-semibold" data-testid="navbar-title">
     Learning Tool
   </div>
+
+  <div>
+    <% if @current_user %>
+      <%= link_to "Logout", session_path, method: :delete, data: { turbo_method: :delete } %>
+    <% else %>
+      <%= link_to "Login", new_session_path, class: "btn" %>
+    <% end %>
+  </div>
 </nav>
