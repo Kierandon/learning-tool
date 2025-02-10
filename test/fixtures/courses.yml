@@ -1,12 +1,12 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
-  image_url: https://example.com/image.jpg
-  ordering: 1
+  title: Course 1
+  description: Description 1
+  image_url: https://example.com/image1.jpg
+  ordering: 2
 
 two:
-  title: MyString
-  description: MyText
-  ordering: 2 
+  title: Course 2
+  description: Description 2
+  ordering: 1

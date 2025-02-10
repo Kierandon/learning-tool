@@ -1,0 +1,21 @@
+<div class="course-details-container p-6 bg-gray-100 rounded shadow">
+  <h1 class="text-2xl font-bold mb-4"><%= @course.title %></h1>
+
+  <div class="mb-4 m-auto flex justify-center w-80">
+    <% if @course.image_url.present? %>
+      <img src="<%= @course.image_url %>" alt="<%= @course.title %>" class="rounded">
+    <% else %>
+      <img src="https://placehold.co/600x400" alt="Placeholder image" class="rounded">
+    <% end %>
+  </div>
+  
+  <div class="mb-4 text-gray-700">
+    <%= @course.description.html_safe %>
+  </div>
+
+  <!-- Placeholder progress bar comment -->
+  <!-- TODO: Implement progress bar showing steps completed out of total steps with step info etc -->
+  
+  <%= link_to "START NOW", course_path(@course.id),
+      class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" %>
+</div>
