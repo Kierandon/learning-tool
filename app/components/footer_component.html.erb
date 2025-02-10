@@ -1,5 +1,11 @@
-<div class="flex items-center justify-center">
+<div class="flex items-center justify-between w-full px-4">
   <a href="#" class="text-blue-600 hover:text-blue-800">
     Help
   </a>
+
+  <% if @current_user %>
+    <p class="text-gray-600 ml-auto">
+      <%= @current_user.login_hash %>
+    </p>
+  <% end %>
 </div>

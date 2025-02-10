@@ -8,4 +8,10 @@ class FooterComponentTest < ViewComponent::TestCase
 
     assert_selector "a", text: "Help"
   end
+
+  def test_renders_login_hash_when_logged_in
+    render_inline(FooterComponent.new(current_user: User.first))
+
+    assert_selector "p", text: User.first.login_hash
+  end
 end
