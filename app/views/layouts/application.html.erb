@@ -33,7 +33,7 @@
     </main>
 
     <footer class="bg-gray-100 py-4 mt-auto">
-      <%= render(FooterComponent.new) %>
+      <%= render(FooterComponent.new(current_user: current_user)) %>
     </footer>
   </body>
 </html>
