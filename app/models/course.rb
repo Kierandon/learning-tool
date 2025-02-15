@@ -1,6 +1,24 @@
 class Course < ApplicationRecord
   validates :title, presence: true
   validates :description, presence: true
-  validates :ordering, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, uniqueness: true
   validates :image_url, format: { with: URI::DEFAULT_PARSER.make_regexp, message: "must be a valid URL" }, allow_blank: true
+
+  has_many :steps, -> { order(position: :asc) }, dependent: :destroy
+  has_many :progressions
+  has_many :users, through: :progressions
+
+  def start(user)
+    progress = progressions.find_or_initialize_by(user: user, course: self)
+    if progress.new_record?
+      progress.current_step = first_step
+      progress.save!
+    end
+    progress
+  end
+
+  private
+
+  def first_step
+    steps.order(:position).first
+  end
 end

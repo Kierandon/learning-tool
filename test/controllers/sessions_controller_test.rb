@@ -2,7 +2,7 @@ require "test_helper"
 
 class SessionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = User.find_by(login_hash: "123456")
+    @user = create(:user)
   end
 
   test "should get new session form" do

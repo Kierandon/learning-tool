@@ -17,7 +17,8 @@ class NavbarComponentTest < ViewComponent::TestCase
   end
 
   def test_renders_logout_link_when_logged_in
-    render_inline(NavbarComponent.new(current_user: User.first))
+    @user = create(:user)
+    render_inline(NavbarComponent.new(current_user: @user))
 
     assert_selector "a", text: "Logout"
   end
