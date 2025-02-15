@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :progressions
+  has_many :courses, through: :progressions
+
   before_create :generate_login_hash
 
   validates :login_hash, uniqueness: true
