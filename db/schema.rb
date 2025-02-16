@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_16_195654) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_16_201256) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -65,6 +65,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_195654) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_answers", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "question_id", null: false
+    t.text "answer_data"
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_user_answers_on_question_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "login_hash", null: false
     t.string "type", default: "User", null: false
@@ -78,4 +89,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_195654) do
   add_foreign_key "progressions", "users"
   add_foreign_key "questions", "steps"
   add_foreign_key "steps", "courses"
+  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "users"
 end
