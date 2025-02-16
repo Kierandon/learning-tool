@@ -5,8 +5,10 @@ FactoryBot.define do
     image_url { "https://placehold.co/600x400" }
     ordering { 1 }
 
-    after(:create) do |course|
-      create_list(:step, 2, course: course)
+    trait :course_with_steps do
+      after(:create) do |course|
+        create_list(:step, 2, course: course)
+      end
     end
   end
 end

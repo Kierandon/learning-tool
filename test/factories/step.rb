@@ -4,6 +4,6 @@ FactoryBot.define do
     title { "Default Step" }
     step_type { "info" }
     content { "This is a default step." }
-    position { 0 }
+    position { 1 }
   end
 end
