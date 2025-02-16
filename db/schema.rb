@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_08_210100) do
-  create_table "choices", force: :cascade do |t|
-    t.integer "question_id", null: false
-    t.string "content"
-    t.boolean "is_correct"
-    t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_choices_on_question_id"
-  end
-
+ActiveRecord::Schema[8.0].define(version: 2025_02_16_183639) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -28,17 +18,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_210100) do
     t.datetime "updated_at", null: false
     t.string "image_url"
     t.integer "ordering"
-  end
-
-  create_table "matchings", force: :cascade do |t|
-    t.integer "question_id", null: false
-    t.string "item_type"
-    t.string "content"
-    t.integer "pair_id"
-    t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_matchings_on_question_id"
   end
 
   create_table "progressions", force: :cascade do |t|
@@ -75,45 +54,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_210100) do
     t.index ["course_id"], name: "index_steps_on_course_id"
   end
 
-  create_table "user_answer_choices", force: :cascade do |t|
-    t.integer "user_answer_id", null: false
-    t.integer "choice_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["choice_id"], name: "index_user_answer_choices_on_choice_id"
-    t.index ["user_answer_id"], name: "index_user_answer_choices_on_user_answer_id"
-  end
-
-  create_table "user_answer_matchings", force: :cascade do |t|
-    t.integer "user_answer_id", null: false
-    t.integer "matching_id", null: false
-    t.integer "matched_with_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["matching_id"], name: "index_user_answer_matchings_on_matching_id"
-    t.index ["user_answer_id"], name: "index_user_answer_matchings_on_user_answer_id"
-  end
-
-  create_table "user_answers", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "question_id", null: false
-    t.boolean "is_correct", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_user_answers_on_question_id"
-    t.index ["user_id"], name: "index_user_answers_on_user_id"
-  end
-
-  create_table "user_preferences", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "font_size"
-    t.string "colour_scheme"
-    t.boolean "high_contrast"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_preferences_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "login_hash", null: false
     t.string "type", default: "User", null: false
@@ -122,18 +62,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_08_210100) do
     t.index ["login_hash"], name: "index_users_on_login_hash", unique: true
   end
 
-  add_foreign_key "choices", "questions"
-  add_foreign_key "matchings", "questions"
   add_foreign_key "progressions", "courses"
   add_foreign_key "progressions", "steps", column: "current_step_id"
   add_foreign_key "progressions", "users"
   add_foreign_key "questions", "steps"
   add_foreign_key "steps", "courses"
-  add_foreign_key "user_answer_choices", "choices"
-  add_foreign_key "user_answer_choices", "user_answers"
-  add_foreign_key "user_answer_matchings", "matchings"
-  add_foreign_key "user_answer_matchings", "user_answers"
-  add_foreign_key "user_answers", "questions"
-  add_foreign_key "user_answers", "users"
-  add_foreign_key "user_preferences", "users"
 end
