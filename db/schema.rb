@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_16_183639) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_16_195654) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -35,11 +35,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_183639) do
 
   create_table "questions", force: :cascade do |t|
     t.integer "step_id", null: false
-    t.string "question_type"
-    t.text "question_text"
+    t.text "prompt"
     t.integer "position"
+    t.string "questionable_type", null: false
+    t.integer "questionable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["questionable_type", "questionable_id"], name: "index_questions_on_questionable"
+    t.index ["questionable_type", "questionable_id"], name: "index_questions_on_questionable_type_and_questionable_id"
     t.index ["step_id"], name: "index_questions_on_step_id"
   end
 
@@ -52,6 +55,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_16_183639) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_steps_on_course_id"
+  end
+
+  create_table "true_false_questions", force: :cascade do |t|
+    t.boolean "correct_answer", null: false
+    t.text "success_message"
+    t.text "failure_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
