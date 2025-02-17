@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :step
-  belongs_to :questionable, polymorphic: true
+  belongs_to :questionable, polymorphic: true, dependent: :destroy
   has_many :user_answers, dependent: :destroy
 
   accepts_nested_attributes_for :questionable
