@@ -15,7 +15,7 @@
           "type": "controller",
           "class": "CoursesController",
           "method": "show",
-          "line": 5,
+          "line": 6,
           "file": "app/controllers/courses_controller.rb",
           "rendered": {
             "name": "courses/show",
@@ -33,6 +33,29 @@
         79
       ],
       "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "f1999cb319b64214c2cf8dd08c68975d9c4784ac768a6269c7221051c42231e1",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/answers_controller.rb",
+      "line": 32,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:answer).permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AnswersController",
+        "method": "process_answer"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": "fix later when all question type params have been specified"
     }
   ],
   "brakeman_version": "7.0.0"
