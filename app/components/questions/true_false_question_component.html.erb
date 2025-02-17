@@ -1,0 +1,31 @@
+<div class="true-false-question" data-controller="components--questions--true-false">
+  <fieldset class="space-y-6">
+    <legend class="text-lg font-semibold text-gray-900 mb-4">
+      <br>Question:<br>
+      <%= @question.prompt %>
+    </legend>
+
+    <%= @form.hidden_field "answer[question_#{@question.id}]", 
+        data: { "components--questions--true-false-target": "input" } %>
+
+    <div class="flex flex-col">
+      <div data-components--questions--true-false-target="option"
+           data-value="true"
+           data-action="click->components--questions--true-false#select"
+           class="option-card transition-all duration-200 ease-in-out cursor-pointer rounded-xl border bg-white shadow-sm hover:shadow-md px-6 py-4 mb-4">
+        <div class="text-center">
+          <span class="text-lg font-medium text-gray-800">True</span>
+        </div>
+      </div>
+
+      <div data-components--questions--true-false-target="option"
+           data-value="false"
+           data-action="click->components--questions--true-false#select"
+           class="option-card transition-all duration-200 ease-in-out cursor-pointer rounded-xl border bg-white shadow-sm hover:shadow-md px-6 py-4 mb-4">
+        <div class="text-center">
+          <span class="text-lg font-medium text-gray-800">False</span>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+</div>

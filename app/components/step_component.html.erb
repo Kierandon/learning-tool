@@ -1,0 +1,16 @@
+<div class="card-container p-6 bg-gray-100 rounded shadow w-full h-full">
+  <h2 class="text-xl font-bold"><%= @step.title %></h2>
+  <%= render content_component %>
+  <div class="flex justify-between mt-6">
+    <% if @step.previous_step %>
+      <%= link_to "Back", course_step_path(@course, @step.previous_step), class: "rounded-full px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", role: "button" %>
+    <% else %>
+      <div></div>
+    <% end %>
+    <% if @step.next_step %>
+      <%= link_to "Next", course_step_path(@course, @step.next_step), class: "rounded-full px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", role: "button" %>
+    <% else %>
+      <div></div>
+    <% end %>
+  </div>
+</div>

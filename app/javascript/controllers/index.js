@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import Components__Questions__TrueFalseController from "./components/questions/true_false_controller"
+application.register("components--questions--true-false", Components__Questions__TrueFalseController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
