@@ -10,10 +10,6 @@ class Question < ApplicationRecord
 
   delegate :correct_answer?, to: :questionable
 
-  QUESTION_TYPES = {
-    TrueFalseQuestion => "true_false"
-  }.freeze
-
   def check_answer(submitted_answer)
     questionable.correct_answer?(submitted_answer)
   end
