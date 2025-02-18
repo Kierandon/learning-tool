@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.matching-question .term-container,
+.matching-question .definition-container {
+  user-select: none;
+  -webkit-user-select: none;
+}

@@ -3,6 +3,8 @@ class MatchingQuestion < ApplicationRecord
   has_many :matching_pairs, dependent: :destroy
   accepts_nested_attributes_for :matching_pairs
 
+  validates :matching_style, inclusion: { in: %w[dropdown drawing] }
+
   def correct_answer?(submitted_pairs)
     return false unless submitted_pairs.is_a?(Hash)
 

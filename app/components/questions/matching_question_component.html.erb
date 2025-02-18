@@ -1,36 +1,72 @@
-<div class="matching-question" data-controller="components--questions--matching">
+<div class="matching-question" 
+     data-controller="<%= @question.questionable.matching_style == 'drawing' ? 'components--questions--matching-drawing' : 'components--questions--matching' %>">
   <fieldset class="space-y-6">
     <legend class="text-lg font-semibold text-gray-900 mb-4">
       <br>Match the following:<br>
       <%= @question.prompt %>
     </legend>
 
-    <div class="flex flex-col">
-      <%# Terms %>
-      <div class="space-y-4 mb-4">
-        <h3 class="font-medium text-gray-900">Terms</h3>
-        <% @pairs.each do |pair| %>
-          <div class="term-container p-4 bg-white rounded-lg shadow">
-            <div class="flex items-center justify-between">
-              <span class="text-gray-900"><%= pair.term %></span>
-              <%= @form.select "answer[term_#{pair.id}]",
-                  options_from_collection_for_select(@pairs, :id, :definition),
-                  { prompt: "Select matching definition" },
-                  class: "ml-4 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+    <% if @question.questionable.matching_style == 'drawing' %>
+      <div class="relative">
+        <canvas data-components--questions--matching-drawing-target="canvas"
+                class="absolute inset-0 pointer-events-none"></canvas>
+        <div class="grid grid-cols-2 gap-8 mb-8">
+          <div class="space-y-4">
+            <h3 class="font-medium text-gray-900">Terms</h3>
+            <% @pairs.each do |pair| %>
+              <div class="term-container p-4 bg-white rounded-lg shadow cursor-pointer"
+                  data-components--questions--matching-drawing-target="term"
+                  data-term-id="<%= pair.id %>"
+                  data-action="mousedown->components--questions--matching-drawing#selectTerm">
+                <span class="text-gray-900"><%= pair.term %></span>
+              </div>
+              <%= @form.hidden_field "answer[term_#{pair.id}]",
+                  data: { 
+                    "components--questions--matching-drawing-target": "input",
+                    "term-id": pair.id 
+                  } %>
+            <% end %>
+          </div>
+          <div class="space-y-4">
+            <h3 class="font-medium text-gray-900">Definitions</h3>
+            <% @pairs.each do |pair| %>
+              <div class="definition-container p-4 bg-gray-50 rounded-lg cursor-pointer"
+                  data-components--questions--matching-drawing-target="definition"
+                  data-definition-id="<%= pair.id %>"
+                  data-action="mousedown->components--questions--matching-drawing#selectDefinition">
+                <span class="text-gray-700"><%= pair.definition %></span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+        <div class="flex flex-col">
+        <%# Terms %>
+        <div class="space-y-4 mb-4">
+          <h3 class="font-medium text-gray-900">Terms</h3>
+          <% @pairs.each do |pair| %>
+            <div class="term-container p-4 bg-white rounded-lg shadow">
+              <div class="flex items-center justify-between">
+                <span class="text-gray-900"><%= pair.term %></span>
+                <%= @form.select "answer[term_#{pair.id}]",
+                    options_from_collection_for_select(@pairs, :id, :definition),
+                    { prompt: "Select matching definition" },
+                    class: "ml-4 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+              </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+        <%# Definitions %>
+        <div class="space-y-4">
+          <h3 class="font-medium text-gray-900">Definitions</h3>
+          <% @pairs.each do |pair| %>
+            <div class="definition-container p-4 bg-gray-50 rounded-lg">
+              <span class="text-gray-700"><%= pair.definition %></span>
+            </div>
+          <% end %>
+        </div>
       </div>
-
-      <%# Definitions %>
-      <div class="space-y-4">
-        <h3 class="font-medium text-gray-900">Definitions</h3>
-        <% @pairs.each do |pair| %>
-          <div class="definition-container p-4 bg-gray-50 rounded-lg">
-            <span class="text-gray-700"><%= pair.definition %></span>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
   </fieldset>
 </div>
