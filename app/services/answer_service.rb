@@ -19,6 +19,8 @@ class AnswerService
 
   def convert_answer(answer)
     case @question.questionable_type
+    when MatchingQuestion.to_s
+      answer
     when TrueFalseQuestion.to_s
       answer_value = answer["question_#{@question.id}"]
       answer_value.to_s.downcase == "true"

@@ -1,0 +1,36 @@
+<div class="matching-question" data-controller="components--questions--matching">
+  <fieldset class="space-y-6">
+    <legend class="text-lg font-semibold text-gray-900 mb-4">
+      <br>Match the following:<br>
+      <%= @question.prompt %>
+    </legend>
+
+    <div class="flex flex-col">
+      <%# Terms %>
+      <div class="space-y-4 mb-4">
+        <h3 class="font-medium text-gray-900">Terms</h3>
+        <% @pairs.each do |pair| %>
+          <div class="term-container p-4 bg-white rounded-lg shadow">
+            <div class="flex items-center justify-between">
+              <span class="text-gray-900"><%= pair.term %></span>
+              <%= @form.select "answer[term_#{pair.id}]",
+                  options_from_collection_for_select(@pairs, :id, :definition),
+                  { prompt: "Select matching definition" },
+                  class: "ml-4 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Definitions %>
+      <div class="space-y-4">
+        <h3 class="font-medium text-gray-900">Definitions</h3>
+        <% @pairs.each do |pair| %>
+          <div class="definition-container p-4 bg-gray-50 rounded-lg">
+            <span class="text-gray-700"><%= pair.definition %></span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </fieldset>
+</div>
