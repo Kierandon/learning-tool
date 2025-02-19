@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :matching_question do
     trait :with_pairs do
       after(:create) do |question|
-        create(:matching_pair, 
+        create(:matching_pair,
           matching_question: question,
           term: "Ruby",
           definition: "A dynamic programming language",

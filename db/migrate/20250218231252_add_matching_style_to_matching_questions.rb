@@ -3,4 +3,3 @@ class AddMatchingStyleToMatchingQuestions < ActiveRecord::Migration[6.0]
     add_column :matching_questions, :matching_style, :string, default: 'dropdown'
   end
 end
-
