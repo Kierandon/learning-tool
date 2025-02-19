@@ -3,9 +3,9 @@
     Help
   </a>
 
-  <% if @current_user %>
+  <% if current_user %>
     <p class="text-gray-600 ml-auto">
-      <%= @current_user.login_hash %>
+      <%= current_user.login_hash %>
     </p>
   <% end %>
 </div>

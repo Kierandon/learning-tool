@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require "mocha/minitest"
 
 module AuthenticationHelper
   def sign_in(user)
@@ -22,4 +23,10 @@ end
 
 class ActionDispatch::IntegrationTest
   include AuthenticationHelper
+end
+
+class ViewComponent::TestCase
+  def sign_in(user)
+    ViewComponent::Base.any_instance.stubs(:current_user).returns(user)
+  end
 end

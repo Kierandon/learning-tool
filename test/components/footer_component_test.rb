@@ -11,7 +11,8 @@ class FooterComponentTest < ViewComponent::TestCase
 
   def test_renders_login_hash_when_logged_in
     @user = create(:user)
-    render_inline(FooterComponent.new(current_user: @user))
+    sign_in(@user)
+    render_inline(FooterComponent.new)
 
     assert_selector "p", text: @user.login_hash
   end

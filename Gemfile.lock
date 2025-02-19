@@ -177,6 +177,8 @@ GEM
       logger
     mini_mime (1.1.5)
     minitest (5.25.4)
+    mocha (2.7.1)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.7.5)
     net-imap (0.5.6)
       date
@@ -310,6 +312,7 @@ GEM
     ruby-vips (2.2.3)
       ffi (~> 1.12)
       logger
+    ruby2_keywords (0.0.5)
     rubyzip (2.4.1)
     securerandom (0.4.1)
     selenium-webdriver (4.28.0)
@@ -404,6 +407,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kamal
+  mocha
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.1)
