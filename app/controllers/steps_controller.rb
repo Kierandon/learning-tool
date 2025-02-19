@@ -3,5 +3,12 @@ class StepsController < ApplicationController
     @course = Course.find(params[:course_id])
     @step = @course.steps.find(params[:id])
     @progression = current_user.progressions.find_by!(course: @course)
+
+    if turbo_frame_request?
+      render partial: "step_content", locals: {
+        step: @step,
+        course: @course
+      }
+    end
   end
 end
