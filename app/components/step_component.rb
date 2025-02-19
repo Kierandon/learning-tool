@@ -7,11 +7,11 @@ class StepComponent < ViewComponent::Base
   private
 
   def content_component
-    case @step.step_type
-    when "info"
-      InfoStepComponent.new(step: @step, course: @course)
-    when "question"
-      QuestionStepComponent.new(step: @step, course: @course)
-    end
+    component_class = {
+      "info" => InfoStepComponent,
+      "question" => QuestionStepComponent
+    }[@step.step_type]
+
+    component_class&.new(step: @step, course: @course)
   end
 end

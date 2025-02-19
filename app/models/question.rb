@@ -13,4 +13,8 @@ class Question < ApplicationRecord
   def check_answer(submitted_answer)
     questionable.correct_answer?(submitted_answer)
   end
+
+  def answered_correctly?(user)
+    user_answers.where(user: user, correct: true).exists?
+  end
 end
