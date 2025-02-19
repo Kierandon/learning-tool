@@ -2,8 +2,7 @@
   <% if previous_step_path %>
     <%= link_to "Back", previous_step_path, 
       class: "rounded-full px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", 
-      role: "button",
-      data: { turbo_frame: "step_content" } %>
+      role: "button" %>
   <% else %>
     <div></div>
   <% end %>
@@ -11,8 +10,7 @@
   <% if next_step_path %>
     <%= link_to "Next", next_step_path, 
       class: "rounded-full px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", 
-      role: "button",
-      data: { turbo_frame: "step_content" } %>
+      role: "button" %>
   <% else %>
     <div></div>
   <% end %>
