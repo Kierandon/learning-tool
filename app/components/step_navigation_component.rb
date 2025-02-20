@@ -12,6 +12,14 @@ class StepNavigationComponent < ViewComponent::Base
   end
 
   def next_step_path
-    course_step_path(@course, @step.next_step) if @step.next_step && @step.all_questions_answered?(@user)
+    if @step.next_step && @step.all_questions_answered?(@user)
+      course_step_path(@course, @step.next_step)
+    else
+      nil
+    end
+  end
+
+  def show_complete_button?
+    @step.next_step.nil? && @step.all_questions_answered?(@user)
   end
 end
