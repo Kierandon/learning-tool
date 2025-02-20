@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :courses, only: :show do
     member do
+      get :confirm_start
       post :start
     end
 
