@@ -5,6 +5,15 @@ class Progression < ApplicationRecord
 
   before_create :set_initial_step
 
+  def next_step
+    next_step = current_step.next_step
+    if next_step.nil?
+      self.completed_at = Time.zone.now
+      save!
+    end
+    next_step
+  end
+
   private
 
   def set_initial_step

@@ -21,6 +21,17 @@ class CoursesController < ApplicationController
     redirect_to course_step_path(@course, @progression.current_step)
   end
 
+  def complete
+    @course = Course.find(params[:id])
+
+    if @course.badge && !current_user.badges.exists?(id: @course.badge.id)
+      current_user.user_badges.create!(
+        badge: @course.badge,
+        awarded_at: Time.current
+      )
+    end
+  end
+
   private
 
   def set_course
