@@ -1,37 +1,65 @@
-<div class="true-false-question" data-controller="components--questions--true-false">
-  <fieldset class="space-y-6">
+<div class="true-false-question" data-controller="components--questions--true-false" 
+     data-components--questions--true-false-answered-value="<%= @just_answered %>">
+  <fieldset>
     <legend class="text-lg font-semibold text-gray-900 mb-4">
-      <br>Question:<br>
+      <br>
+      Question:<br>
       <%= @question.prompt %>
     </legend>
-
-    <% if flash[:notice] %>
-      <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4" role="alert">
-        <p><%= flash[:notice] %></p>
-      </div>
-    <% end %>
-
     <%= @form.hidden_field "answer[question_#{@question.id}]", 
         data: { "components--questions--true-false-target": "input" } %>
-
     <div class="flex flex-col">
       <div data-components--questions--true-false-target="option"
            data-value="true"
            data-action="click->components--questions--true-false#select"
-           class="option-card transition-all duration-200 ease-in-out cursor-pointer rounded-xl border bg-white shadow-sm hover:shadow-md px-6 py-4 mb-4">
+           class="option-card transition-all duration-200 ease-in-out cursor-pointer rounded-xl border bg-white shadow-sm hover:shadow-md px-6 py-4 mb-4 relative">
         <div class="text-center">
           <span class="text-lg font-medium text-gray-800">True</span>
         </div>
+        <% if @just_answered %>
+          <div class="absolute right-4 top-1/2 -translate-y-1/2">
+            <% if @question.questionable.correct_answer == true %>
+              <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
-
       <div data-components--questions--true-false-target="option"
            data-value="false"
            data-action="click->components--questions--true-false#select"
-           class="option-card transition-all duration-200 ease-in-out cursor-pointer rounded-xl border bg-white shadow-sm hover:shadow-md px-6 py-4 mb-4">
+           class="option-card transition-all duration-200 ease-in-out cursor-pointer rounded-xl border bg-white shadow-sm hover:shadow-md px-6 py-4 mb-4 relative">
         <div class="text-center">
           <span class="text-lg font-medium text-gray-800">False</span>
         </div>
+        <% if @just_answered %>
+          <div class="absolute right-4 top-1/2 -translate-y-1/2">
+            <% if @question.questionable.correct_answer == false %>
+              <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
+    <% if @just_answered %>
+      <div>
+        <% if @question.user_answers.last.correct %>
+          <div class="p-4 rounded-lg bg-green-50 text-green-700">
+            <%= @question.questionable.success_message %>
+          </div>
+        <% else %>
+          <div class="p-4 rounded-lg bg-red-50 text-red-700">
+            <%= @question.questionable.failure_message %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </fieldset>
 </div>

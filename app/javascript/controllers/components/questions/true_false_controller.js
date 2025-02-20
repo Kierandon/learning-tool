@@ -2,15 +2,24 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["option", "input"]
+  static values = {
+    answered: Boolean
+  }
 
   connect() {
     const currentValue = this.inputTarget.value
     if (currentValue) {
       this.selectOption(currentValue)
     }
+    
+    if (this.answeredValue) {
+      this.disableOptions()
+    }
   }
 
   select(event) {
+    if (this.answeredValue) return
+    
     const value = event.currentTarget.dataset.value
     this.selectOption(value)
   }
@@ -24,5 +33,16 @@ export default class extends Controller {
       }
     })
     this.inputTarget.value = value
+    
+    if (this.answeredValue) {
+      this.disableOptions()
+    }
+  }
+
+  disableOptions() {
+    this.optionTargets.forEach(option => {
+      option.classList.remove('cursor-pointer', 'hover:shadow-md')
+      option.classList.add('pointer-events-none', 'opacity-75')
+    })
   }
 }

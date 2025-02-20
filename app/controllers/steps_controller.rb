@@ -7,7 +7,8 @@ class StepsController < ApplicationController
     if turbo_frame_request?
       render partial: "step_content", locals: {
         step: @step,
-        course: @course
+        course: @course,
+        just_answered: params[:just_answered] == "true"
       }
     end
   end

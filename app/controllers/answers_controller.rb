@@ -4,13 +4,9 @@ class AnswersController < ApplicationController
   before_action :set_question
 
   def create
-    result = process_answer
-
-    if result.correct?
-      handle_correct_answer
-    else
-      handle_incorrect_answer
-    end
+    process_answer
+    @progression.update!(current_step: next_step)
+    redirect_to course_step_path(@course, @step, just_answered: true)
   end
 
   private

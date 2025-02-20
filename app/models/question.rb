@@ -15,6 +15,6 @@ class Question < ApplicationRecord
   end
 
   def answered_correctly?(user)
-    user_answers.where(user: user, correct: true).exists?
+    user_answers.where(user: user).exists?
   end
 end

@@ -1,7 +1,8 @@
 class StepComponent < ViewComponent::Base
-  def initialize(step:, course:)
+  def initialize(step:, course:, just_answered: false)
     @step = step
     @course = course
+    @just_answered = just_answered
   end
 
   private
@@ -12,6 +13,10 @@ class StepComponent < ViewComponent::Base
       "question" => QuestionStepComponent
     }[@step.step_type]
 
-    component_class&.new(step: @step, course: @course)
+    if component_class == QuestionStepComponent
+      component_class&.new(step: @step, course: @course, just_answered: @just_answered)
+    else
+      component_class&.new(step: @step, course: @course)
+    end
   end
 end

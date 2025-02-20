@@ -2,7 +2,7 @@
   <p class="mb-4"><%= @step.content %></p>
   <%= form_with url: course_step_answers_path(@course, @step), local: true do |f| %>
     <% @step.questions.each do |question| %>
-      <%= render Questions::QuestionContainerComponent.new(question: question, form: f) %>
+      <%= render Questions::QuestionContainerComponent.new(question: question, form: f, just_answered: @just_answered) %>
     <% end %>
     <div class="flex flex-col items-center">
       <% if !@step.all_questions_answered?(current_user) %>
