@@ -8,8 +8,11 @@ class AnswerService
     converted_answer = convert_answer(submitted_answer)
     result = @question.check_answer(converted_answer)
 
-    answer_data = if @question.questionable_type == MatchingQuestion.to_s
+    answer_data = case @question.questionable_type
+    when MatchingQuestion.to_s
       generate_matching_answer_data(submitted_answer)
+    when MultipleChoiceQuestion.to_s
+      generate_multiple_choice_answer_data(submitted_answer)
     else
       submitted_answer.to_h
     end
@@ -31,9 +34,35 @@ class AnswerService
     when TrueFalseQuestion.to_s
       answer_value = answer["question_#{@question.id}"]
       answer_value.to_s.downcase == "true"
+    when MultipleChoiceQuestion.to_s
+      # structure - { "selected_options" => [1, 2, 3] }
+      answer["selected_options"].flatten.map(&:to_i)
     else
       answer
     end
+  end
+
+  def generate_multiple_choice_answer_data(submitted_answer)
+    selected_ids = (submitted_answer["selected_options"] || []).flatten
+    selected_options = @question.questionable.options.where(id: selected_ids)
+    correct_options = @question.questionable.options.where(correct: true)
+
+    {
+      selected_options: selected_options.map { |option|
+        {
+          id: option.id,
+          text: option.text,
+          correct: option.correct,
+          feedback: option.feedback
+        }
+      },
+      correct_options: correct_options.map { |option|
+        {
+          id: option.id,
+          text: option.text
+        }
+      }
+    }
   end
 
   def generate_matching_answer_data(submitted_pairs)

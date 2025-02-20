@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_18_231252) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_20_130929) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -74,6 +74,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_231252) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "matching_style", default: "dropdown"
+  end
+
+  create_table "multiple_choice_options", force: :cascade do |t|
+    t.integer "multiple_choice_question_id", null: false
+    t.string "text", null: false
+    t.boolean "correct", default: false, null: false
+    t.text "feedback"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["multiple_choice_question_id"], name: "index_multiple_choice_options_on_multiple_choice_question_id"
+  end
+
+  create_table "multiple_choice_questions", force: :cascade do |t|
+    t.boolean "allow_multiple_answers", default: false, null: false
+    t.string "success_message"
+    t.string "failure_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "progressions", force: :cascade do |t|
@@ -142,6 +160,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_18_231252) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "matching_pairs", "matching_questions"
+  add_foreign_key "multiple_choice_options", "multiple_choice_questions"
   add_foreign_key "progressions", "courses"
   add_foreign_key "progressions", "steps", column: "current_step_id"
   add_foreign_key "progressions", "users"

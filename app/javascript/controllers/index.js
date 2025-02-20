@@ -7,6 +7,9 @@ import { application } from "./application"
 import Components__Questions__MatchingDrawingController from "./components/questions/matching_drawing_controller"
 application.register("components--questions--matching-drawing", Components__Questions__MatchingDrawingController)
 
+import Components__Questions__MultipleChoiceController from "./components/questions/multiple_choice_controller"
+application.register("components--questions--multiple-choice", Components__Questions__MultipleChoiceController)
+
 import Components__Questions__TrueFalseController from "./components/questions/true_false_controller"
 application.register("components--questions--true-false", Components__Questions__TrueFalseController)
 
