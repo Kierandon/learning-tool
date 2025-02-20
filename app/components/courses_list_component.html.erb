@@ -20,7 +20,7 @@
 
         <div class="flex-shrink-0">
           <%= 
-            link_to "START NOW",
+            link_to course.progressions.exists?(user: current_user) ? "CONTINUE" : "START NOW",
             course_path(course),
             class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" 
           %>
