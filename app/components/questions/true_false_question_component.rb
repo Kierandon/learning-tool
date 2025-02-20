@@ -15,10 +15,6 @@ class Questions::TrueFalseQuestionComponent < ViewComponent::Base
     @question.questionable.correct_answer
   end
 
-  def last_answer_correct?
-    @question.user_answers.last.correct
-  end
-
   def question_answered?
     @question.user_answers.where(user: current_user).exists?
   end

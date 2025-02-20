@@ -1,11 +1,12 @@
 <div class="matching-question" 
-     data-controller="<%= @question.questionable.matching_style == 'drawing' ? 'components--questions--matching-drawing' : 'components--questions--matching' %>">
+     data-controller="<%= @question.questionable.matching_style == 'drawing' ? 'components--questions--matching-drawing' : 'components--questions--matching' %>"
+     data-components--questions--matching-drawing-answered-value="<%= @just_answered %>">
   <fieldset class="space-y-6">
     <legend class="text-lg font-semibold text-gray-900 mb-4">
-      <br>Match the following:<br>
+      <br>
+      Match the following:<br>
       <%= @question.prompt %>
     </legend>
-
     <% if @question.questionable.matching_style == 'drawing' %>
       <div class="relative">
         <canvas data-components--questions--matching-drawing-target="canvas"
@@ -41,8 +42,7 @@
         </div>
       </div>
     <% else %>
-        <div class="flex flex-col">
-        <%# Terms %>
+      <div class="flex flex-col">
         <div class="space-y-4 mb-4">
           <h3 class="font-medium text-gray-900">Terms</h3>
           <% @pairs.each do |pair| %>
@@ -57,7 +57,6 @@
             </div>
           <% end %>
         </div>
-        <%# Definitions %>
         <div class="space-y-4">
           <h3 class="font-medium text-gray-900">Definitions</h3>
           <% @pairs.each do |pair| %>
@@ -66,6 +65,27 @@
             </div>
           <% end %>
         </div>
+      </div>
+    <% end %>
+    <% if @just_answered %>
+      <div class="mt-6">
+        <% if all_correct? %>
+          <div class="p-4 rounded-lg bg-green-50 text-green-700">
+            <%= success_message %>
+          </div>
+        <% else %>
+          <div class="p-4 rounded-lg bg-red-50 text-red-700">
+            <p><%= failure_message %></p>
+            <ul class="mt-2 list-disc list-inside">
+              <% incorrect_pairs.each do |pair| %>
+                <li>
+                  "<%= pair['term'] %>" should be matched with "<%= pair['correct_definition'] %>"
+                  (you matched it with "<%= pair['selected_definition'] %>")
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </fieldset>

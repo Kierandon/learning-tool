@@ -2,8 +2,13 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   static targets = ["term", "definition", "canvas", "input"]
+  static values = {
+    answered: Boolean
+  }
   
   connect() {
+    console.log('MatchingDrawingController connected')
+    console.log(this.answeredValue)
     this.canvas = this.canvasTarget
     this.ctx = this.canvas.getContext('2d')
     this.connections = new Map()
@@ -23,9 +28,37 @@ export default class extends Controller {
     this.resizeCanvas()
     window.addEventListener('resize', () => this.resizeCanvas())
     
-    // Reset all styles initially
     this.resetStyles()
+
+    if (this.answeredValue) {
+      this.disableInteractions()
+    }
   }
+
+  disableInteractions() {
+    // Remove hover and click effects
+    this.termTargets.forEach(term => {
+      term.style.cursor = 'default'
+      term.classList.remove('hover:shadow-md')
+      term.classList.remove('cursor-pointer')
+      // Remove click handlers
+      term.removeAttribute('data-action')
+    })
+    
+    this.definitionTargets.forEach(def => {
+      def.style.cursor = 'default'
+      def.classList.remove('hover:shadow-md')
+      def.classList.remove('cursor-pointer')
+      // Remove click handlers
+      def.removeAttribute('data-action')
+    })
+    
+    // Disable select elements if using dropdown style
+    this.element.querySelectorAll('select').forEach(select => {
+      select.disabled = true
+    })
+  }
+
 
   resizeCanvas() {
     const rect = this.canvas.getBoundingClientRect()
@@ -65,6 +98,7 @@ export default class extends Controller {
   }
 
   selectTerm(event) {
+    if (this.answeredValue) return
     event.preventDefault()
     const term = event.currentTarget
     
@@ -92,6 +126,7 @@ export default class extends Controller {
   }
 
   selectDefinition(event) {
+    if (this.answeredValue) return
     event.preventDefault()
     const definition = event.currentTarget
     
