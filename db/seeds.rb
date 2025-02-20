@@ -4,6 +4,22 @@ course = Course.create!(
   image_url: "https://placehold.co/600x400"
 )
 
+badge = course.create_badge!(
+  name: "Programming Fundamentals",
+  description: ActionText::Content.new(<<-HTML
+    <div>
+      <p>Awarded for completing the Introduction to Programming course and demonstrating understanding of basic programming concepts.</p>
+    </div>
+  HTML
+  )
+)
+
+badge.image.attach(
+  io: File.open(Rails.root.join("app/assets/images/default-badge.jpg")),
+  filename: "default-badge.jpg",
+  content_type: "image/jpg"
+)
+
 # Create an info step
 info_step = course.steps.create!(
   title: "What is Programming?",

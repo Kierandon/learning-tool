@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_20_130929) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_20_134553) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -47,6 +47,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_130929) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_badges_on_course_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -149,6 +158,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_130929) do
     t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
 
+  create_table "user_badges", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "badge_id", null: false
+    t.datetime "awarded_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_user_badges_on_badge_id"
+    t.index ["user_id", "badge_id"], name: "index_user_badges_on_user_id_and_badge_id", unique: true
+    t.index ["user_id"], name: "index_user_badges_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "login_hash", null: false
     t.string "type", default: "User", null: false
@@ -159,6 +179,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_130929) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "badges", "courses"
   add_foreign_key "matching_pairs", "matching_questions"
   add_foreign_key "multiple_choice_options", "multiple_choice_questions"
   add_foreign_key "progressions", "courses"
@@ -168,4 +189,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_20_130929) do
   add_foreign_key "steps", "courses"
   add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "users"
+  add_foreign_key "user_badges", "badges"
+  add_foreign_key "user_badges", "users"
 end

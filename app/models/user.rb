@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :progressions
   has_many :courses, through: :progressions
+  has_many :user_badges, dependent: :destroy
+  has_many :badges, through: :user_badges
 
   before_create :generate_login_hash
 
