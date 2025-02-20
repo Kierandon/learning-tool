@@ -53,6 +53,6 @@ class AnswersController < ApplicationController
   end
 
   def next_step
-    @next_step ||= @step.next_step
+    @next_step ||= @step.next_step || @course.steps.last
   end
 end
