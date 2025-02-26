@@ -17,6 +17,10 @@ class Progression < ApplicationRecord
     end
   end
 
+  def complete!
+    update(completed_at: Time.zone.now)
+  end
+
   private
 
   def set_initial_step

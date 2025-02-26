@@ -23,6 +23,8 @@ class CoursesController < ApplicationController
 
   def complete
     @course = Course.find(params[:id])
+    @progression = current_user.progressions.find_by!(course: @course)
+    @progression.complete!
 
     if @course.badge && !current_user.badges.exists?(id: @course.badge.id)
       current_user.user_badges.create!(
