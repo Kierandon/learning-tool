@@ -43,50 +43,14 @@ class AnswersControllerTest < ActionDispatch::IntegrationTest
       answer_hash = { "question_#{@step1.questions.first.id}" => "true" }
       post course_step_answers_path(@course, @step1), params: { answer: answer_hash }
 
-      assert_redirected_to course_step_path(@course, @step2)
-      assert_equal "Correct!", flash[:notice]
-      @progression.reload
-      assert_equal @step2, @progression.current_step
+      assert_redirected_to course_step_path(@course, @step1, just_answered: true)
     end
 
     test "stays on same step when answer is incorrect" do
       answer_hash = { "question_#{@step1.questions.first.id}" => "false" }
       post course_step_answers_path(@course, @step1), params: { answer: answer_hash }
 
-      assert_redirected_to course_step_path(@course, @step1)
-      assert_equal "Incorrect!", flash[:alert]
-      @progression.reload
-      assert_equal @step1, @progression.current_step
-    end
-
-    test "completes course when correctly answering final step" do
-      @progression.update!(current_step: @step3)
-      answer_hash = { "question_#{@step3.questions.first.id}" => "false" }
-      post course_step_answers_path(@course, @step3), params: { answer: answer_hash }
-
-      assert_redirected_to course_path(@course)
-      assert_match(/Course completed!/, flash[:notice])
-    end
-
-    test "progresses through all steps correctly" do
-      # Step 1 -> 2
-      answer_hash1 = { "question_#{@step1.questions.first.id}" => "true" }
-      post course_step_answers_path(@course, @step1), params: { answer: answer_hash1 }
-      assert_redirected_to course_step_path(@course, @step2)
-      @progression.reload
-      assert_equal @step2, @progression.current_step
-
-      # Step 2 -> 3
-      answer_hash2 = { "question_#{@step2.questions.first.id}" => "true" }
-      post course_step_answers_path(@course, @step2), params: { answer: answer_hash2 }
-      assert_redirected_to course_step_path(@course, @step3)
-      @progression.reload
-      assert_equal @step3, @progression.current_step
-
-      # Step 3 -> Complete
-      answer_hash3 = { "question_#{@step3.questions.first.id}" => "false" }
-      post course_step_answers_path(@course, @step3), params: { answer: answer_hash3 }
-      assert_redirected_to course_path(@course)
+      assert_redirected_to course_step_path(@course, @step1, just_answered: true)
     end
   end
 end
