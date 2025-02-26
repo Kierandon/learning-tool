@@ -5,7 +5,7 @@ class Progression < ApplicationRecord
 
   before_create :set_initial_step
 
-  def next_step
+  def next_step!
     next_step = current_step.next_step
     if next_step.nil?
       self.completed_at = Time.zone.now
@@ -23,12 +23,25 @@ class Progression < ApplicationRecord
 
   def progress_percentage
     return 100 if self.completed_at
+    current_position = self.current_step.position - 1
+    ((current_position.to_f / self.course.steps.count) * 100).round
+  end
 
-    total_steps = self.course.steps.count
-    current_step_position = self.current_step_position || 0
+  def steps_completed_count
+    return course.steps.count if completed_at
+    course.steps.where("position < ?", current_step&.position.to_i).count
+  end
 
-    return 0 if total_steps == 0
-    ((current_step_position.to_f / total_steps) * 100).round
+  def total_steps_count
+    course.steps.count
+  end
+
+  def completed?
+    completed_at.present?
+  end
+
+  def in_progress?
+    current_step.present? && !completed?
   end
 
   private

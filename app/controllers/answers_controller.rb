@@ -5,12 +5,8 @@ class AnswersController < ApplicationController
 
   def create
     process_answer
-    next_step = @progression.next_step
-    if next_step
-      redirect_to course_step_path(@course, @step, just_answered: true)
-    else
-      redirect_to complete_course_path(@course)
-    end
+    @progression.next_step!
+    redirect_to course_step_path(@course, @step, just_answered: true)
   end
 
   private
