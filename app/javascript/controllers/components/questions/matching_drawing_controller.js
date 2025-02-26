@@ -13,6 +13,7 @@ export default class extends Controller {
     this.ctx = this.canvas.getContext('2d')
     this.connections = new Map()
     this.selectedTerm = null
+    this.colorMap = new Map() // Map to store term-color associations
     this.colors = [
       '#2563EB', // blue
       '#DC2626', // red
@@ -23,10 +24,15 @@ export default class extends Controller {
       '#4F46E5', // indigo
       '#DB2777', // pink
     ]
-    this.usedColors = new Set()
+    this.colorIndex = 0
     
     this.resizeCanvas()
-    window.addEventListener('resize', () => this.resizeCanvas())
+    // Use throttled resize to prevent excessive redraws
+    let resizeTimeout
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout)
+      resizeTimeout = setTimeout(() => this.resizeCanvas(), 100)
+    })
     
     this.resetStyles()
 
@@ -59,9 +65,8 @@ export default class extends Controller {
     })
   }
 
-
   resizeCanvas() {
-    const rect = this.canvas.getBoundingClientRect()
+    const rect = this.element.getBoundingClientRect()
     this.canvas.width = rect.width
     this.canvas.height = rect.height
     this.drawConnections()
@@ -86,14 +91,16 @@ export default class extends Controller {
     })
   }
 
-  getNextColor() {
-    const availableColors = this.colors.filter(color => !this.usedColors.has(color))
-    if (availableColors.length === 0) {
-      this.usedColors.clear() // Reset if all colors are used
-      return this.colors[0]
+  getColorForTerm(termId) {
+    // If the term already has a color assigned, return it
+    if (this.colorMap.has(termId)) {
+      return this.colorMap.get(termId)
     }
-    const color = availableColors[0]
-    this.usedColors.add(color)
+    
+    // Otherwise, assign a new color
+    const color = this.colors[this.colorIndex % this.colors.length]
+    this.colorIndex++
+    this.colorMap.set(termId, color)
     return color
   }
 
@@ -149,7 +156,8 @@ export default class extends Controller {
       }
     }
     
-    const color = this.getNextColor()
+    // Get deterministic color for this term
+    const color = this.getColorForTerm(termId)
     
     // Store the new connection
     this.connections.set(termId, {
@@ -194,23 +202,31 @@ export default class extends Controller {
     const definition = this.definitionTargets.find(d => d.dataset.definitionId === definitionId)
     
     if (term && definition) {
+      // Get positions relative to the canvas
+      const canvasRect = this.canvas.getBoundingClientRect()
       const termRect = term.getBoundingClientRect()
       const defRect = definition.getBoundingClientRect()
-      const canvasRect = this.canvas.getBoundingClientRect()
       
-      // Calculate control points for curved line
+      // Calculate positions adjusted to canvas coordinates
       const startX = termRect.right - canvasRect.left
       const startY = termRect.top + termRect.height/2 - canvasRect.top
       const endX = defRect.left - canvasRect.left
       const endY = defRect.top + defRect.height/2 - canvasRect.top
-      const controlX = startX + (endX - startX) / 2
+      
+      // Calculate control points for curved line with more curvature
+      const midX = (startX + endX) / 2
+      const curveOffset = Math.min(Math.abs(endX - startX) * 0.3, 100)
       
       // Draw curved connection
       this.ctx.beginPath()
       this.ctx.moveTo(startX, startY)
-      this.ctx.bezierCurveTo(controlX, startY, controlX, endY, endX, endY)
+      this.ctx.bezierCurveTo(
+        midX + curveOffset, startY, 
+        midX - curveOffset, endY, 
+        endX, endY
+      )
       this.ctx.strokeStyle = color
-      this.ctx.lineWidth = 2
+      this.ctx.lineWidth = 2.5 // Slightly thicker line for better visibility
       this.ctx.stroke()
     }
   }
