@@ -69,15 +69,26 @@ class AnswerService
     incorrect_pairs = []
 
     submitted_pairs.each do |term_key, selected_definition_id|
-      term_id = term_key.split("_").last
-      pair = @question.questionable.matching_pairs.find(term_id)
+      next unless term_key.start_with?("term_")
 
-      if pair.id.to_s != selected_definition_id
-        selected_pair = @question.questionable.matching_pairs.find(selected_definition_id)
+      term_id = term_key.split("_").last
+      pair = @question.questionable.matching_pairs.find_by(id: term_id)
+      next unless pair
+
+      if selected_definition_id.blank?
         incorrect_pairs << {
           "term" => pair.term,
           "correct_definition" => pair.definition,
-          "selected_definition" => selected_pair.definition
+          "selected_definition" => "No selection"
+        }
+      elsif pair.id.to_s != selected_definition_id
+        selected_pair = @question.questionable.matching_pairs.find_by(id: selected_definition_id)
+        selected_definition = selected_pair&.definition || "Invalid selection"
+
+        incorrect_pairs << {
+          "term" => pair.term,
+          "correct_definition" => pair.definition,
+          "selected_definition" => selected_definition
         }
       end
     end
