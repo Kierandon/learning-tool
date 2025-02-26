@@ -23,6 +23,15 @@ class StepProgressBarComponent < ViewComponent::Base
     [ 0, completed_percentage, 100 ].sort[1].round
   end
 
+  def completion_percentage
+    return 0 if @total_steps == 0
+
+    completed = @current_step_position - 1
+    percentage = (completed.to_f / @total_steps) * 100
+
+    [ 0, percentage, 100 ].sort[1].round
+  end
+
   def completed_steps
     @steps_completed
   end
