@@ -9,7 +9,7 @@ class AnswersController < ApplicationController
     if next_step
       redirect_to course_step_path(@course, @step, just_answered: true)
     else
-      redirect_to course_complete_path(@course)
+      redirect_to complete_course_path(@course)
     end
   end
 

@@ -8,7 +8,7 @@
   <% end %>
 
   <% if next_step_path %>
-    <%= link_to "Next", next_step_path, 
+    <%= link_to "Next", "#{next_step_path}?update_progression=true", 
       class: "rounded-full px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", 
       role: "button" %>
   <% elsif show_complete_button? %>
