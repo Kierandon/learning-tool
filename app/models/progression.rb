@@ -10,8 +10,11 @@ class Progression < ApplicationRecord
     if next_step.nil?
       self.completed_at = Time.zone.now
       save!
+      nil
+    else
+      update!(current_step: next_step)
+      next_step
     end
-    next_step
   end
 
   private
