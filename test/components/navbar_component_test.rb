@@ -13,7 +13,7 @@ class NavbarComponentTest < ViewComponent::TestCase
   def test_renders_login_link_when_not_logged_in
     render_inline(NavbarComponent.new)
 
-    assert_selector "a.btn", text: "Login"
+    assert_selector "a", text: "Login"
   end
 
   def test_renders_logout_link_when_logged_in

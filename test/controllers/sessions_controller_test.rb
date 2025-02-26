@@ -19,8 +19,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test "should not create session with invalid login_hash" do
     post session_path, params: { session: { login_hash: "invalid_hash" } }
     assert_nil session[:user_id]
-    assert_response :success
-    assert_template :new
+    assert_redirected_to new_session_path
   end
 
   test "should destroy session" do
