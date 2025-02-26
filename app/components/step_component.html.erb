@@ -1,5 +1,7 @@
-<div class="card-container p-6 bg-gray-100 rounded shadow w-full h-full">
-  <h2 class="text-xl font-bold"><%= @step.title %></h2>
-  <%= render content_component %>
+<div class="card-container p-6 bg-white rounded-lg shadow-md w-full h-full">
+  <h2 class="text-2xl font-bold text-blue-600 mb-4"><%= @step.title %></h2>
+  <div class="mb-6">
+    <%= render content_component %>
+  </div>
   <%= render StepNavigationComponent.new(step: @step, course: @course, user: current_user) %>
 </div>
