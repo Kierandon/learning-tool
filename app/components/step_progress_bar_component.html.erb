@@ -1,0 +1,50 @@
+<div class="step-progress-container mb-6">
+  <div class="flex justify-between items-center mb-2">
+    <div class="flex items-center">
+      <span class="text-lg font-bold text-blue-600">Step <%= @current_step_position %> of <%= @total_steps %></span>
+      <span class="ml-4 px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full"><%= @progress_percentage %>% Complete</span>
+    </div>
+    
+    <div class="text-gray-500 text-sm">
+      <%= @course.title %>
+    </div>
+  </div>
+  
+  <div class="relative">
+    <div class="w-full bg-gray-200 rounded-full h-4 shadow-inner">
+      <div class="bg-gradient-to-r from-blue-500 to-green-400 h-4 rounded-full transition-all duration-500 ease-out" 
+           style="width: <%= @progress_percentage %>%"></div>
+    </div>
+    
+    <div class="absolute top-0 left-0 w-full h-4 flex justify-between px-1">
+      <% all_steps.each do |step| %>
+        <% status = get_step_status(step) %>
+        <div class="relative h-4 flex items-center" style="z-index: 10;" 
+             data-tooltip="<%= step.title %>">
+          <div class="h-3 w-3 rounded-full 
+                      <%= status == 'completed' ? 'bg-green-500' : (status == 'current' ? 'bg-blue-600 animate-pulse' : 'bg-gray-400') %> 
+                      <%= status != 'upcoming' ? 'border-2 border-white' : '' %> 
+                      shadow-md"></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+  [data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 20;
+    margin-bottom: 5px;
+  }
+</style>
