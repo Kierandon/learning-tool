@@ -1,0 +1,56 @@
+<div class="max-w-4xl mx-auto p-8">
+  <div class="bg-white shadow rounded-lg p-6 mb-8">
+    <h1 class="text-2xl font-bold text-gray-900 mb-4">Your Profile</h1>
+    
+    <div class="bg-gray-100 p-4 rounded-md mb-6">
+      <p class="text-gray-600 mb-2">Your Login Code:</p>
+      <code class="text-xl font-mono text-gray-800"><%= @user.login_hash %></code>
+    </div>
+  </div>
+
+  <div class="bg-white shadow rounded-lg p-6 mb-8">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">Your Learning Journey</h2>
+    
+    <% if @user.progressions.any? %>
+      <% @user.progressions.includes(:course).each do |progression| %>
+        <%= render CourseCardComponent.new(course: progression.course, user: @user, show_description: false) %>
+      <% end %>
+    <% else %>
+      <div class="bg-gray-50 rounded-lg p-8 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        <p class="text-gray-600 mt-4">You haven't started any courses yet.</p>
+        <%= link_to "Browse Courses", root_path, class: "mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="bg-white shadow rounded-lg p-6">
+    <h2 class="text-xl font-bold text-gray-900 mb-4">All Your Badges</h2>
+    
+    <% if @user.badges.any? %>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <% @user.user_badges.includes(:badge).each do |user_badge| %>
+          <div class="border rounded-lg p-4 text-center hover:shadow-md transition-shadow duration-200 bg-gradient-to-b from-white to-gray-50">
+            <%= image_tag user_badge.badge.image, 
+                class: "w-16 h-16 mx-auto mb-2 object-contain",
+                alt: user_badge.badge.name %>
+            
+            <h3 class="font-medium text-sm text-gray-900"><%= user_badge.badge.name %></h3>
+            <p class="text-xs text-gray-500 mt-1">
+              <%= user_badge.awarded_at.strftime("%b %d, %Y") %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="bg-gray-50 rounded-lg p-6 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="text-gray-600 mt-4">Complete courses to earn badges!</p>
+      </div>
+    <% end %>
+  </div>
+</div>

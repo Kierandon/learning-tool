@@ -1,13 +1,21 @@
 <nav class="flex items-center justify-between p-4 bg-white shadow">
-  <div class="text-xl font-semibold" data-testid="navbar-title">
-    <%= link_to "Learning Tool", root_path, class: "hover:bg-gray-200 hover:border-gray-400 p-2 rounded" %>
+  <div class="flex items-center">
+    <div class="text-xl font-semibold px-3 py-2 border-r border-gray-300" data-testid="navbar-title">
+      <%= link_to "Learning Tool", root_path, class: "hover:text-blue-600 transition duration-150" %>
+    </div>
   </div>
 
-  <div>
+  <div class="flex items-center space-x-4">
     <% if current_user %>
-      <%= link_to "Logout", session_path, method: :delete, data: { turbo_method: :delete } %>
+      <div class="flex items-center space-x-3">
+        <%= link_to "My Profile", profile_path, class: "px-3 py-2 rounded bg-gray-100 hover:bg-gray-200 transition duration-150 flex items-center" if defined?(profile_path) %>
+        <span class="h-8 w-px bg-gray-300 mx-1"></span>
+        <%= link_to "Logout", session_path, method: :delete, 
+            data: { turbo_method: :delete },
+            class: "px-3 py-2 rounded text-gray-600 hover:bg-gray-100 transition duration-150" %>
+      </div>
     <% else %>
-      <%= link_to "Login", new_session_path, class: "btn" %>
+      <%= link_to "Login", new_session_path, class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-150" %>
     <% end %>
   </div>
 </nav>
