@@ -1,1 +1,22 @@
+<div class="intro-section bg-white text-gray-800 p-8 rounded-lg shadow-lg mb-8">
+    <h2 class="text-3xl font-bold mb-4">Welcome to Our Learning Platform!</h2>
+    
+    <div class="features-grid grid md:grid-cols-3 gap-6">
+        <div class="feature-card p-4 bg-gray-50 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">🪙 Earn Coins</h3>
+            <p>Get 10 coins for each correct answer.</p>
+        </div>
+        
+        <div class="feature-card p-4 bg-gray-50 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">🏆 Collect Badges</h3>
+            <p>Complete courses to earn unique badges showing your achievements.</p>
+        </div>
+        
+        <div class="feature-card p-4 bg-gray-50 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">🎯 Unlock Achievements</h3>
+            <p>Stay consistent and hit milestones like answering 50 questions or maintaining a daily streak!</p>
+        </div>
+    </div>
+</div>
+
 <%= render(CoursesListComponent.new(courses: @courses, ordering: true)) %>
