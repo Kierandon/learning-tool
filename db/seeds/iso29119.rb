@@ -5,7 +5,7 @@ course = Course.find_or_create_by!(
   title: "ISO 29119-3 - The Test Plan"
 ) do |c|
   c.description = "This beginner-friendly course on ISO 29119-3 and test planning combines information with interactive Q&A, guiding you through key concepts, test plan components, and real-world applications with explanations and practice questions."
-  c.image_url = "https://commons.wikimedia.org/wiki/File:ISO_Logo_(Red_square).svg#/media/File:ISO_Logo_(Red_square).svg"
+  c.image_url = "https://i.imgur.com/IBtk946.png"
 end
 
 badge_description = <<-HTML
