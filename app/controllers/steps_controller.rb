@@ -1,4 +1,6 @@
 class StepsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     @course = Course.find(params[:course_id])
     @step = @course.steps.find(params[:id])
@@ -14,6 +16,12 @@ class StepsController < ApplicationController
         course: @course,
         just_answered: params[:just_answered] == "true"
       }
+    end
+  end
+
+  def authenticate_user!
+    unless user_signed_in?
+      redirect_to root_path
     end
   end
 end

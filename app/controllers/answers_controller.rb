@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_course_and_step
   before_action :set_progression
   before_action :set_question
@@ -36,5 +38,11 @@ class AnswersController < ApplicationController
 
   def next_step
     @next_step ||= @step.next_step || @course.steps.last
+  end
+
+  def authenticate_user!
+    unless user_signed_in?
+      redirect_to root_path
+    end
   end
 end
