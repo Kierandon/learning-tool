@@ -1,197 +1,199 @@
-course = Course.find_or_create_by!(
-  title: "Introduction to Programming"
-) do |c|
-  c.description = "Learn the basics of programming concepts"
-  c.image_url = "https://placehold.co/600x400"
-end
-
-badge = course.badge || course.create_badge!(
-  name: "Programming Fundamentals",
-  description: ActionText::Content.new(<<-HTML
-    <div>
-      <p>Awarded for completing the Introduction to Programming course and demonstrating understanding of basic programming concepts.</p>
-    </div>
-  HTML
-  )
-)
-
-unless badge.image.attached?
-  badge.image.attach(
-    io: File.open(Rails.root.join("app/assets/images/default-badge.jpg")),
-    filename: "default-badge.jpg",
-    content_type: "image/jpg"
-  )
-end
-
-# Create or find an info step
-info_step = course.steps.find_or_create_by!(
-  title: "What is Programming?",
-  step_type: "info"
-) do |step|
-  step.position = 1
-  step.content = ActionText::Content.new(<<-HTML
-    <div>
-      <h1>Introduction to Programming</h1>
-      <p>Programming is the process of creating a set of instructions that tell a computer how to perform a task.</p>
-      <p>In this course, you'll learn about:</p>
-      <ul>
-        <li>Basic programming concepts</li>
-        <li>How computers execute instructions</li>
-        <li>Different types of programming languages</li>
-      </ul>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=RBAJC-IkRRupMaVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
-    </div>
-  HTML
-  )
-end
-
-# True/False question step
-true_false_step = course.steps.find_or_create_by!(
-  title: "True or False",
-  step_type: "question"
-) do |step|
-  step.position = 2
-end
-
-tf_question = true_false_step.questions.find_or_create_by!(
-  prompt: "Programming is only about writing code.",
-  position: 1
-) do |q|
-  q.questionable = TrueFalseQuestion.find_or_create_by!(
-    correct_answer: false,
-    success_message: "Correct! Programming involves many other skills like problem-solving and design.",
-    failure_message: "Actually, programming involves much more than just writing code!"
-  )
-end
-
-# Multiple Choice question step
-multiple_choice_step = course.steps.find_or_create_by!(
-  title: "Multiple Choice",
-  step_type: "question"
-) do |step|
-  step.position = 3
-end
-
-mc_question = multiple_choice_step.questions.find_or_create_by!(
-  prompt: "Which of these is NOT a programming language?",
-  position: 1
-) do |q|
-  q.questionable = MultipleChoiceQuestion.find_or_create_by!(
-    allow_multiple_answers: false,
-    success_message: "Correct! CoffeeScript+ is not a real programming language.",
-    failure_message: "That's not right. Try again!"
-  )
-end
-
-# Add multiple choice options
-options = [
-  { text: "Python", correct: false, feedback: "Python is a popular programming language." },
-  { text: "JavaScript", correct: false, feedback: "JavaScript is a widely-used web programming language." },
-  { text: "CoffeeScript+", correct: true, feedback: "This is not a real programming language!" },
-  { text: "Ruby", correct: false, feedback: "Ruby is a programming language." }
-]
-options.each do |option|
-  mc_question.questionable.options.find_or_create_by!(text: option[:text]) do |o|
-    o.correct = option[:correct]
-    o.feedback = option[:feedback]
+if !Rails.env.production?
+  course = Course.find_or_create_by!(
+    title: "Introduction to Programming"
+  ) do |c|
+    c.description = "Learn the basics of programming concepts"
+    c.image_url = "https://placehold.co/600x400"
   end
-end
 
-# Dropdown matching question step
-matching_dropdown_step = course.steps.find_or_create_by!(
-  title: "Match the Terms (Dropdown)",
-  step_type: "question"
-) do |step|
-  step.position = 4
-end
+  badge = course.badge || course.create_badge!(
+    name: "Programming Fundamentals",
+    description: ActionText::Content.new(<<-HTML
+      <div>
+        <p>Awarded for completing the Introduction to Programming course and demonstrating understanding of basic programming concepts.</p>
+      </div>
+    HTML
+    )
+  )
 
-dropdown_matching = MatchingQuestion.find_or_create_by!(
-  matching_style: "dropdown",
-  success_message: "Great job matching the programming terms!",
-  failure_message: "Some matches are incorrect. Try again!"
-)
-
-matching_dropdown_step.questions.find_or_create_by!(
-  prompt: "Match each programming term with its definition",
-  position: 1,
-  questionable: dropdown_matching
-)
-
-# Add dropdown matching pairs
-pairs = [
-  { term: "Variable", definition: "A container for storing data values", position: 1 },
-  { term: "Function", definition: "A reusable block of code", position: 2 },
-  { term: "Loop", definition: "Code that repeats until a condition is met", position: 3 }
-]
-pairs.each do |pair|
-  dropdown_matching.matching_pairs.find_or_create_by!(term: pair[:term]) do |p|
-    p.definition = pair[:definition]
-    p.position = pair[:position]
+  unless badge.image.attached?
+    badge.image.attach(
+      io: File.open(Rails.root.join("app/assets/images/default-badge.jpg")),
+      filename: "default-badge.jpg",
+      content_type: "image/jpg"
+    )
   end
-end
 
-# Drawing matching question step
-matching_drawing_step = course.steps.find_or_create_by!(
-  title: "Match the Terms (Drawing)",
-  step_type: "question"
-) do |step|
-  step.position = 5
-end
-
-drawing_matching = MatchingQuestion.find_or_create_by!(
-  matching_style: "drawing",
-  success_message: "Excellent work connecting the concepts!",
-  failure_message: "Some connections are incorrect. Try again!"
-)
-
-matching_drawing_step.questions.find_or_create_by!(
-  prompt: "Draw lines to connect related programming concepts",
-  position: 1,
-  questionable: drawing_matching
-)
-
-# Add drawing matching pairs
-drawing_pairs = [
-  { term: "HTML", definition: "Structure", position: 1 },
-  { term: "CSS", definition: "Style", position: 2 },
-  { term: "JavaScript", definition: "Behavior", position: 3 }
-]
-drawing_pairs.each do |pair|
-  drawing_matching.matching_pairs.find_or_create_by!(term: pair[:term]) do |p|
-    p.definition = pair[:definition]
-    p.position = pair[:position]
+  # Create or find an info step
+  info_step = course.steps.find_or_create_by!(
+    title: "What is Programming?",
+    step_type: "info"
+  ) do |step|
+    step.position = 1
+    step.content = ActionText::Content.new(<<-HTML
+      <div>
+        <h1>Introduction to Programming</h1>
+        <p>Programming is the process of creating a set of instructions that tell a computer how to perform a task.</p>
+        <p>In this course, you'll learn about:</p>
+        <ul>
+          <li>Basic programming concepts</li>
+          <li>How computers execute instructions</li>
+          <li>Different types of programming languages</li>
+        </ul>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=RBAJC-IkRRupMaVz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+      </div>
+    HTML
+    )
   end
-end
 
-ordering_step = course.steps.find_or_create_by!(
-  title: "Order the Steps of Writing a Program",
-  step_type: "question"
-) do |step|
-  step.position = 6
-end
+  # True/False question step
+  true_false_step = course.steps.find_or_create_by!(
+    title: "True or False",
+    step_type: "question"
+  ) do |step|
+    step.position = 2
+  end
 
-ordering_question = OrderingQuestion.find_or_create_by!(
-  success_message: "Great job! You've correctly ordered the steps of writing and running a program.",
-  failure_message: "That's not quite right. Please review the correct order of steps."
-)
+  tf_question = true_false_step.questions.find_or_create_by!(
+    prompt: "Programming is only about writing code.",
+    position: 1
+  ) do |q|
+    q.questionable = TrueFalseQuestion.find_or_create_by!(
+      correct_answer: false,
+      success_message: "Correct! Programming involves many other skills like problem-solving and design.",
+      failure_message: "Actually, programming involves much more than just writing code!"
+    )
+  end
 
-ordering_step.questions.find_or_create_by!(
-  prompt: "Place these steps in the correct order, from first to last:",
-  position: 1,
-  questionable: ordering_question
-)
+  # Multiple Choice question step
+  multiple_choice_step = course.steps.find_or_create_by!(
+    title: "Multiple Choice",
+    step_type: "question"
+  ) do |step|
+    step.position = 3
+  end
 
-# Add ordering items
-ordering_items = [
-  { content: "Write the code", correct_position: 1 },
-  { content: "Save the file", correct_position: 2 },
-  { content: "Compile the code", correct_position: 3 },
-  { content: "Run the program", correct_position: 4 },
-  { content: "Debug any errors", correct_position: 5 }
-]
+  mc_question = multiple_choice_step.questions.find_or_create_by!(
+    prompt: "Which of these is NOT a programming language?",
+    position: 1
+  ) do |q|
+    q.questionable = MultipleChoiceQuestion.find_or_create_by!(
+      allow_multiple_answers: false,
+      success_message: "Correct! CoffeeScript+ is not a real programming language.",
+      failure_message: "That's not right. Try again!"
+    )
+  end
 
-ordering_items.each do |item|
-  ordering_question.ordering_items.find_or_create_by!(content: item[:content]) do |i|
-    i.correct_position = item[:correct_position]
+  # Add multiple choice options
+  options = [
+    { text: "Python", correct: false, feedback: "Python is a popular programming language." },
+    { text: "JavaScript", correct: false, feedback: "JavaScript is a widely-used web programming language." },
+    { text: "CoffeeScript+", correct: true, feedback: "This is not a real programming language!" },
+    { text: "Ruby", correct: false, feedback: "Ruby is a programming language." }
+  ]
+  options.each do |option|
+    mc_question.questionable.options.find_or_create_by!(text: option[:text]) do |o|
+      o.correct = option[:correct]
+      o.feedback = option[:feedback]
+    end
+  end
+
+  # Dropdown matching question step
+  matching_dropdown_step = course.steps.find_or_create_by!(
+    title: "Match the Terms (Dropdown)",
+    step_type: "question"
+  ) do |step|
+    step.position = 4
+  end
+
+  dropdown_matching = MatchingQuestion.find_or_create_by!(
+    matching_style: "dropdown",
+    success_message: "Great job matching the programming terms!",
+    failure_message: "Some matches are incorrect. Try again!"
+  )
+
+  matching_dropdown_step.questions.find_or_create_by!(
+    prompt: "Match each programming term with its definition",
+    position: 1,
+    questionable: dropdown_matching
+  )
+
+  # Add dropdown matching pairs
+  pairs = [
+    { term: "Variable", definition: "A container for storing data values", position: 1 },
+    { term: "Function", definition: "A reusable block of code", position: 2 },
+    { term: "Loop", definition: "Code that repeats until a condition is met", position: 3 }
+  ]
+  pairs.each do |pair|
+    dropdown_matching.matching_pairs.find_or_create_by!(term: pair[:term]) do |p|
+      p.definition = pair[:definition]
+      p.position = pair[:position]
+    end
+  end
+
+  # Drawing matching question step
+  matching_drawing_step = course.steps.find_or_create_by!(
+    title: "Match the Terms (Drawing)",
+    step_type: "question"
+  ) do |step|
+    step.position = 5
+  end
+
+  drawing_matching = MatchingQuestion.find_or_create_by!(
+    matching_style: "drawing",
+    success_message: "Excellent work connecting the concepts!",
+    failure_message: "Some connections are incorrect. Try again!"
+  )
+
+  matching_drawing_step.questions.find_or_create_by!(
+    prompt: "Draw lines to connect related programming concepts",
+    position: 1,
+    questionable: drawing_matching
+  )
+
+  # Add drawing matching pairs
+  drawing_pairs = [
+    { term: "HTML", definition: "Structure", position: 1 },
+    { term: "CSS", definition: "Style", position: 2 },
+    { term: "JavaScript", definition: "Behavior", position: 3 }
+  ]
+  drawing_pairs.each do |pair|
+    drawing_matching.matching_pairs.find_or_create_by!(term: pair[:term]) do |p|
+      p.definition = pair[:definition]
+      p.position = pair[:position]
+    end
+  end
+
+  ordering_step = course.steps.find_or_create_by!(
+    title: "Order the Steps of Writing a Program",
+    step_type: "question"
+  ) do |step|
+    step.position = 6
+  end
+
+  ordering_question = OrderingQuestion.find_or_create_by!(
+    success_message: "Great job! You've correctly ordered the steps of writing and running a program.",
+    failure_message: "That's not quite right. Please review the correct order of steps."
+  )
+
+  ordering_step.questions.find_or_create_by!(
+    prompt: "Place these steps in the correct order, from first to last:",
+    position: 1,
+    questionable: ordering_question
+  )
+
+  # Add ordering items
+  ordering_items = [
+    { content: "Write the code", correct_position: 1 },
+    { content: "Save the file", correct_position: 2 },
+    { content: "Compile the code", correct_position: 3 },
+    { content: "Run the program", correct_position: 4 },
+    { content: "Debug any errors", correct_position: 5 }
+  ]
+
+  ordering_items.each do |item|
+    ordering_question.ordering_items.find_or_create_by!(content: item[:content]) do |i|
+      i.correct_position = item[:correct_position]
+    end
   end
 end
