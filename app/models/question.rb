@@ -17,4 +17,8 @@ class Question < ApplicationRecord
   def answered_correctly?(user)
     user_answers.where(user: user).exists?
   end
+
+  def is_first_attempt?
+    user_answers.count == 1
+  end
 end
