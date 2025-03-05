@@ -19,13 +19,20 @@
     <div class="absolute top-0 left-0 w-full h-4 flex justify-between px-1">
       <% all_steps.each do |step| %>
         <% status = get_step_status(step) %>
-        <div class="relative h-4 flex items-center" style="z-index: 10;" 
-             data-tooltip="<%= step.title %>">
+        <% if status == 'completed' %>
+          <a href="<%= course_step_path(@course, step) %>" class="relative h-4 flex items-center" style="z-index: 10;" data-tooltip="<%= step.title %>">
+        <% else %>
+          <div class="relative h-4 flex items-center" style="z-index: 10;" data-tooltip="<%= step.title %>">
+        <% end %>
           <div class="h-3 w-3 rounded-full 
                       <%= status == 'completed' ? 'bg-green-500' : (status == 'current' ? 'bg-blue-600 animate-pulse' : 'bg-gray-400') %> 
                       <%= status != 'upcoming' ? 'border-2 border-white' : '' %> 
                       shadow-md"></div>
-        </div>
+        <% if status == 'completed' %>
+          </a>
+        <% else %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
