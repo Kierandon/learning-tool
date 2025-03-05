@@ -49,7 +49,7 @@ module CourseHelper
       prompt: question_data[:prompt],
       position: question_data[:question_position] || 1
     ) do |q|
-      q.questionable = MultipleChoiceQuestion.find_or_create_by!(
+      q.questionable = MultipleChoiceQuestion.create!(
         allow_multiple_answers: question_data[:allow_multiple_answers] || false,
         success_message: question_data[:success_message],
         failure_message: question_data[:failure_message]
