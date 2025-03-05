@@ -13,6 +13,8 @@ class AnswerService
       generate_matching_answer_data(submitted_answer)
     when MultipleChoiceQuestion.to_s
       generate_multiple_choice_answer_data(submitted_answer)
+    when OrderingQuestion.to_s
+      generate_ordering_answer_data(submitted_answer)
     else
       submitted_answer.to_h
     end
@@ -35,11 +37,36 @@ class AnswerService
       answer_value = answer["question_#{@question.id}"]
       answer_value.to_s.downcase == "true"
     when MultipleChoiceQuestion.to_s
-      # structure - { "selected_options" => [1, 2, 3] }
       answer["selected_options"].flatten.map(&:to_i)
+    when OrderingQuestion.to_s
+      JSON.parse(answer["item_order"])
     else
       answer
     end
+  end
+
+  def generate_ordering_answer_data(submitted_answer)
+    submitted_order = convert_answer(submitted_answer)
+    correct_order = @question.questionable.ordering_items.order(correct_position: :asc)
+
+    {
+      submitted_order: submitted_order.map { |id|
+        item = @question.questionable.ordering_items.find_by(id: id)
+        {
+          id: id,
+          content: item&.content,
+          correct_position: item&.correct_position
+        }
+      },
+      correct_order: correct_order.map { |item|
+        {
+          id: item.id.to_s,
+          content: item.content,
+          position: item.correct_position
+        }
+      },
+      is_correct: submitted_order.map(&:to_s) == correct_order.pluck(:id).map(&:to_s)
+    }
   end
 
   def generate_multiple_choice_answer_data(submitted_answer)

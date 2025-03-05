@@ -1,0 +1,87 @@
+<div class="ordering-question" data-controller="components--questions--ordering"
+     data-components--questions--ordering-answered-value="<%= @just_answered %>">
+  <fieldset class="space-y-6">
+    <legend class="text-lg font-semibold text-gray-900 mb-4">
+      <br>
+      Put these items in the correct order:<br>
+      <%= @question.prompt %>
+    </legend>
+    <div class="ordering-container">
+      <div class="item-pool grid grid-cols-2 gap-2 mb-6" data-components--questions--ordering-target="itemPool">
+        <% if @just_answered %>
+        <% else %>
+          <% @items.shuffle.each do |item| %>
+            <div class="item-card p-3 bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer hover:bg-blue-50"
+                 data-components--questions--ordering-target="item"
+                 data-item-id="<%= item.id %>">
+              <%= item.content %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="order-slots flex flex-col space-y-2">
+        <div class="flex items-center space-x-2 mb-2">
+          <div class="text-gray-700 font-semibold">
+            <%= @just_answered ? 'Your ordering:' : 'Place items in correct order:' %>
+          </div>
+        </div>
+        <div class="flex flex-col space-y-2" data-components--questions--ordering-target="orderSlots">
+          <% @items.count.times do |i| %>
+            <div class="order-slot w-full p-3 bg-gray-100 border-2 <%= @just_answered ? 'border-gray-300' : 'border-dashed border-gray-300' %> rounded-md min-h-[60px] flex items-center justify-center relative <%= @just_answered ? '' : 'cursor-pointer hover:bg-gray-200' %>"
+                 data-components--questions--ordering-target="slot"
+                 data-slot-index="<%= i %>">
+              <div class="absolute left-0 top-0 bottom-0 flex items-center justify-center w-10 bg-gray-200 border-r border-gray-300 font-bold text-lg">
+                <%= i + 1 %>
+              </div>
+              <div class="ml-10 flex-grow">
+                <% if @just_answered && submitted_order[i] %>
+                  <div class="w-full p-2 bg-white border rounded-md
+                              <%= submitted_order[i][:id].to_s == correct_order[i][:id].to_s ? 'border-green-500' : 'border-red-500' %>">
+                    <div class="font-medium">
+                      <%= submitted_order[i][:content] %>
+                    </div>
+                    <% unless submitted_order[i][:id].to_s == correct_order[i][:id].to_s %>
+                      <div class="text-sm mt-1 text-red-600 italic">
+                        Should be in position: <%= correct_order.find {|item| item[:id].to_s == submitted_order[i][:id].to_s}&.dig(:position) || '?' %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% elsif @just_answered %>
+                  <div class="text-gray-400 italic">Empty</div>
+                <% else %>
+                  <div class="text-gray-400 italic">Click to place selected item</div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <%= @form.hidden_field "answer[item_order]", id: "item_order_input", data: { "components--questions--ordering-target": "input" } %>
+    </div>
+    <% if @just_answered %>
+      <div class="mt-6">
+        <% if all_correct? %>
+          <div class="p-4 rounded-lg bg-green-50 text-green-700">
+            <%= success_message %>
+          </div>
+        <% else %>
+          <div class="p-4 rounded-lg bg-red-50 text-red-700">
+            <p><%= failure_message %></p>
+            <div class="mt-4">
+              <h4 class="font-medium">The correct order was:</h4>
+              <div class="mt-2 bg-white p-4 rounded-md border border-gray-300">
+                <ol class="list-decimal list-inside">
+                  <% correct_order.each do |item| %>
+                    <li class="py-1">
+                      <span class="font-medium"><%= item[:content] %></span>
+                    </li>
+                  <% end %>
+                </ol>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </fieldset>
+</div>

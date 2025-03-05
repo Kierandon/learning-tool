@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_26_210838) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_04_200223) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -296,6 +296,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_26_210838) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ordering_items", force: :cascade do |t|
+    t.integer "ordering_question_id", null: false
+    t.text "content", null: false
+    t.integer "correct_position", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ordering_question_id"], name: "index_ordering_items_on_ordering_question_id"
+  end
+
+  create_table "ordering_questions", force: :cascade do |t|
+    t.text "success_message"
+    t.text "failure_message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "progressions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "course_id", null: false
@@ -380,6 +396,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_26_210838) do
   add_foreign_key "motor_note_tag_tags", "motor_notes", column: "note_id"
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
   add_foreign_key "multiple_choice_options", "multiple_choice_questions"
+  add_foreign_key "ordering_items", "ordering_questions"
   add_foreign_key "progressions", "courses"
   add_foreign_key "progressions", "steps", column: "current_step_id"
   add_foreign_key "progressions", "users"
