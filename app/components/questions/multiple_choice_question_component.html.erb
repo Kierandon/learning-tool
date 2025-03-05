@@ -10,10 +10,9 @@
 
     <div class="space-y-4">
       <% @question.questionable.options.each do |option| %>
-        <div class="relative flex items-start p-4 rounded-xl border bg-white shadow-sm 
-                    <%= @just_answered ? '' : 'hover:shadow-md transition-all duration-200 ease-in-out cursor-pointer' %>">
-          <div class="min-w-0 flex-1 text-sm">
-            <label class="font-medium text-gray-700 select-none flex items-center">
+        <div class="relative rounded-xl <%= @just_answered ? '' : 'transition-all duration-200 ease-in-out' %>">
+          <label class="block font-medium text-gray-700 select-none cursor-pointer <%= @just_answered ? 'cursor-default' : '' %>">
+            <div class="flex items-start p-4 rounded-xl border bg-white shadow-sm <%= @just_answered ? '' : 'hover:shadow-md' %>">
               <div class="flex items-center h-5 mr-3">
                 <%= @form.check_box "answer[selected_options][]", 
                     { 
@@ -24,34 +23,36 @@
                     },
                     option.id %>
               </div>
-              <%= option.text %>
-            </label>
-          </div>
+              <div class="min-w-0 flex-1 text-sm">
+                <%= option.text %>
+              </div>
 
-          <% if @just_answered %>
-            <div class="absolute right-4 top-1/2 -translate-y-1/2">
-              <% if option.correct? %>
-                <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div>
-              <% elsif selected_options.any? { |so| so["id"] == option.id } %>
-                <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
-                  <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                  </svg>
+              <% if @just_answered %>
+                <div class="ml-auto">
+                  <% if option.correct? %>
+                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
+                      <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                  <% elsif selected_options.any? { |so| so["id"] == option.id } %>
+                    <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center">
+                      <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
             </div>
+          </label>
+
+          <% if @just_answered && feedback = feedback_for_option(option) %>
+            <div class="ml-7 mt-1 text-sm text-red-600">
+              <%= feedback %>
+            </div>
           <% end %>
         </div>
-
-        <% if @just_answered && feedback = feedback_for_option(option) %>
-          <div class="ml-7 mt-1 text-sm text-red-600">
-            <%= feedback %>
-          </div>
-        <% end %>
       <% end %>
     </div>
 
