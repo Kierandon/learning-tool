@@ -10,6 +10,22 @@ class User < ApplicationRecord
 
   validates :login_hash, uniqueness: true
 
+  def level
+    (points / 100.0).floor + 1
+  end
+
+  def points_to_next_level
+    next_level = level + 1
+    points_needed = next_level * 100
+    points_needed - points
+  end
+
+  def level_progress_percentage
+    current_level_points = (level - 1) * 100
+    progress_in_level = points - current_level_points
+    (progress_in_level / 100.0) * 100
+  end
+
   private
 
   # Yes this may (will) break eventually but for the amount of users testing the app it's fine.
