@@ -406,7 +406,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_234512) do
     t.string "type", default: "User", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "points"
+    t.integer "points", default: 0
     t.integer "current_streak", default: 0
     t.date "last_answer_date"
     t.integer "highest_streak", default: 0
