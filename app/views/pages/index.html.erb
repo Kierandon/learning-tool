@@ -16,8 +16,14 @@
             <h3 class="text-xl font-semibold mb-2">🎯 Unlock Achievements</h3>
             <p>Stay consistent and hit milestones like answering 50 questions or maintaining a daily streak!</p>
         </div>
+        
+        <div class="feature-card p-4 bg-gray-50 rounded-lg">
+            <h3 class="text-xl font-semibold mb-2">📅 Complete Daily Challenge</h3>
+            <p>Complete your daily challenge to get an extra coin reward and boost your learning streak!</p>
+        </div>
     </div>
 </div>
+
 
 <% if current_user %>
   <%= render(DailyQuestsComponent.new(user: current_user)) %>
