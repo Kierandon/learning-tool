@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_05_214746) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_05_234512) do
+  create_table "achievements", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "achievement_type", null: false
+    t.integer "threshold"
+    t.string "icon_identifier"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["achievement_type"], name: "index_achievements_on_achievement_type"
+  end
+
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -356,6 +367,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_214746) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_achievements", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "achievement_id", null: false
+    t.datetime "awarded_at", null: false
+    t.integer "progress", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["achievement_id"], name: "index_user_achievements_on_achievement_id"
+    t.index ["user_id", "achievement_id"], name: "index_user_achievements_on_user_id_and_achievement_id", unique: true
+    t.index ["user_id"], name: "index_user_achievements_on_user_id"
+  end
+
   create_table "user_answers", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "question_id", null: false
@@ -384,6 +407,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_214746) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "points"
+    t.integer "current_streak", default: 0
+    t.date "last_answer_date"
+    t.integer "highest_streak", default: 0
     t.index ["login_hash"], name: "index_users_on_login_hash", unique: true
   end
 
@@ -403,6 +429,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_214746) do
   add_foreign_key "progressions", "users"
   add_foreign_key "questions", "steps"
   add_foreign_key "steps", "courses"
+  add_foreign_key "user_achievements", "achievements"
+  add_foreign_key "user_achievements", "users"
   add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "users"
   add_foreign_key "user_badges", "badges"

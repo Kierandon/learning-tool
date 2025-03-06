@@ -1,0 +1,19 @@
+<div class="streak-calendar">
+  <div class="flex flex-col">
+    <div class="text-sm text-gray-600 mb-2">Your Activity Streak: <span class="font-bold"><%= @user.current_streak %> days</span></div>
+    
+    <div class="grid grid-cols-7 gap-1">
+      <% (@days - 1).downto(0) do |i| %>
+        <% date = Date.current - i.days %>
+        <div class="text-center">
+          <div class="text-xs text-gray-500 mb-1"><%= date.strftime('%a') %></div>
+          <div class="w-8 h-8 mx-auto rounded-md <%= @activity_dates.include?(date) ? 'bg-green-500' : 'bg-gray-200' %> flex items-center justify-center">
+            <span class="text-xs font-bold <%= @activity_dates.include?(date) ? 'text-white' : 'text-gray-700' %>">
+              <%= date.day %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
