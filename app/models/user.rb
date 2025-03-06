@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :daily_quests, dependent: :destroy
 
   before_create :generate_login_hash
+  before_create :set_points
 
   validates :login_hash, uniqueness: true
 
@@ -35,5 +36,9 @@ class User < ApplicationRecord
       self.login_hash = SecureRandom.random_number(999999)
       break unless User.exists?(login_hash: login_hash)
     end
+  end
+
+  def set_points
+    self.points = 0
   end
 end
