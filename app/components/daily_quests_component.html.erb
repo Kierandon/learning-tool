@@ -1,0 +1,50 @@
+<div class="bg-white shadow rounded-lg p-6 mb-8">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-xl font-bold text-gray-900">Daily Quests</h2>
+    <div class="text-sm text-gray-500">Resets in <%= time_until_reset %></div>
+  </div>
+  
+  <% if any_quests? %>
+    <div class="space-y-4">
+      <% quests.each do |quest| %>
+        <div class="border rounded-lg p-4 <%= quest.completed? ? 'bg-green-50 border-green-200' : 'bg-amber-50 border-amber-200' %>">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center">
+              <% if quest.completed? %>
+                <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+              <% else %>
+                <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 mr-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+              <% end %>
+              <div>
+                <p class="font-medium"><%= quest.description %></p>
+                <p class="text-sm text-gray-500">Reward: <span class="font-semibold text-yellow-700"><%= quest.reward_points %> coins</span></p>
+              </div>
+            </div>
+            
+            <div class="flex items-center">
+              <span class="text-sm font-medium mr-2"><%= quest.current_count %>/<%= quest.target_count %></span>
+              <div class="w-24 bg-gray-200 rounded-full h-2.5">
+                <div class="bg-blue-600 h-2.5 rounded-full" style="width: <%= quest.progress_percentage %>%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="bg-gray-50 rounded-lg p-6 text-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+      <p class="text-gray-600 mt-4">No active quests. Come back tomorrow!</p>
+    </div>
+  <% end %>
+</div>

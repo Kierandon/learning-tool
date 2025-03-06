@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :badges, through: :user_badges
   has_many :user_achievements, dependent: :destroy
   has_many :achievements, through: :user_achievements
+  has_many :daily_quests, dependent: :destroy
 
   before_create :generate_login_hash
 

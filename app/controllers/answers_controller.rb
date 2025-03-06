@@ -33,6 +33,7 @@ class AnswersController < ApplicationController
 
     if @question.answered_correctly?(current_user) && @question.is_first_attempt?
       current_user.increment!(:points, 10)
+      DailyQuestService.new(current_user).update_quest_progress("answer_questions")
     end
 
     achievement_service = AchievementService.new(current_user)

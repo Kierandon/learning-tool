@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  after_action :ensure_daily_quests, only: :create
+
   def new
   end
 
@@ -18,5 +20,13 @@ class SessionsController < ApplicationController
   def destroy
     reset_session
     redirect_to root_path
+  end
+
+  private
+
+  def ensure_daily_quests
+    if current_user
+      DailyQuestService.new(current_user).generate_daily_quests
+    end
   end
 end

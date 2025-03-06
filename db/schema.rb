@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_05_234512) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_06_001747) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -76,6 +76,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_234512) do
     t.datetime "updated_at", null: false
     t.string "image_url"
     t.integer "ordering"
+  end
+
+  create_table "daily_quests", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "quest_type"
+    t.integer "target_count"
+    t.integer "current_count"
+    t.integer "reward_points"
+    t.boolean "completed"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_daily_quests_on_user_id"
   end
 
   create_table "matching_pairs", force: :cascade do |t|
@@ -416,6 +429,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_05_234512) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "badges", "courses"
+  add_foreign_key "daily_quests", "users"
   add_foreign_key "matching_pairs", "matching_questions"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
   add_foreign_key "motor_alerts", "motor_queries", column: "query_id"

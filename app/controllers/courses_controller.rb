@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
   def start
     user = find_or_create_user
     ensure_user_session(user)
-
+    DailyQuestService.new(user).generate_daily_quests
     @progression = @course.start(user)
     redirect_to course_step_path(@course, @progression.current_step)
   end
