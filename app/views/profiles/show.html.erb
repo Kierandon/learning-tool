@@ -65,13 +65,9 @@
     <% end %>
   </div>
 
-  <!-- Streaks and Achievements Section -->
   <div class="bg-white shadow rounded-lg p-6">
-    <!-- Streak Calendar -->
     <h2 class="text-xl font-bold text-gray-900 mb-4">Your Streak</h2>
     <%= render(StreakCalendarComponent.new(user: @user)) %>
-    
-    <!-- Badges Section -->
     <div class="mt-8">
       <h2 class="text-xl font-bold text-gray-900 mb-4">All Your Badges</h2>
       <% if @user.badges.any? %>
@@ -98,7 +94,6 @@
       <% end %>
     </div>
     
-    <!-- Achievements Section -->
     <div class="mt-8">
       <h2 class="text-xl font-bold text-gray-900 mb-4">Your Achievements</h2>
       <% if @user.achievements.any? %>
@@ -133,5 +128,5 @@
     </div>
   </div>
 
-  <%= render(DailyQuestsComponent.new(user: current_user)) %>
+  <%= render(DailyQuestsComponent.new) %>
 </div>

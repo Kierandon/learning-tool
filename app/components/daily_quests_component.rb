@@ -1,10 +1,9 @@
 class DailyQuestsComponent < ViewComponent::Base
-  def initialize(user:)
-    @user = user
+  def initialize
   end
 
   def quests
-    @user.daily_quests.active
+    current_user.daily_quests.active
   end
 
   def any_quests?

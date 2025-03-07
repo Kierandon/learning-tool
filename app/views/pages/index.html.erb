@@ -24,9 +24,6 @@
     </div>
 </div>
 
-
-<% if current_user %>
-  <%= render(DailyQuestsComponent.new(user: current_user)) %>
-<% end %>
+<%= render(DailyQuestsComponent.new) if current_user %>
 
 <%= render(CoursesListComponent.new(courses: @courses, ordering: true)) %>

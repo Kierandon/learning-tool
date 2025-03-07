@@ -13,9 +13,6 @@
     <%= @course.description.html_safe %>
   </div>
 
-  <!-- Placeholder progress bar comment -->
-  <!-- TODO: Implement progress bar showing steps completed out of total steps with step info etc -->
-  
   <% if @progression %>
     <%= link_to "Continue Course", course_step_path(@course, @progression.current_step),
         class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex justify-center m-auto" %>
