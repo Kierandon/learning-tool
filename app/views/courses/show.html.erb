@@ -13,7 +13,15 @@
     <%= @course.description.html_safe %>
   </div>
 
-  <% if @progression %>
+  <% if @progression && @progression.completed? %>
+    <div class="flex justify-center gap-3 m-auto">
+      <%= link_to "Restart Course", confirm_start_course_path(@course),
+          class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700",
+          data: { turbo_prefetch: false } %>
+      <%= link_to "Review Last Attempt", course_step_path(@course, @progression.first_step),
+          class: "px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700" %>
+    </div>
+  <% elsif @progression %>
     <%= link_to "Continue Course", course_step_path(@course, @progression.current_step),
         class: "px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex justify-center m-auto" %>
   <% else %>
