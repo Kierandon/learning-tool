@@ -21,3 +21,6 @@ application.register("hello", HelloController)
 
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)
+
+import ToggleController from "./toggle_controller"
+application.register("toggle", ToggleController)

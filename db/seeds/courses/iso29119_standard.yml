@@ -35,11 +35,6 @@ standard:
         - name: "5. Common information for all test documentation"
           id: part3_common_info
           description: "Overview and common information elements required in all test documentation"
-          learning_objectives:
-            - id: p3_lo1
-              description: "Can identify the common elements required in all test documentation"
-            - id: p3_lo2
-              description: "Can apply proper documentation identification and change management practices"
           sections:
             - name: "5.1 Overview"
               id: part3_common_info_overview
@@ -59,11 +54,6 @@ standard:
         - name: "6. Organizational test process documentation"
           id: part3_org_process_doc
           description: "Documentation related to organizational test processes including test policies and practices"
-          learning_objectives:
-            - id: p3_lo3
-              description: "Can create a compliant test policy document"
-            - id: p3_lo4
-              description: "Understands organizational test practice documentation requirements"
           sections:
             - name: "6.1 Overview"
               id: part3_org_process_overview
@@ -170,17 +160,6 @@ standard:
         - name: "8. Dynamic test processes documentation"
           id: part3_dynamic_test_docs
           description: "Documentation related to dynamic test processes including test cases, procedures, and results"
-          learning_objectives:
-            - id: p3_lo7
-              description: "Can develop test model specifications"
-            - id: p3_lo8
-              description: "Can create standard-compliant test case specifications"
-            - id: p3_lo9
-              description: "Understands test procedure documentation requirements"
-            - id: p3_lo10
-              description: "Can document test data and environment requirements"
-            - id: p3_lo11
-              description: "Can properly document test results and incidents"
           sections:
             - name: "8.1 Overview"
               id: part3_dynamic_test_overview
