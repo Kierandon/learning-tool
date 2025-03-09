@@ -3,6 +3,8 @@ class Progression < ApplicationRecord
   belongs_to :course
   belongs_to :current_step, class_name: "Step", optional: true
 
+  has_many :user_answers, dependent: :destroy
+
   before_create :set_initial_step
 
   def next_step!

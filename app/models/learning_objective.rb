@@ -11,17 +11,16 @@ class LearningObjective < ApplicationRecord
 
   # Check if a user has completed this learning objective
   def completed_by?(user)
-    # First check if all linked question steps are answered correctly
-    steps_completed = steps.where(step_type: "question").all? do |step|
-      step.questions.all? do |question|
-        answer = UserAnswer.find_by(user: user, question: question)
-        answer&.correct?
+    if steps.where(step_type: "question").exists?
+      steps_completed = steps.where(step_type: "question").all? do |step|
+        step.questions.all? do |question|
+          answer = UserAnswer.find_by(user: user, question: question)
+          answer&.correct?
+        end
       end
+      return false unless steps_completed
     end
 
-    return false unless steps_completed
-
-    # Then check if all associated sections are completed (if any)
     if associated_sections.any?
       return false unless associated_sections.all? { |section| section.completed_by?(user) }
     end

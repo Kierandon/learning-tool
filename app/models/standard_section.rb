@@ -3,6 +3,9 @@ class StandardSection < ApplicationRecord
   belongs_to :parent_section, class_name: "StandardSection", optional: true
   has_many :subsections, class_name: "StandardSection", foreign_key: "parent_section_id", dependent: :destroy
   has_many :learning_objectives, dependent: :destroy
+  has_many :learning_objective_associated_sections, dependent: :destroy
+  has_many :associated_sections, through: :learning_objective_associated_sections,
+           source: :standard_section
 
   validates :name, presence: true
   validates :section_id, presence: true, uniqueness: { scope: :standard_id }
@@ -22,8 +25,16 @@ class StandardSection < ApplicationRecord
   end
 
   def completed_by?(user)
-    return false if learning_objectives.none?
-    learning_objectives.all? { |lo| lo.completed_by?(user) }
+    if learning_objectives.any?
+      return false unless learning_objectives.all? { |lo| lo.completed_by?(user) }
+    end
+
+    relevant_subsections = subsections.select { |section| section.has_learning_objectives? }
+    if relevant_subsections.any?
+      return false unless relevant_subsections.all? { |section| section.completed_by?(user) }
+    end
+
+    true
   end
 
   def completion_percentage_for(user)
