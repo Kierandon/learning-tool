@@ -31,7 +31,7 @@ class AnswersController < ApplicationController
     answer_service = AnswerService.new(@question, current_user, @progression)
     answer_service.process(permitted_answer)
 
-    if @question.answered_correctly?(current_user) && @question.is_first_attempt?
+    if @question.answered_correctly?(current_user)
       current_user.increment!(:points, 10)
       DailyQuestService.new(current_user).update_quest_progress("answer_questions")
     end
