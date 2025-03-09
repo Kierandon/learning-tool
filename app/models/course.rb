@@ -12,11 +12,7 @@ class Course < ApplicationRecord
   has_many :users, through: :progressions
 
   def start(user)
-    progress = progressions.find_or_initialize_by(user: user, course: self)
-    if progress.new_record?
-      progress.current_step = first_step
-      progress.save!
-    end
+    progress = progressions.create!(user: user, course: self, current_step: first_step)
     progress
   end
 
