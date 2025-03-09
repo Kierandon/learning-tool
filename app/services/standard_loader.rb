@@ -1,4 +1,3 @@
-# app/services/standard_loader.rb
 class StandardLoader
   def self.load_from_yaml(yaml_path)
     new.load_from_yaml(yaml_path)
@@ -21,6 +20,7 @@ class StandardLoader
     )
 
     process_sections(standard, data[:sections])
+    process_learning_objectives_for_standard(standard, data[:sections])
 
     standard
   end
@@ -44,8 +44,20 @@ class StandardLoader
         description: section_data[:description] ? ActionText::Content.new(section_data[:description]) : nil
       )
 
-      process_learning_objectives(section, section_data[:learning_objectives]) if section_data[:learning_objectives]
       process_sections(standard, section_data[:sections], section) if section_data[:sections]
+    end
+  end
+
+  def process_learning_objectives_for_standard(standard, sections_data, parent_section = nil)
+    return unless sections_data
+
+    sections_data.each do |section_data|
+      section_id = section_data[:id] || section_data[:section_id] || sanitize_for_id(section_data[:name])
+      section = StandardSection.find_by(standard: standard, section_id: section_id)
+
+      process_learning_objectives(section, section_data[:learning_objectives]) if section_data[:learning_objectives]
+
+      process_learning_objectives_for_standard(standard, section_data[:sections], section) if section_data[:sections]
     end
   end
 
@@ -64,6 +76,21 @@ class StandardLoader
         description: lo_data[:description],
         completion_criteria: lo_data[:completion_criteria]
       )
+
+      if lo_data[:associated_sections].present?
+        lo_data[:associated_sections].each do |section_id|
+          associated_section = StandardSection.find_by(section_id: section_id,
+                                                      standard_id: section.standard_id)
+          if associated_section
+            LearningObjectiveAssociatedSection.find_or_create_by(
+              learning_objective: objective,
+              standard_section: associated_section
+            )
+          else
+            Rails.logger.warn("Associated section '#{section_id}' not found for learning objective '#{lo_data[:id]}'")
+          end
+        end
+      end
     end
   end
 
