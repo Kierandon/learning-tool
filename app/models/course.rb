@@ -16,6 +16,10 @@ class Course < ApplicationRecord
     progress
   end
 
+  def completed_by?(user)
+    self.progressions.where(user: @user).order(created_at: :desc).first&.completed_at.present?
+  end
+
   private
 
   def first_step

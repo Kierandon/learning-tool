@@ -12,6 +12,10 @@
     <%= link_to "Next", "#{next_step_path}#{update_param}", 
       class: "rounded-full px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", 
       role: "button" %>
+  <% elsif reviewing_course? %>
+    <%= link_to "Finish Review", courses_standard_path(@course.standard, @course),
+      class: "rounded-full px-6 py-3 bg-purple-600 text-white font-bold hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500",
+      role: "button" %>
   <% elsif show_complete_button? %>
     <%= link_to "Complete Course", complete_course_path(@course),
       class: "rounded-full px-6 py-3 bg-green-600 text-white font-bold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500",

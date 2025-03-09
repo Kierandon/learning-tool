@@ -44,7 +44,7 @@
               <p class="text-xs text-right mt-1 text-gray-500"><%= progress_percentage %>% complete</p>
             </div>
             <div class="mt-4">
-              <%= link_to "Continue Learning", course_step_path(@course, @progression.current_step), 
+              <%= link_to "Continue Learning", course_step_path(@course, @progression.current_step || @course.steps.last), 
                   class: "inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700" %>
             </div>
           <% end %>
