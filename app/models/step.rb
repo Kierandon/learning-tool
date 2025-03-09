@@ -1,6 +1,7 @@
 class Step < ApplicationRecord
   belongs_to :course
   has_many :questions, -> { order(position: :asc) }, dependent: :destroy
+  has_many :progressions, foreign_key: :current_step_id, dependent: :nullify
   has_rich_text :content
 
   before_create :set_position

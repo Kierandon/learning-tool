@@ -1,0 +1,103 @@
+course:
+  title: Introduction to Programming
+  description: Learn the basics of programming concepts
+  image_url: https://placehold.co/600x400
+
+badge:
+  name: Programming Fundamentals
+  description: >
+    <p>Awarded for completing the Introduction to Programming course and demonstrating understanding of basic programming concepts.</p>
+  image_path: app/assets/images/default-badge.jpg
+
+steps:
+  - type: info
+    title: What is Programming?
+    content: >
+      <h1>Introduction to Programming</h1>
+      <p>Programming is the process of creating a set of instructions that tell a computer how to perform a task.</p>
+      <p>In this course, you'll learn about:</p>
+      <ul>
+        <li>Basic programming concepts</li>
+        <li>How computers execute instructions</li>
+        <li>Different types of programming languages</li>
+      </ul>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=RBAJC-IkRRupMaVz" 
+      title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
+      picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+
+  - type: true_false
+    title: True or False
+    prompt: Programming is only about writing code.
+    correct_answer: false
+    success_message: Correct! Programming involves many other skills like problem-solving and design.
+    failure_message: Actually, programming involves much more than just writing code!
+
+  - type: multiple_choice
+    title: Multiple Choice
+    prompt: Which of these is NOT a programming language?
+    success_message: Correct! CoffeeScript+ is not a real programming language.
+    failure_message: That's not right. Try again!
+    options:
+      - text: Python
+        correct: false
+        feedback: Python is a popular programming language.
+      - text: JavaScript
+        correct: false
+        feedback: JavaScript is a widely-used web programming language.
+      - text: CoffeeScript+
+        correct: true
+        feedback: This is not a real programming language!
+      - text: Ruby
+        correct: false
+        feedback: Ruby is a programming language.
+
+  - type: matching
+    title: Match the Terms (Dropdown)
+    matching_style: dropdown
+    prompt: Match each programming term with its definition
+    success_message: Great job matching the programming terms!
+    failure_message: Some matches are incorrect. Try again!
+    pairs:
+      - term: Variable
+        definition: A container for storing data values
+        position: 1
+      - term: Function
+        definition: A reusable block of code
+        position: 2
+      - term: Loop
+        definition: Code that repeats until a condition is met
+        position: 3
+
+  - type: matching
+    title: Match the Terms (Drawing)
+    matching_style: drawing
+    prompt: Draw lines to connect related programming concepts
+    success_message: Excellent work connecting the concepts!
+    failure_message: Some connections are incorrect. Try again!
+    pairs:
+      - term: HTML
+        definition: Structure
+        position: 1
+      - term: CSS
+        definition: Style
+        position: 2
+      - term: JavaScript
+        definition: Behavior
+        position: 3
+
+  - type: ordering
+    title: Order the Steps of Writing a Program
+    prompt: "Place these steps in the correct order, from first to last:"
+    success_message: Great job! You've correctly ordered the steps of writing and running a program.
+    failure_message: That's not quite right. Please review the correct order of steps.
+    items:
+      - content: Write the code
+        correct_position: 1
+      - content: Save the file
+        correct_position: 2
+      - content: Compile the code
+        correct_position: 3
+      - content: Run the program
+        correct_position: 4
+      - content: Debug any errors
+        correct_position: 5
