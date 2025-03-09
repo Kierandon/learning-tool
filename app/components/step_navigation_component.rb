@@ -20,6 +20,10 @@ class StepNavigationComponent < ViewComponent::Base
   end
 
   def show_complete_button?
-    @step.next_step.nil? && @step.all_questions_answered?(@user)
+    @step.next_step.nil? && @step.all_questions_answered?(@user) && !@course.completed_by?(@user)
+  end
+
+  def reviewing_course?
+    @course.progressions.where(user: @user).order(created_at: :desc).first&.completed_at.present?
   end
 end
