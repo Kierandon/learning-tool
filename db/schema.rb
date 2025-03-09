@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_09_142624) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_09_205603) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -91,6 +91,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_142624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_daily_quests_on_user_id"
+  end
+
+  create_table "learning_objective_associated_sections", force: :cascade do |t|
+    t.integer "learning_objective_id", null: false
+    t.integer "standard_section_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["learning_objective_id"], name: "idx_on_learning_objective_id_ee27f52397"
+    t.index ["standard_section_id"], name: "idx_on_standard_section_id_8b38238b9a"
   end
 
   create_table "learning_objective_steps", force: :cascade do |t|
@@ -366,7 +375,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_142624) do
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_progressions_on_course_id"
     t.index ["current_step_id"], name: "index_progressions_on_current_step_id"
-    t.index ["user_id", "course_id"], name: "index_progressions_on_user_id_and_course_id", unique: true
     t.index ["user_id"], name: "index_progressions_on_user_id"
   end
 
@@ -443,6 +451,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_142624) do
     t.boolean "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "progression_id"
+    t.index ["progression_id"], name: "index_user_answers_on_progression_id"
     t.index ["question_id"], name: "index_user_answers_on_question_id"
     t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
@@ -475,6 +485,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_142624) do
   add_foreign_key "badges", "courses"
   add_foreign_key "courses", "standards"
   add_foreign_key "daily_quests", "users"
+  add_foreign_key "learning_objective_associated_sections", "learning_objectives"
+  add_foreign_key "learning_objective_associated_sections", "standard_sections"
   add_foreign_key "learning_objective_steps", "learning_objectives"
   add_foreign_key "learning_objective_steps", "steps"
   add_foreign_key "learning_objectives", "standard_sections"
@@ -495,6 +507,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_142624) do
   add_foreign_key "steps", "courses"
   add_foreign_key "user_achievements", "achievements"
   add_foreign_key "user_achievements", "users"
+  add_foreign_key "user_answers", "progressions"
   add_foreign_key "user_answers", "questions"
   add_foreign_key "user_answers", "users"
   add_foreign_key "user_badges", "badges"
