@@ -36,7 +36,7 @@ class CourseLoader
     step_type = step_data[:type]
     title = step_data[:title]
 
-    case step_type
+    step = case step_type
     when "info"
       course.steps.create!(
         title: title,
@@ -46,9 +46,17 @@ class CourseLoader
     when "true_false", "multiple_choice", "matching", "ordering"
       step = create_question_step(course, title)
       send("create_#{step_type}_question", step, step_data)
+      step
     else
       Rails.logger.warn("Unknown step type: #{step_type}")
+      nil
     end
+
+    if step_data[:fulfills_objectives]
+      step.fulfills_objectives(step_data[:fulfills_objectives])
+    end
+
+    step
   end
 
   def create_badge(course, badge_data)

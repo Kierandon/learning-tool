@@ -1,0 +1,301 @@
+standard:
+  name: ISO/IEC/IEEE 29119
+  id: iso_29119
+  url: https://en.wikipedia.org/wiki/ISO/IEC_29119
+  description: >
+    <p>ISO/IEC 29119 is an international standard for software testing. 
+    It provides a framework for software testing processes, documentation, and techniques.</p>
+    <p>The standard is divided into five parts:</p>
+    <ul>
+      <li>Part 1: Concepts and definitions</li>
+      <li>Part 2: Test processes</li>
+      <li>Part 3: Test documentation</li>
+      <li>Part 4: Test techniques</li>
+      <li>Part 5: Keyword-driven testing</li>
+    </ul>
+
+  sections:
+    - name: "Part 1: Concepts and definitions"
+      id: part1
+      url: "https://www.iso.org/standard/81291.html"
+      published_on: 2022-01
+      description: >
+        This document specifies general concepts in software testing and presents key concepts for the ISO/IEC/IEEE 29119 series.
+
+    - name: "Part 2: Test processes"
+      id: part2
+      url: "https://www.iso.org/standard/79428.html"
+      published_on: 2021-10
+      description: >
+        This document specifies test processes that can be used to govern, manage and implement software testing for any organization, project or testing activity. It comprises generic test process descriptions that define the software testing processes. Supporting informative diagrams describing the processes are also provided.
+        This document is applicable to testing in all software development lifecycle models.
+        This document is intended for, but not limited to, testers, test managers, developers and project managers, particularly those responsible for governing, managing and implementing software testing.
+
+    - name: "Part 3: Test documentation"
+      id: part3
+      url: "https://www.iso.org/standard/79429.html"
+      published_on: 2021-10
+      description: >
+        This document specifies software test documentation templates that can be used for any organization, 
+        project or testing activity. It describes the test documentation that is an output of the processes 
+        specified in ISO/IEC/IEEE 29119-2.
+      sections:
+        - name: "5. Common information for all test documentation"
+          id: part3_common_info
+          description: "Overview and common information elements required in all test documentation"
+          learning_objectives:
+            - id: p3_lo1
+              description: "Can identify the common elements required in all test documentation"
+            - id: p3_lo2
+              description: "Can apply proper documentation identification and change management practices"
+          sections:
+            - name: "5.1 Overview"
+              id: part3_common_info_overview
+            - name: "5.2 Common information elements"
+              id: part3_common_info_elements
+              sections:
+                - name: "5.2.1 Unique identifier"
+                - name: "5.2.2 Issuing organization"
+                - name: "5.2.3 Approval authority"
+                - name: "5.2.4 Change history"
+                - name: "5.2.5 Status"
+                - name: "5.2.6 Introduction"
+                - name: "5.2.7 Scope"
+                - name: "5.2.8 References"
+                - name: "5.2.9 Glossary"
+
+        - name: "6. Organizational test process documentation"
+          id: part3_org_process_doc
+          description: "Documentation related to organizational test processes including test policies and practices"
+          learning_objectives:
+            - id: p3_lo3
+              description: "Can create a compliant test policy document"
+            - id: p3_lo4
+              description: "Understands organizational test practice documentation requirements"
+          sections:
+            - name: "6.1 Overview"
+              id: part3_org_process_overview
+            - name: "6.2 Test policy"
+              id: part3_test_policy
+              sections:
+                - name: "6.2.1 Overview"
+                - name: "6.2.2 Objectives of testing"
+                - name: "6.2.3 Test process"
+                - name: "6.2.4 Test organization structure"
+                - name: "6.2.5 Tester training"
+                - name: "6.2.6 Tester ethics"
+                - name: "6.2.7 Standards"
+                - name: "6.2.8 Other relevant policies"
+                - name: "6.2.9 Measuring the value of testing"
+                - name: "6.2.10 Test asset archiving and reuse"
+                - name: "6.2.11 Test process improvement"
+            - name: "6.3 Organizational test practices"
+              id: part3_org_test_practices
+              sections:
+                - name: "6.3.1 Overview"
+                - name: "6.3.2 Organization-level test practice statements"
+                - name: "6.3.3 Test level/type-specific organizational test practice statements"
+
+        - name: "7. Test management processes documentation"
+          id: part3_test_mgmt_processes
+          description: "Documentation related to test management processes including test plans and reports"
+          learning_objectives:
+            - id: p3_lo5
+              description: "Can create standard-compliant test plans"
+              associated_sections:
+                - part3_test_plan
+              completion_criteria: "All child learning objectives (p3_lo7 - p3_lo15) must be completed"
+            - id: p3_lo6
+              description: "Can develop test status and completion reports"
+          sections:
+            - name: "7.1 Overview"
+              id: part3_test_mgmt_overview
+            - name: "7.2 Test plan"
+              id: part3_test_plan
+              sections:
+                - name: "7.2.1 Overview"
+                - name: "7.2.2 Context of testing"
+                  learning_objectives:
+                    - id: p3_lo7
+                      description: "Can analyze and document the test context including business objectives, regulatory requirements and technical constraints"
+                - name: "7.2.3 Assumptions and constraints"
+                  learning_objectives:
+                    - id: p3_lo8
+                      description: "Can identify and document key assumptions and constraints that may impact the test strategy and execution"
+                - name: "7.2.4 Stakeholders"
+                  learning_objectives:
+                    - id: p3_lo9
+                      description: "Can identify key stakeholders and their roles, responsibilities and involvement in the testing process"
+                - name: "7.2.5 Testing communication"
+                  learning_objectives:
+                    - id: p3_lo10
+                      description: "Can develop an effective communication plan including reporting mechanisms and escalation paths"
+                - name: "7.2.6 Risk register"
+                  learning_objectives:
+                    - id: p3_lo11
+                      description: "Can create and maintain a comprehensive risk register identifying project, product and testing risks"
+                - name: "7.2.7 Test strategy"
+                  learning_objectives:
+                    - id: p3_lo12
+                      description: "Can define an appropriate test strategy aligned with project objectives and constraints"
+                - name: "7.2.8 Testing activities and estimates"
+                  learning_objectives:
+                    - id: p3_lo13
+                      description: "Can break down testing activities and provide realistic effort estimates based on complexity and resources"
+                - name: "7.2.9 Staffing"
+                  learning_objectives:
+                    - id: p3_lo14
+                      description: "Can determine required testing roles, skills and resource allocation for the project"
+                - name: "7.2.10 Schedule"
+                  learning_objectives:
+                    - id: p3_lo15
+                      description: "Can create a detailed test schedule considering dependencies, milestones and resource constraints"
+            - name: "7.3 Test status report"
+              id: part3_test_status_report
+              sections:
+                - name: "7.3.1 Overview"
+                - name: "7.3.2 Test status"
+                - name: "7.3.3 Reporting period"
+                - name: "7.3.4 Progress against test plan"
+                - name: "7.3.5 Factors blocking progress"
+                - name: "7.3.6 Test measures"
+                - name: "7.3.7 New and changed risks"
+                - name: "7.3.8 Planned testing"
+            - name: "7.4 Test completion report"
+              id: part3_test_completion_report
+              sections:
+                - name: "7.4.1 Overview"
+                - name: "7.4.2 Summary of testing performed"
+                - name: "7.4.3 Deviations from planned testing"
+                - name: "7.4.4 Test completion evaluation"
+                - name: "7.4.5 Factors that blocked progress"
+                - name: "7.4.6 Test measures"
+                - name: "7.4.7 Residual risks"
+                - name: "7.4.8 Test deliverables"
+                - name: "7.4.9 Reusable test assets"
+                - name: "7.4.10 Lessons learned"
+
+        - name: "8. Dynamic test processes documentation"
+          id: part3_dynamic_test_docs
+          description: "Documentation related to dynamic test processes including test cases, procedures, and results"
+          learning_objectives:
+            - id: p3_lo7
+              description: "Can develop test model specifications"
+            - id: p3_lo8
+              description: "Can create standard-compliant test case specifications"
+            - id: p3_lo9
+              description: "Understands test procedure documentation requirements"
+            - id: p3_lo10
+              description: "Can document test data and environment requirements"
+            - id: p3_lo11
+              description: "Can properly document test results and incidents"
+          sections:
+            - name: "8.1 Overview"
+              id: part3_dynamic_test_overview
+            - name: "8.2 Test model specification"
+              id: part3_test_model_spec
+              sections:
+                - name: "8.2.1 Overview"
+                - name: "8.2.2 Unique identifier"
+                - name: "8.2.3 Objective"
+                - name: "8.2.4 Priority"
+                - name: "8.2.5 Test strategy extract"
+                - name: "8.2.6 Test model"
+                - name: "8.2.7 Traceability"
+            - name: "8.3 Test case specification"
+              id: part3_test_case_spec
+              sections:
+                - name: "8.3.1 Overview"
+                - name: "8.3.2 Test coverage items"
+                - name: "8.3.3 Test cases"
+            - name: "8.4 Test procedure specification"
+              id: part3_test_procedure_spec
+              sections:
+                - name: "8.4.1 Overview"
+                - name: "8.4.2 Unique identifier"
+                - name: "8.4.3 Objective"
+                - name: "8.4.4 Priority"
+                - name: "8.4.5 Start up"
+                - name: "8.4.6 Ordered test cases"
+                - name: "8.4.7 Relationship to other procedures"
+                - name: "8.4.8 Stop and wrap up"
+            - name: "8.5 Test data requirements"
+              id: part3_test_data_req
+              sections:
+                - name: "8.5.1 Overview"
+                - name: "8.5.2 Unique identifier"
+                - name: "8.5.3 Description"
+                - name: "8.5.4 Responsibility"
+                - name: "8.5.5 Period needed"
+                - name: "8.5.6 Resetting needs"
+                - name: "8.5.7 Archiving or disposal"
+            - name: "8.6 Test environment requirements"
+              id: part3_test_env_req
+              sections:
+                - name: "8.6.1.Overview"
+                - name: "8.6.2 Unique identifier"
+                - name: "8.6.3 Test environment item"
+                - name: "8.6.4 Description"
+                - name: "8.6.5 Responsibility"
+                - name: "8.6.6 Period needed"
+            - name: "8.7 Test data readiness report"
+              id: part3_test_data_readiness
+              sections:
+                - name: "8.7.1 Overview"
+                - name: "8.7.2 Unique identifier"
+                - name: "8.7.3 Description of status"
+            - name: "8.8 Test environment readiness report"
+              id: part3_test_env_readiness
+              sections:
+                - name: "8.8.1 Overview"
+                - name: "8.8.2 Unique identifier"
+                - name: "8.8.3 Description of status"
+            - name: "8.9 Actual results and test result"
+              id: part3_test_results
+              sections:
+                - name: "8.9.1 General"
+                - name: "8.9.2 Actual results"
+                - name: "8.9.3 Test result"
+            - name: "8.10 Test execution log"
+              id: part3_test_execution_log
+              sections:
+                - name: "8.10.1 Overview"
+                - name: "8.10.2 Unique identifier"
+                - name: "8.10.3 Date/time"
+                - name: "8.10.4 Description"
+                - name: "8.10.5 Impact"
+            - name: "8.11 Test incident report"
+              id: part3_test_incident_report
+              sections:
+                - name: "8.11.1 Overview"
+                - name: "8.11.2 Timing information"
+                - name: "8.11.3 Originator"
+                - name: "8.11.4 Context"
+                - name: "8.11.5 Description of the incident"
+                - name: "8.11.6 Originator's assessment of severity"
+                - name: "8.11.7 Originator's assessment of priority"
+                - name: "8.11.8 Risk"
+                - name: "8.11.9 Status of the incident"
+
+    - name: "Part 4: Test techniques"
+      url: "https://www.iso.org/standard/79430.html"
+      id: part4
+      published_on: 2021-10
+      description: >
+        This document defines test design techniques that can be used during the test design and implementation process that is defined in ISO/IEC/IEEE 29119‑2.
+        Each technique follows the test design and implementation process that is defined in ISO/IEC/IEEE 29119‑2 and shown in Figure 1. This document is intended for, but not limited to, testers, test managers, and developers, particularly those responsible for managing and implementing software testing.
+  
+    - name: "Part 5: Keyword-driven testing"
+      url: "https://www.iso.org/standard/87233.html"
+      id: part5
+      published_on: 2024-12
+      description: >
+        This document defines an efficient and consistent solution for keyword-driven testing by:
+        —     giving an introduction to keyword-driven testing;
+        —     providing a reference approach to implement keyword-driven testing;
+        —     defining requirements on frameworks for keyword-driven testing to enable testers to share their work items, such as test cases, test data, keywords, or complete test specifications;
+        —     defining requirements for tools that support keyword-driven testing; these requirements are applicable to any tool that supports the keyword-driven approach (e.g. test automation, test design and test management tools);
+        —     defining interfaces and a common data exchange format to ensure that tools from different vendors can exchange their data (e.g. test cases, test data and test results);
+        —     defining levels of hierarchical keywords, and advising use of hierarchical keywords; this includes describing specific types of keywords (e.g. keywords for navigation or for checking a value) and when to use "flat" structured keywords;
+        —     providing an initial list of example generic technical (low-level) keywords, such as "inputData" or "checkValue"; these keywords can be used to specify test cases on a technical level and can be combined to create business-level keywords as required.
+        This document is applicable to all those who want to create keyword-driven test specifications, create corresponding frameworks, or build test automation based on keywords.

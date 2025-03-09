@@ -1,0 +1,146 @@
+course:
+  title: ISO 29119-3 - The Test Plan
+  standard: iso_29119
+  description: This beginner-friendly course on ISO 29119-3 and test planning combines information with interactive Q&A, guiding you through key concepts, test plan components, and real-world applications with explanations and practice questions.
+  image_url: https://i.imgur.com/IBtk946.png
+
+badge:
+  name: ISO29119 Test Plan Specialist
+  description: >
+    <p>Awarded for completing the Introduction to ISO 29119 course and demonstrating an understanding of software testing standards, including test planning, design, and execution principles outlined in ISO 29119.</p>
+  image_path: app/assets/images/iso-29119-badge.png
+
+steps:
+  - type: info
+    title: Introduction to ISO 29119-3
+    content: >
+      <div class="max-w-3xl mx-auto leading-relaxed">
+        <p class="mb-5">ISO 29119 is a family of international standards for software testing. Part 3 of this series (ISO/IEC/IEEE 29119-3) focuses on <strong>test documentation</strong>, which includes test plans, test cases, and other artifacts used in testing.</p>
+        <p class="mb-5">The goal of ISO 29119-3 is to provide a consistent, industry-approved structure for planning and documenting tests, ensuring clarity and alignment in any project. Importantly, ISO 29119-3 is <strong>methodology-agnostic</strong> – it can be applied to traditional Waterfall projects, iterative models, Agile teams, or any other software development lifecycle.</p>
+        <p class="mb-5">It builds on earlier standards (like the old IEEE 829 test plan format) but updates them to be relevant for modern testing practices. In short, ISO 29119-3 helps teams create comprehensive test plans that cover all necessary details, improving communication and test coverage across different project environments.</p>
+      </div>
+
+  - type: true_false
+    title: True or False
+    prompt: ISO 29119-3 applies only to agile methodologies.
+    correct_answer: false
+    success_message: Correct! ISO 29119-3 is designed for all software development methodologies, not just Agile. It provides a structured approach to test planning that applies to Waterfall, DevOps, Agile, and hybrid models.
+    failure_message: Not quite! ISO 29119-3 is not limited to Agile. It's a general test planning standard that can be used in any development context, including Waterfall and DevOps.
+
+  - type: info
+    title: Test Plan Components (ISO 29119-3)
+    content: >
+      <div id="iso-components" class="font-sans">
+        <p class="leading-relaxed mb-6 max-w-4xl">
+          What exactly goes into a test plan as per ISO 29119-3? The standard outlines several key components that every test plan should address. These components ensure that the plan paints a complete picture of <em>what</em> will be tested, <em>how</em>, <em>when</em>, <em>by whom</em>, and <em>with what considerations</em>.
+        </p>
+        <table class="w-full border-collapse my-8" aria-label="ISO 29119-3 Test Plan Components">
+          <thead>
+            <tr>
+              <th scope="col" class="bg-gray-100 text-left p-3 border border-gray-300">Component</th>
+              <th scope="col" class="bg-gray-100 text-left p-3 border border-gray-300">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Context of the Testing</td>
+              <td class="p-3 align-top border border-gray-300">Describes the background and <em>scope</em> of testing – e.g., which project or subsystem this plan covers, what items (software components) will be tested, and the overall test <em>scope</em> (features to be tested or not tested). It essentially sets the boundaries and context for the plan.</td>
+            </tr>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Assumptions and Constraints</td>
+              <td class="p-3 align-top border border-gray-300">Lists any conditions that are assumed to be true (e.g., "test environment will be available by 15th Oct") and any limitations or constraints affecting testing (e.g., hard deadlines, resource limitations, or dependencies).</td>
+            </tr>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Stakeholders</td>
+              <td class="p-3 align-top border border-gray-300">Identifies who has a stake in the testing effort and their roles, such as test team members, developers, project managers, and clients. The test plan should note key stakeholders and their interests.</td>
+            </tr>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Risk Register</td>
+              <td class="p-3 align-top border border-gray-300">Documents identified risks, including <em>product risks</em> (quality risks) and <em>project risks</em> (process risks). Each risk includes an impact assessment and mitigation strategy.</td>
+            </tr>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Test Strategy</td>
+              <td class="p-3 align-top border border-gray-300">Describes the overall approach to testing, including levels of testing, types of testing, design techniques, entry/exit criteria, and automation strategy.</td>
+            </tr>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Test Activities and Schedule (Estimates)</td>
+              <td class="p-3 align-top border border-gray-300">Outlines the timeline and estimated effort for test phases and key activities.</td>
+            </tr>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Staffing and Roles</td>
+              <td class="p-3 align-top border border-gray-300">Specifies team members involved in testing, their responsibilities, and any hiring or training needs.</td>
+            </tr>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Communication and Reporting</td>
+              <td class="p-3 align-top border border-gray-300">Defines how test progress, risks, and issues will be communicated to stakeholders.</td>
+            </tr>
+            <tr>
+              <td class="font-bold min-w-[150px] p-3 align-top border border-gray-300">Test Deliverables</td>
+              <td class="p-3 align-top border border-gray-300">Lists the expected outputs from testing, such as test cases, scripts, reports, and defect logs.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="leading-relaxed mb-6 max-w-4xl">
+          ISO 29119-3 provides a structured template covering all these components. By addressing each, a test plan becomes a comprehensive guide ensuring clarity, coverage, and consistency in any testing project.
+        </p>
+        <div class="bg-gray-50 p-4 border-l-4 border-blue-500 my-6">
+          Having all these sections in a test plan helps prevent omissions. For instance, if we only plan "what to test" but not "who will test" or "when," we'll likely hit problems later. ISO 29119-3 encourages thorough planning without prescribing <em>exactly</em> how you must write it – you can tailor the depth of each section based on your project's needs. For a small project, each section might be just a few sentences; for a large mission-critical project, each might be very detailed. The key is that the <strong>plan covers these categories</strong> so nothing important is overlooked.
+        </div>
+      </div>
+
+  - type: multiple_choice
+    title: Test Plan Components
+    prompt: Which of the following is NOT a key component of a test plan according to ISO 29119-3?
+    success_message: Correct! Detailed code implementation is not part of a test plan, as it focuses on planning the testing process rather than the software's internal design.
+    failure_message: Not quite! Test plans focus on testing scope, risks, and roles—not the internal implementation of software features.
+    options:
+      - text: Test Scope and Context
+        correct: false
+        feedback: Test plans must define the scope and context to set testing boundaries.
+      - text: Identified Risks and Mitigations
+        correct: false
+        feedback: Risk management is essential in test planning to prepare for potential issues.
+      - text: Roles and Responsibilities of Test Team
+        correct: true
+        feedback: Test plans outline the responsibilities of team members involved in testing.
+      - text: Detailed Code Implementation for Features
+        correct: false
+        feedback: Correct! A test plan does not include software implementation details.
+
+  - type: info
+    title: Context of Testing
+    content: >
+      <div class="max-w-4xl mx-auto px-4 py-6 text-gray-800">
+        <p class="mb-4 leading-relaxed">The <strong class="font-semibold">context of testing</strong> section in a test plan sets the stage for everything that follows. Think of it as the introduction to your test plan's story: it defines <em class="italic">where we are and what we're dealing with</em>. According to ISO 29119-3, "Context of the Testing" typically includes:</p>
+        <ul class="space-y-4 mb-6 list-disc pl-5">
+          <li class="leading-relaxed">
+            <strong class="font-semibold">Project or System Background:</strong> A brief description of the project or system under test. For example, is this a web application, a mobile app, an API, etc.? What is the purpose of the system? This helps anyone reading the plan to understand the domain and importance of the testing.
+          </li>
+          <li class="leading-relaxed">
+            <strong class="font-semibold">Test Items:</strong> A list of what items will be tested. In other words, which components or features are in scope? This could be specific modules (e.g., "Login Module, Payment Processing Service, Reporting Dashboard") or it could reference requirement IDs or user stories that will be tested.
+          </li>
+          <li class="leading-relaxed">
+            <strong class="font-semibold">Test Scope (In-Scope & Out-of-Scope):</strong> This is crucial – it defines the <em class="italic">boundaries</em> of testing.
+            The plan should summarize what features or aspects <strong class="font-semibold">will be tested</strong> (in-scope) and also explicitly state if anything will <strong class="font-semibold">not</strong> be tested (out-of-scope) and why.
+          </li>
+          <li class="leading-relaxed">
+            <strong class="font-semibold">Assumptions and Constraints:</strong> Often considered part of context, this section outlines what we are treating as true for planning purposes (assumptions) and factors that limit testing (constraints).
+          </li>
+          <li class="leading-relaxed">
+            <strong class="font-semibold">Test Environment & Contextual Info:</strong> The context section may also specify which environment or configuration the testing will use if known at this stage.
+            For example: "Testing will be carried out on the staging server (version 1.2 of the software) using a copy of production data from Sept 1." This situational info helps frame how and where testing will happen.
+          </li>
+        </ul>
+        <p class="mb-4 leading-relaxed">Overall, the context section's <em class="italic">importance</em> lies in defining the <strong class="font-semibold">scope and boundaries</strong> of the testing effort clearly. It prevents misunderstandings, ensuring that stakeholders understand <strong class="font-semibold">what's covered and what isn't</strong>.
+          As ISO 29119-3 states, the test scope summary should list features to be tested and those explicitly not tested, along with rationale.
+        </p>
+      </div>
+
+  - type: true_false
+    title: Context of Testing
+    prompt: The test context defines the scope and boundaries of testing.
+    fulfills_objectives:
+      - p3_lo7
+    correct_answer: true
+    success_message: Correct! The 'Context of the Testing' section explicitly outlines the scope and boundaries of testing, ensuring clarity on what will and won’t be tested.
+    failure_message: Not quite! The test context is specifically meant to define the testing scope and boundaries, clarifying what is in and out of scope.

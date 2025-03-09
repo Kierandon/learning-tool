@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_06_001747) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_09_142624) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -76,6 +76,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_06_001747) do
     t.datetime "updated_at", null: false
     t.string "image_url"
     t.integer "ordering"
+    t.integer "standard_id"
+    t.index ["standard_id"], name: "index_courses_on_standard_id"
   end
 
   create_table "daily_quests", force: :cascade do |t|
@@ -89,6 +91,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_06_001747) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_daily_quests_on_user_id"
+  end
+
+  create_table "learning_objective_steps", force: :cascade do |t|
+    t.integer "learning_objective_id", null: false
+    t.integer "step_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["learning_objective_id"], name: "index_learning_objective_steps_on_learning_objective_id"
+    t.index ["step_id"], name: "index_learning_objective_steps_on_step_id"
+  end
+
+  create_table "learning_objectives", force: :cascade do |t|
+    t.integer "standard_section_id", null: false
+    t.string "objective_id", null: false
+    t.string "description", null: false
+    t.string "completion_criteria"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["standard_section_id"], name: "index_learning_objectives_on_standard_section_id"
   end
 
   create_table "matching_pairs", force: :cascade do |t|
@@ -362,6 +383,29 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_06_001747) do
     t.index ["step_id"], name: "index_questions_on_step_id"
   end
 
+  create_table "standard_sections", force: :cascade do |t|
+    t.integer "standard_id", null: false
+    t.integer "parent_section_id"
+    t.string "name", null: false
+    t.string "section_id", null: false
+    t.string "url"
+    t.date "published_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_section_id"], name: "index_standard_sections_on_parent_section_id"
+    t.index ["standard_id", "section_id"], name: "index_standard_sections_on_standard_id_and_section_id", unique: true
+    t.index ["standard_id"], name: "index_standard_sections_on_standard_id"
+  end
+
+  create_table "standards", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "code", null: false
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code"], name: "index_standards_on_code", unique: true
+  end
+
   create_table "steps", force: :cascade do |t|
     t.integer "course_id", null: false
     t.string "title"
@@ -429,7 +473,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_06_001747) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "badges", "courses"
+  add_foreign_key "courses", "standards"
   add_foreign_key "daily_quests", "users"
+  add_foreign_key "learning_objective_steps", "learning_objectives"
+  add_foreign_key "learning_objective_steps", "steps"
+  add_foreign_key "learning_objectives", "standard_sections"
   add_foreign_key "matching_pairs", "matching_questions"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
   add_foreign_key "motor_alerts", "motor_queries", column: "query_id"
@@ -442,6 +490,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_06_001747) do
   add_foreign_key "progressions", "steps", column: "current_step_id"
   add_foreign_key "progressions", "users"
   add_foreign_key "questions", "steps"
+  add_foreign_key "standard_sections", "standard_sections", column: "parent_section_id"
+  add_foreign_key "standard_sections", "standards"
   add_foreign_key "steps", "courses"
   add_foreign_key "user_achievements", "achievements"
   add_foreign_key "user_achievements", "users"

@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  belongs_to :standard, optional: true
+
   validates :title, presence: true
   validates :description, presence: true
   validates :image_url, format: { with: URI::DEFAULT_PARSER.make_regexp, message: "must be a valid URL" }, allow_blank: true
