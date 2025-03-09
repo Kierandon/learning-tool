@@ -16,6 +16,9 @@ class Questions::TrueFalseQuestionComponent < ViewComponent::Base
   end
 
   def question_answered?
-    @question.user_answers.where(user: current_user).exists?
+    @question.user_answers.where(
+      user: current_user,
+      progression: @question.course.progressions.where(user: current_user).order(id: :desc).first
+    ).exists?
   end
 end

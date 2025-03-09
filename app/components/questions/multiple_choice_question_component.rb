@@ -29,6 +29,9 @@ class Questions::MultipleChoiceQuestionComponent < ViewComponent::Base
   end
 
   def question_answered?
-    @question.user_answers.where(user: current_user).exists?
+    @question.user_answers.where(
+      user: current_user,
+      progression: @question.course.progressions.where(user: current_user).order(created_at: :desc).first
+    ).exists?
   end
 end
