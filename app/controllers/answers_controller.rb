@@ -28,10 +28,9 @@ class AnswersController < ApplicationController
 
   def process_answer
     permitted_answer = params.require(:answer).permit!.to_h
-    answer_service = AnswerService.new(@question, current_user, @progression)
-    answer_service.process(permitted_answer)
+    answer = AnswerService.new(@question, current_user, @progression).process(permitted_answer)
 
-    if @question.answered_correctly?(current_user)
+    if answer.correct
       current_user.increment!(:points, 10)
       DailyQuestService.new(current_user).update_quest_progress("answer_questions")
     end
