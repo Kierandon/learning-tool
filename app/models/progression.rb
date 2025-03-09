@@ -7,14 +7,8 @@ class Progression < ApplicationRecord
 
   def next_step!
     next_step = current_step.next_step
-    if next_step.nil?
-      self.completed_at = Time.zone.now
-      save!
-      nil
-    else
-      update!(current_step: next_step)
-      next_step
-    end
+    update!(current_step: next_step)
+    next_step
   end
 
   def complete!
@@ -23,7 +17,11 @@ class Progression < ApplicationRecord
 
   def progress_percentage
     return 100 if self.completed_at
-    current_position = self.current_step.position - 1
+    if current_step.nil?
+      current_position = course.steps.count - 1
+    else
+      current_position = self.current_step.position - 1
+    end
     ((current_position.to_f / self.course.steps.count) * 100).round
   end
 
@@ -44,6 +42,10 @@ class Progression < ApplicationRecord
     current_step.present? && !completed?
   end
 
+  def first_step
+    course.steps.order(:position).first
+  end
+
   private
 
   def current_step_position
@@ -51,6 +53,6 @@ class Progression < ApplicationRecord
   end
 
   def set_initial_step
-    self.current_step = course.steps.order(:position).first
+    self.current_step = first_step
   end
 end
