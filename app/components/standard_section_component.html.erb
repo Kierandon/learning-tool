@@ -124,7 +124,7 @@
   </div>
   
   <% if @section.subsections.any? %>
-    <div id="section-<%= @section.id %>-children" class="hidden" data-toggle-target="content">
+    <div id="section-<%= @section.id %>-children" class="hidden <%= @level > 0 ? 'pl-' + (@level*4).to_s : '' %>" data-toggle-target="content">
       <% @section.subsections.each do |subsection| %>
         <%= render StandardSectionComponent.new(
           section: subsection, 
