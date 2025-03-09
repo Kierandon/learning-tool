@@ -107,7 +107,7 @@
       </div>
     </div>
     
-    <% if @user && (@section.learning_objectives.any? || @section.subsections.any?) %>
+    <% if @user && @section.has_learning_objectives? %>
       <% completion = completion_percentage %>
       <div class="ml-4 flex-shrink-0">
         <div class="relative h-8 w-28 bg-gray-200 rounded-full overflow-hidden">
