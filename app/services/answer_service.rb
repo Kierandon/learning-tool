@@ -1,7 +1,8 @@
 class AnswerService
-  def initialize(question, user)
+  def initialize(question, user, progression)
     @question = question
     @user = user
+    @progression = progression
   end
 
   def process(submitted_answer)
@@ -22,7 +23,8 @@ class AnswerService
     answer = @question.user_answers.create!(
       user: @user,
       answer_data: answer_data,
-      correct: result
+      correct: result,
+      progression: @progression,
     )
     answer
   end
