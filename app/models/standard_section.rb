@@ -26,9 +26,25 @@ class StandardSection < ApplicationRecord
     learning_objectives.all? { |lo| lo.completed_by?(user) }
   end
 
-  def completion_percentage(user)
-    return 0 if learning_objectives.none?
-    completed = learning_objectives.count { |lo| lo.completed_by?(user) }
-    (completed.to_f / learning_objectives.count) * 100
+  def completion_percentage_for(user)
+    if learning_objectives.any?
+      completed = learning_objectives.count { |lo| lo.completed_by?(user) }
+      return (completed.to_f / learning_objectives.count) * 100
+    end
+
+    # For parent sections, calculate based on child sections
+    child_sections = subsections.select { |section| section.has_learning_objectives? }
+    return 0 if child_sections.empty?
+
+    sum_of_percentages = child_sections.sum do |section|
+      section.completion_percentage_for(user)
+    end
+
+    sum_of_percentages / child_sections.size
+  end
+
+  def has_learning_objectives?
+    return true if learning_objectives.any?
+    subsections.any? { |subsection| subsection.has_learning_objectives? }
   end
 end
