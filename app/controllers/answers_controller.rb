@@ -19,7 +19,7 @@ class AnswersController < ApplicationController
   end
 
   def set_progression
-    @progression = current_user.progressions.find_by!(course: @course)
+    @progression = current_user.progressions.where(course: @course).order(id: :desc).first!
   end
 
   def set_question
@@ -28,7 +28,7 @@ class AnswersController < ApplicationController
 
   def process_answer
     permitted_answer = params.require(:answer).permit!.to_h
-    answer_service = AnswerService.new(@question, current_user)
+    answer_service = AnswerService.new(@question, current_user, @progression)
     answer_service.process(permitted_answer)
 
     if @question.answered_correctly?(current_user) && @question.is_first_attempt?
