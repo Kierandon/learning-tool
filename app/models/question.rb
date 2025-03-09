@@ -2,6 +2,7 @@ class Question < ApplicationRecord
   belongs_to :step
   belongs_to :questionable, polymorphic: true, dependent: :destroy
   has_many :user_answers, dependent: :destroy
+  has_one :course, through: :step
 
   accepts_nested_attributes_for :questionable
 
@@ -16,8 +17,13 @@ class Question < ApplicationRecord
     questionable.correct_answer?(submitted_answer)
   end
 
-  def answered_correctly?(user)
-    user_answers.where(user: user).exists?
+  def answered_correctly?(user, progression = nil)
+    progression ||= course.progressions.where(user: user).order(created_at: :desc).first
+
+    user_answers.where(
+      user: user,
+      progression: progression
+    ).exists?
   end
 
   def is_first_attempt?

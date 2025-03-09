@@ -16,8 +16,10 @@ class Step < ApplicationRecord
     course.steps.find_by(position: position + 1)
   end
 
-  def all_questions_answered?(user)
-    questions.all? { |question| question.answered_correctly?(user) }
+  def all_questions_answered?(user, progression = nil)
+    progression ||= course.progressions.where(user: user).order(created_at: :desc).first
+    return true unless questions.any?
+    questions.all? { |question| question.answered_correctly?(user, progression) }
   end
 
   def fulfills_objectives(objective_ids)
