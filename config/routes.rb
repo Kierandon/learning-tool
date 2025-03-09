@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :standards, only: [ :show ] do
+    member do
+      get :courses
+    end
+  end
+
   resource :profile, only: [ :show ]
 
   get "up" => "rails/health#show", as: :rails_health_check

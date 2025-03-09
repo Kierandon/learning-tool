@@ -3,16 +3,8 @@ standard:
   id: iso_29119
   url: https://en.wikipedia.org/wiki/ISO/IEC_29119
   description: >
-    <p>ISO/IEC 29119 is an international standard for software testing. 
-    It provides a framework for software testing processes, documentation, and techniques.</p>
-    <p>The standard is divided into five parts:</p>
-    <ul>
-      <li>Part 1: Concepts and definitions</li>
-      <li>Part 2: Test processes</li>
-      <li>Part 3: Test documentation</li>
-      <li>Part 4: Test techniques</li>
-      <li>Part 5: Keyword-driven testing</li>
-    </ul>
+    ISO/IEC 29119 is an international standard for software testing. 
+    It provides a framework for software testing processes, documentation, and techniques.
 
   sections:
     - name: "Part 1: Concepts and definitions"
