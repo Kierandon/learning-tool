@@ -20,10 +20,12 @@ class CourseLoader
 
   def create_course_from_data(data)
     course_data = data[:course]
+    standard = Standard.find_by(code: course_data[:standard]) if course_data[:standard].present?
     course = Course.create!(
       title: course_data[:title],
       description: course_data[:description],
-      image_url: course_data[:image_url]
+      image_url: course_data[:image_url],
+      standard: standard
     )
 
     create_badge(course, data[:badge]) if data[:badge]
