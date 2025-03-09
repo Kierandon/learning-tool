@@ -1,6 +1,6 @@
 class Standard < ApplicationRecord
   has_many :sections, class_name: "StandardSection", dependent: :destroy
-  has_many :courses
+  has_many :courses, dependent: :destroy
 
   validates :name, presence: true
   validates :code, presence: true, uniqueness: true
