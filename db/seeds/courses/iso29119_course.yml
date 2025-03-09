@@ -101,10 +101,10 @@ steps:
         correct: false
         feedback: Risk management is essential in test planning to prepare for potential issues.
       - text: Roles and Responsibilities of Test Team
-        correct: true
+        correct: false
         feedback: Test plans outline the responsibilities of team members involved in testing.
       - text: Detailed Code Implementation for Features
-        correct: false
+        correct: true
         feedback: Correct! A test plan does not include software implementation details.
 
   - type: info
