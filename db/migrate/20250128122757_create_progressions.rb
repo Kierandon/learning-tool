@@ -8,7 +8,5 @@ class CreateProgressions < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-
-    add_index :progressions, [ :user_id, :course_id ], unique: true
   end
 end
