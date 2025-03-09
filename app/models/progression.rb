@@ -27,6 +27,14 @@ class Progression < ApplicationRecord
     ((current_position.to_f / self.course.steps.count) * 100).round
   end
 
+  def completed_learning_objectives
+    completed_step_ids = self.user_answers.select(&:correct).map(&:question).compact.map(&:step_id).uniq
+
+    LearningObjective.joins(:learning_objective_steps)
+                     .where(learning_objective_steps: { step_id: completed_step_ids })
+                     .distinct
+  end
+
   def steps_completed_count
     return course.steps.count if completed_at
     course.steps.where("position < ?", current_step&.position.to_i).count
