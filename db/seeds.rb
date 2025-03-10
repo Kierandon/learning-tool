@@ -54,19 +54,12 @@ def create_test_standard
     ]
 
     child_sections.each do |section_data|
-      child = StandardSection.create!(
+      StandardSection.create!(
         name: section_data[:name],
         standard: test_standard,
-        parent_section: parent_section,
-        position: section_data[:position]
+        section_id: section_data[:name].split('.').last.strip,
+        parent_section: parent_section
       )
-
-      2.times do |i|
-        LearningObjective.create!(
-          description: "Understand #{child.name.split(' ').last.downcase} concept #{i+1}",
-          standard_section: child
-        )
-      end
     end
   end
 
