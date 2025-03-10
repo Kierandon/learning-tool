@@ -141,6 +141,8 @@ steps:
   - type: true_false
     title: "Context of Testing"
     prompt: "The test context defines the scope and boundaries of testing."
+    fulfills_objectives:
+      - p3_lo7
     correct_answer: true
     success_message: "Correct! The 'Context of the Testing' section explicitly outlines the scope and boundaries of testing, ensuring clarity on what will and won’t be tested."
     failure_message: "Not quite! The test context is specifically meant to define the testing scope and boundaries, clarifying what is in and out of scope."
