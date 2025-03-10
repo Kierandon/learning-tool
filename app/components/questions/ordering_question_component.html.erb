@@ -1,5 +1,5 @@
-<div class="ordering-question pb-4" data-controller="components--questions--ordering"
-     data-components--questions--ordering-answered-value="<%= @just_answered %>">
+<div class="ordering-question pb-4" <%= 'data-controller="components--questions--ordering"' unless @mock %>
+  data-components--questions--ordering-answered-value="<%= @just_answered %>">
   <fieldset class="space-y-6">
     <legend class="text-lg font-semibold text-gray-900 mb-4">
       <%= @question.prompt %>
@@ -54,7 +54,9 @@
           <% end %>
         </div>
       </div>
-      <%= @form.hidden_field "answer[item_order]", id: "item_order_input", data: { "components--questions--ordering-target": "input" } %>
+      <% if @form %>
+        <%= @form.hidden_field "answer[item_order]", id: "item_order_input", data: { "components--questions--ordering-target": "input" } %>
+      <% end %>
     </div>
     <% if @just_answered %>
       <div class="mt-6">

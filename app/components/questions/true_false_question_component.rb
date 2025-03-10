@@ -1,6 +1,9 @@
+require "ostruct"
+
 class Questions::TrueFalseQuestionComponent < ViewComponent::Base
-  def initialize(question:, form:, just_answered: false)
-    @question = question
+  def initialize(question: nil, form: nil, just_answered: false, mock: false)
+    @mock = mock
+    @question = mock ? mock_question : question
     @form = form
     @just_answered = just_answered
   end
@@ -11,11 +14,20 @@ class Questions::TrueFalseQuestionComponent < ViewComponent::Base
 
   private
 
+  def mock_question
+    OpenStruct.new(
+      prompt: "Standards help ensure consistency and quality across products and services.",
+      questionable: OpenStruct.new(correct_answer: true),
+      core_question: @core
+    )
+  end
+
   def correct_answer
     @question.questionable.correct_answer
   end
 
   def question_answered?
+    return false if @mock
     @question.user_answers.where(
       user: current_user,
       progression: @question.course.progressions.where(user: current_user).order(id: :desc).first

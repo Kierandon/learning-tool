@@ -1,10 +1,9 @@
 <div class="matching-question pb-4" 
-     data-controller="<%= @question.questionable.matching_style == 'drawing' ? 'components--questions--matching-drawing' : 'components--questions--matching' %>"
+    data-controller="<%= @mock ? nil : (@question.questionable.matching_style == 'drawing' ? 'components--questions--matching-drawing' : 'components--questions--matching') %>"
      data-components--questions--matching-drawing-answered-value="<%= @just_answered %>">
   <fieldset class="space-y-6">
     <legend class="text-lg font-semibold text-gray-900 mb-4">
       <br>
-      Match the following:<br>
       <%= @question.prompt %>
     </legend>
     <% if @question.questionable.matching_style == 'drawing' %>
@@ -21,11 +20,13 @@
                   data-action="mousedown->components--questions--matching-drawing#selectTerm">
                 <span class="text-gray-900"><%= pair.term %></span>
               </div>
-              <%= @form.hidden_field "answer[term_#{pair.id}]",
-                  data: { 
-                    "components--questions--matching-drawing-target": "input",
-                    "term-id": pair.id 
-                  } %>
+              <% if @form %>
+                <%= @form.hidden_field "answer[term_#{pair.id}]",
+                    data: { 
+                      "components--questions--matching-drawing-target": "input",
+                      "term-id": pair.id 
+                    } %>
+              <% end %>
             <% end %>
           </div>
           <div class="space-y-4">
@@ -49,10 +50,12 @@
             <div class="term-container p-4 bg-white rounded-lg shadow">
               <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                 <span class="text-gray-900 mb-3 lg:mb-0 break-words"><%= pair.term %></span>
-                <%= @form.select "answer[term_#{pair.id}]",
-                    options_from_collection_for_select(@pairs, :id, :definition),
-                    { prompt: "Select matching definition" },
-                    class: "w-full lg:w-[250px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
+                  <% if @form %>
+                    <%= @form.select "answer[term_#{pair.id}]",
+                        options_from_collection_for_select(@pairs, :id, :definition),
+                        { prompt: "Select matching definition" },
+                        class: "w-full lg:w-[250px] rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm" %>
+                  <% end %>              
               </div>
             </div>
           <% end %>

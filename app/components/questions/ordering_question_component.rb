@@ -1,6 +1,9 @@
+require "ostruct"
+
 class Questions::OrderingQuestionComponent < ViewComponent::Base
-  def initialize(question:, form:, just_answered: false)
-    @question = question
+  def initialize(question: nil, form: nil, just_answered: false, mock: false)
+    @mock = mock
+    @question = mock ? mock_question : question
     @form = form
     @just_answered = just_answered
     @items = @question.questionable.ordering_items
@@ -11,6 +14,20 @@ class Questions::OrderingQuestionComponent < ViewComponent::Base
   end
 
   private
+
+  def mock_question
+    OpenStruct.new(
+      prompt: "Arrange the following items in the correct order.",
+      questionable: OpenStruct.new(
+        ordering_items: [
+          OpenStruct.new(id: 1, content: "Step 1"),
+          OpenStruct.new(id: 2, content: "Step 2"),
+          OpenStruct.new(id: 3, content: "Step 3")
+        ]
+      ),
+      core_question: false
+    )
+  end
 
   def latest_answer
     @latest_answer ||= @question.user_answers.where(user: current_user).last
@@ -32,6 +49,7 @@ class Questions::OrderingQuestionComponent < ViewComponent::Base
   end
 
   def question_answered?
+    return false if @mock
     @question.user_answers.where(
       user: current_user,
       progression: @question.course.progressions.where(user: current_user).order(created_at: :desc).first

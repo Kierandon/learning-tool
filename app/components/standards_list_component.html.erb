@@ -4,7 +4,9 @@
   </div>
   <div class="space-y-4 mt-4">
     <% standards&.each do |standard| %>
-      <%= render StandardCardComponent.new(standard: standard, user: current_user) %>
+      <% if standard.visibility %>
+        <%= render StandardCardComponent.new(standard: standard, user: current_user) %>
+      <% end %>
     <% end %>
   </div>
 </div>

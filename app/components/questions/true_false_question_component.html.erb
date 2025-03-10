@@ -1,4 +1,4 @@
-<div class="true-false-question" data-controller="components--questions--true-false" 
+<div class="true-false-question" <%= 'data-controller="components--questions--true-false"' unless @mock %>
      data-components--questions--true-false-answered-value="<%= @just_answered %>">
   <fieldset>
     <legend class="text-lg font-semibold text-gray-900 mb-4">
@@ -6,8 +6,10 @@
       Question:<br>
       <%= @question.prompt %>
     </legend>
-    <%= @form.hidden_field "answer[question_#{@question.id}]", 
+    <% if @form %>
+      <%= @form.hidden_field "answer[question_#{@question.id}]", 
         data: { "components--questions--true-false-target": "input" } %>
+    <% end %>
     <div class="flex flex-col">
       <div data-components--questions--true-false-target="option"
            data-value="true"

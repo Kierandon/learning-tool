@@ -1,5 +1,5 @@
 <div class="multiple-choice-question pb-6" 
-     data-controller="components--questions--multiple-choice"
+    data-controller="<%= 'components--questions--multiple-choice' unless @mock %>"
      data-just-answered="<%= @just_answered %>">
   <fieldset class="space-y-6">
     <legend class="text-lg font-semibold text-gray-900 mb-4">
@@ -14,14 +14,16 @@
           <label class="block font-medium text-gray-700 select-none cursor-pointer <%= @just_answered ? 'cursor-default' : '' %>">
             <div class="flex items-start p-4 rounded-xl border bg-white shadow-sm <%= @just_answered ? '' : 'hover:shadow-md' %>">
               <div class="flex items-center h-5 mr-3">
-                <%= @form.check_box "answer[selected_options][]", 
-                    { 
-                      multiple: true,
-                      disabled: @just_answered,
-                      checked: selected_options.any? { |so| so["id"] == option.id },
-                      class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                    },
-                    option.id %>
+                <% if @form %>
+                  <%= @form.check_box "answer[selected_options][]", 
+                      { 
+                        multiple: true,
+                        disabled: @just_answered,
+                        checked: selected_options.any? { |so| so["id"] == option.id },
+                        class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                      },
+                      option.id %>
+                <% end %>
               </div>
               <div class="min-w-0 flex-1 text-sm">
                 <%= option.text %>
