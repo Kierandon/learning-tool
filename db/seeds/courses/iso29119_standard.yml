@@ -89,6 +89,9 @@ standard:
               completion_criteria: "All child learning objectives (p3_lo7 - p3_lo15) must be completed"
             - id: p3_lo6
               description: "Can develop test status and completion reports"
+              associated_sections:
+                - part3_test_status_report
+                - part3_test_completion_report
           sections:
             - name: "7.1 Overview"
               id: part3_test_mgmt_overview
@@ -104,34 +107,34 @@ standard:
                   learning_objectives:
                     - id: p3_lo8
                       description: "Can identify and document key assumptions and constraints that may impact the test strategy and execution"
-                - name: "7.2.4 Stakeholders"
-                  learning_objectives:
-                    - id: p3_lo9
-                      description: "Can identify key stakeholders and their roles, responsibilities and involvement in the testing process"
-                - name: "7.2.5 Testing communication"
-                  learning_objectives:
-                    - id: p3_lo10
-                      description: "Can develop an effective communication plan including reporting mechanisms and escalation paths"
-                - name: "7.2.6 Risk register"
-                  learning_objectives:
-                    - id: p3_lo11
-                      description: "Can create and maintain a comprehensive risk register identifying project, product and testing risks"
-                - name: "7.2.7 Test strategy"
-                  learning_objectives:
-                    - id: p3_lo12
-                      description: "Can define an appropriate test strategy aligned with project objectives and constraints"
-                - name: "7.2.8 Testing activities and estimates"
-                  learning_objectives:
-                    - id: p3_lo13
-                      description: "Can break down testing activities and provide realistic effort estimates based on complexity and resources"
-                - name: "7.2.9 Staffing"
-                  learning_objectives:
-                    - id: p3_lo14
-                      description: "Can determine required testing roles, skills and resource allocation for the project"
-                - name: "7.2.10 Schedule"
-                  learning_objectives:
-                    - id: p3_lo15
-                      description: "Can create a detailed test schedule considering dependencies, milestones and resource constraints"
+                # - name: "7.2.4 Stakeholders"
+                #   learning_objectives:
+                #     - id: p3_lo9
+                #       description: "Can identify key stakeholders and their roles, responsibilities and involvement in the testing process"
+                # - name: "7.2.5 Testing communication"
+                #   learning_objectives:
+                #     - id: p3_lo10
+                #       description: "Can develop an effective communication plan including reporting mechanisms and escalation paths"
+                # - name: "7.2.6 Risk register"
+                #   learning_objectives:
+                #     - id: p3_lo11
+                #       description: "Can create and maintain a comprehensive risk register identifying project, product and testing risks"
+                # - name: "7.2.7 Test strategy"
+                #   learning_objectives:
+                #     - id: p3_lo12
+                #       description: "Can define an appropriate test strategy aligned with project objectives and constraints"
+                # - name: "7.2.8 Testing activities and estimates"
+                #   learning_objectives:
+                #     - id: p3_lo13
+                #       description: "Can break down testing activities and provide realistic effort estimates based on complexity and resources"
+                # - name: "7.2.9 Staffing"
+                #   learning_objectives:
+                #     - id: p3_lo14
+                #       description: "Can determine required testing roles, skills and resource allocation for the project"
+                # - name: "7.2.10 Schedule"
+                #   learning_objectives:
+                #     - id: p3_lo15
+                #       description: "Can create a detailed test schedule considering dependencies, milestones and resource constraints"
             - name: "7.3 Test status report"
               id: part3_test_status_report
               sections:
