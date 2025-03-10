@@ -14,6 +14,6 @@ class HomepageTest < ApplicationSystemTestCase
       end
     end
 
-    assert_selector "div[data-test-id='courses-list-header']", text: "Available Courses"
+    assert_selector "div[data-test-id='courses-list-header']", text: "Available Standards to Learn"
   end
 end
