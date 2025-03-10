@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [ :show, :start, :confirm_start ]
+  before_action :set_course, only: [ :show, :start, :confirm_start, :complete ]
 
   def show
     @progression = current_user&.progressions&.find_by(course: @course)
@@ -22,7 +22,6 @@ class CoursesController < ApplicationController
   end
 
   def complete
-    @course = Course.find(params[:id])
     @progression = current_user.progressions.find_by!(course: @course)
     @progression.complete!
 
