@@ -6,9 +6,9 @@
     <p class="text-lg mb-4">A standard may have several courses to cover its content, allowing you to learn at your own pace.</p>
     <p class="text-lg mb-5">You can explore the structure of any standard and see the associated learning objectives (along with the courses that cover them).</p>
 
-    <h4 class="text-xl font-semibold mb-3">Example: Structure of the ISO 29119 Standard</h4>
     <% standard = Standard.find_by(code: "iso_29119") %>
     <% if standard %>
+      <h4 class="text-xl font-semibold mb-3">Example: Structure of the ISO 29119 Standard</h4>
       <div class="mb-8 border border-gray-200 rounded-lg p-4 bg-gray-50" data-controller="toggle">
         <% if standard.top_level_sections.any? %>
           <div class="bg-white rounded-lg border border-gray-200 p-2">
