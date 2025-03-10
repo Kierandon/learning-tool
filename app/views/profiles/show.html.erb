@@ -49,9 +49,9 @@
   <div class="bg-white shadow rounded-lg p-6 mb-8">
     <h2 class="text-xl font-bold text-gray-900 mb-4">Your Learning Journey</h2>
     <% if @user.progressions.any? %>
-      <% @user.progressions.includes(:course).each do |progression| %>
+      <% @user.progressions.includes(:course).group_by(&:course_id).each do |course_id, progressions| %>
         <div class="mb-4">
-          <%= render Courses::CourseCardComponent.new(course: progression.course, user: @user, show_description: false) %>
+          <%= render Courses::CourseCardComponent.new(course: progressions.last.course, user: @user, show_description: false) %>
         </div>
       <% end %>
     <% else %>
