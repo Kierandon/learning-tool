@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_09_205603) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_10_000458) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -391,6 +391,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_205603) do
     t.index ["step_id"], name: "index_questions_on_step_id"
   end
 
+  create_table "standard_certificates", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "standard_id", null: false
+    t.date "issue_date", null: false
+    t.string "certificate_number", null: false
+    t.string "competency_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["standard_id"], name: "index_standard_certificates_on_standard_id"
+    t.index ["user_id", "standard_id"], name: "index_standard_certificates_on_user_id_and_standard_id", unique: true
+    t.index ["user_id"], name: "index_standard_certificates_on_user_id"
+  end
+
   create_table "standard_sections", force: :cascade do |t|
     t.integer "standard_id", null: false
     t.integer "parent_section_id"
@@ -502,6 +515,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_09_205603) do
   add_foreign_key "progressions", "steps", column: "current_step_id"
   add_foreign_key "progressions", "users"
   add_foreign_key "questions", "steps"
+  add_foreign_key "standard_certificates", "standards"
+  add_foreign_key "standard_certificates", "users"
   add_foreign_key "standard_sections", "standard_sections", column: "parent_section_id"
   add_foreign_key "standard_sections", "standards"
   add_foreign_key "steps", "courses"

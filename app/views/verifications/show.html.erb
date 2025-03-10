@@ -1,0 +1,74 @@
+<div class="max-w-3xl mx-auto my-12 px-4">
+  <h1 class="text-3xl font-bold text-center mb-8">Certificate Verification</h1>
+  
+  <% if @verification_status == "valid" %>
+    <div class="bg-green-100 border border-green-200 rounded-lg p-6 mb-6">
+      <div class="flex items-center mb-4">
+        <svg class="w-8 h-8 text-green-600 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h2 class="text-2xl font-bold text-green-800">Valid Certificate</h2>
+      </div>
+      <p class="text-green-700">
+        This certificate is authentic and was issued on <%= @certificate.issue_date.strftime("%B %d, %Y") %>.
+      </p>
+    </div>
+    
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Certificate Details</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div>
+          <p class="text-sm text-gray-500">Certificate Number</p>
+          <p class="font-medium"><%= @certificate.certificate_number %></p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500">Issue Date</p>
+          <p class="font-medium"><%= @certificate.issue_date.strftime("%B %d, %Y") %></p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500">Standard</p>
+          <p class="font-medium"><%= @standard.name %> (<%= @standard.code %>)</p>
+        </div>
+        <div>
+          <p class="text-sm text-gray-500">Competency Level</p>
+          <p class="font-medium"><%= @certificate.competency_level %></p>
+        </div>
+      </div>
+      
+      <h4 class="font-semibold text-gray-700 mt-6 mb-2">Learning Objectives Completed</h4>
+      <div class="bg-gray-50 rounded-lg border border-gray-200 p-3 mb-6">
+        <% if @completed_learning_objectives.any? %>
+          <ul class="space-y-1">
+            <% @completed_learning_objectives.each do |lo| %>
+              <li class="text-gray-700 flex items-start">
+                <span class="text-green-600 mr-2">✓</span>
+                <%= lo.description %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p class="text-gray-500">No specific learning objectives listed.</p>
+        <% end %>
+      </div>
+    </div>
+    
+  <% else %>
+    <div class="bg-red-100 border border-red-200 rounded-lg p-6 text-center">
+      <svg class="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <h2 class="text-2xl font-bold text-red-800 mb-2">Invalid Certificate</h2>
+      <p class="text-red-700 mb-4">
+        The certificate number provided does not match any certificate in our records.
+      </p>
+      <p class="text-gray-600">
+        Please check the certificate number and try again.
+      </p>
+    </div>
+  <% end %>
+  
+  <div class="mt-8 text-center">
+    <a href="/" class="text-blue-600 hover:underline">Return to Home</a>
+  </div>
+</div>

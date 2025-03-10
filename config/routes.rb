@@ -18,8 +18,12 @@ Rails.application.routes.draw do
   resources :standards, only: [ :show ] do
     member do
       get :courses
+      post :generate_certificate
+      get :certificate
     end
   end
+
+  get "verify/:certificate_number", to: "verifications#show", as: "verify_certificate"
 
   resource :profile, only: [ :show ]
 
