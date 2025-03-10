@@ -17,24 +17,11 @@ class StandardSection < ApplicationRecord
   end
 
   def all_subsections
-    result = subsections.to_a
-    subsections.each do |subsection|
-      result += subsection.all_subsections
-    end
-    result
+    subsections.flat_map { |subsection| [ subsection ] + subsection.all_subsections }
   end
 
   def completed_by?(user)
-    if learning_objectives.any?
-      return false unless learning_objectives.all? { |lo| lo.completed_by?(user) }
-    end
-
-    relevant_subsections = subsections.select { |section| section.has_learning_objectives? }
-    if relevant_subsections.any?
-      return false unless relevant_subsections.all? { |section| section.completed_by?(user) }
-    end
-
-    true
+    all_learning_objectives_completed?(user) && all_relevant_subsections_completed?(user)
   end
 
   def completion_percentage_for(user)
@@ -43,19 +30,29 @@ class StandardSection < ApplicationRecord
       return (completed.to_f / learning_objectives.count) * 100
     end
 
-    # For parent sections, calculate based on child sections
-    child_sections = subsections.select { |section| section.has_learning_objectives? }
-    return 0 if child_sections.empty?
-
-    sum_of_percentages = child_sections.sum do |section|
-      section.completion_percentage_for(user)
-    end
-
-    sum_of_percentages / child_sections.size
+    calculate_completion_percentage_from_subsections(user)
   end
 
   def has_learning_objectives?
-    return true if learning_objectives.any?
-    subsections.any? { |subsection| subsection.has_learning_objectives? }
+    learning_objectives.any? || subsections.any?(&:has_learning_objectives?)
+  end
+
+  private
+
+  def all_learning_objectives_completed?(user)
+    learning_objectives.all? { |lo| lo.completed_by?(user) }
+  end
+
+  def all_relevant_subsections_completed?(user)
+    relevant_subsections = subsections.select(&:has_learning_objectives?)
+    relevant_subsections.all? { |section| section.completed_by?(user) }
+  end
+
+  def calculate_completion_percentage_from_subsections(user)
+    child_sections = subsections.select(&:has_learning_objectives?)
+    return 0 if child_sections.empty?
+
+    sum_of_percentages = child_sections.sum { |section| section.completion_percentage_for(user) }
+    sum_of_percentages / child_sections.size
   end
 end

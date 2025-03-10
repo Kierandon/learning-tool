@@ -8,9 +8,8 @@ class Progression < ApplicationRecord
   before_create :set_initial_step
 
   def next_step!
-    next_step = current_step.next_step
-    update!(current_step: next_step)
-    next_step
+    update!(current_step: current_step.next_step)
+    current_step
   end
 
   def complete!
@@ -18,17 +17,14 @@ class Progression < ApplicationRecord
   end
 
   def progress_percentage
-    return 100 if self.completed_at
-    if current_step.nil?
-      current_position = course.steps.count - 1
-    else
-      current_position = self.current_step.position - 1
-    end
-    ((current_position.to_f / self.course.steps.count) * 100).round
+    return 100 if completed?
+
+    current_position = current_step_position || course.steps.count - 1
+    ((current_position.to_f / total_steps_count) * 100).round
   end
 
   def completed_learning_objectives
-    completed_step_ids = self.user_answers.select(&:correct).map(&:question).compact.map(&:step_id).uniq
+    completed_step_ids = user_answers.select(&:correct).map(&:question).compact.map(&:step_id).uniq
 
     LearningObjective.joins(:learning_objective_steps)
                      .where(learning_objective_steps: { step_id: completed_step_ids })
@@ -36,8 +32,7 @@ class Progression < ApplicationRecord
   end
 
   def steps_completed_count
-    return course.steps.count if completed_at
-    course.steps.where("position < ?", current_step&.position.to_i).count
+    completed? ? total_steps_count : course.steps.where("position < ?", current_step_position.to_i).count
   end
 
   def total_steps_count

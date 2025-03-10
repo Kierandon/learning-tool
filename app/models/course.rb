@@ -13,17 +13,16 @@ class Course < ApplicationRecord
   has_many :learning_objectives, through: :steps
 
   def start(user)
-    progress = progressions.create!(user: user, course: self, current_step: first_step)
-    progress
+    progressions.create!(user: user, course: self, current_step: first_step)
   end
 
   def completed_by?(user)
-    self.progressions.where(user: @user).order(created_at: :desc).first&.completed_at.present?
+    progressions.where(user: user).order(created_at: :desc).first&.completed_at.present?
   end
 
   private
 
   def first_step
-    steps.order(:position).first
+    steps.first
   end
 end

@@ -95,7 +95,7 @@
                             </div>
                             <div class="mt-1 flex flex-wrap gap-1">
                               <% objective.steps.each do |step| %>
-                                <% answered_correctly = step.questions.all? { |q| q.answered_correctly?(@user) } %>
+                                <% answered_correctly = step.questions.all? { |q| q.answered_correctly_by?(@user) } %>
                                 <a href="<%= course_step_path(step.course, step) %>" 
                                    class="text-xs px-2 py-1 rounded <%= answered_correctly ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' %> hover:opacity-80">
                                   <%= step.title %>

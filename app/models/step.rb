@@ -17,9 +17,8 @@ class Step < ApplicationRecord
   end
 
   def all_questions_answered?(user, progression = nil)
-    progression ||= course.progressions.where(user: user).order(created_at: :desc).first
-    return true unless questions.any?
-    questions.all? { |question| question.answered_correctly?(user, progression) }
+    progression ||= find_latest_progression(user)
+    questions.all? { |question| question.answered_correctly_by?(user, progression) }
   end
 
   def fulfills_objectives(objective_ids)
@@ -27,9 +26,7 @@ class Step < ApplicationRecord
 
     objective_ids.each do |objective_id|
       objective = LearningObjective.find_in_standard(objective_id, course.standard)
-      if objective && !learning_objectives.include?(objective)
-        learning_objectives << objective
-      end
+      learning_objectives << objective if objective && !learning_objectives.include?(objective)
     end
   end
 
@@ -37,5 +34,9 @@ class Step < ApplicationRecord
 
   def set_position
     self.position = course.steps.maximum(:position).to_i + 1
+  end
+
+  def find_latest_progression(user)
+    course.progressions.where(user: user).order(created_at: :desc).first
   end
 end
