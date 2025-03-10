@@ -5,9 +5,17 @@
         <% if @section.subsections.any? %>
           <button class="toggle-button mr-3 text-gray-500 focus:outline-none mt-1" 
                   data-action="toggle#toggleSection" 
-                  data-toggle-target="button" 
-                  data-section-id="<%= @section.id %>">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  data-toggle-target="button"
+                  data-section-id="<%= @section.id %>"
+                  aria-label="Toggle section <%= @section.name %>"
+                  aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                class="h-5 w-5 transform transition-transform duration-200" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+                aria-hidden="true"
+                role="presentation">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </button>
