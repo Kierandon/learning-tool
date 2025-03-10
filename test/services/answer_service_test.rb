@@ -4,7 +4,8 @@ class AnswerServiceTest < ActiveSupport::TestCase
   setup do
     @user = create(:user)
     @question = create(:question, :true_false)
-    @service = AnswerService.new(@question, @user)
+    @progression = create(:progression, user: @user)
+    @service = AnswerService.new(@question, @user, @progression)
   end
 
   test "processes true/false answer correctly when answer is correct" do

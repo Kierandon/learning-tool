@@ -4,6 +4,6 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get root_url
     assert_response :success
-    assert_select "div[data-test-id='courses-list-header']", "Available Courses"
+    assert_select "div[data-test-id='courses-list-header']", "Available Standards to Learn"
   end
 end
