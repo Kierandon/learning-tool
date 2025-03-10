@@ -10,6 +10,7 @@ class Course < ApplicationRecord
   has_many :steps, -> { order(position: :asc) }, dependent: :destroy
   has_many :progressions, dependent: :destroy
   has_many :users, through: :progressions
+  has_many :learning_objectives, through: :steps
 
   def start(user)
     progress = progressions.create!(user: user, course: self, current_step: first_step)

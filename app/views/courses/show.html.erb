@@ -13,6 +13,49 @@
     <%= @course.description.html_safe %>
   </div>
 
+  <% if @course.standard.present? %>
+    <div class="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
+      <div class="flex items-center mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-700 mr-2" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        <h3 class="font-semibold text-blue-800">This course is part of the <span class="font-bold"><%= @course.standard.code %></span> standard</h3>
+      </div>
+      
+      <% course_learning_objectives = @course.learning_objectives %>
+      <% if course_learning_objectives.any? %>
+        <h4 class="text-sm font-medium text-blue-700 mb-2">Learning Objectives Addressed:</h4>
+        <div class="space-y-1.5">
+          <% course_learning_objectives.each do |lo| %>
+            <div class="flex items-center bg-white border border-blue-100 rounded px-3 py-1.5">
+              <% if current_user && lo.completed_by?(current_user) %>
+                <span class="text-green-600 mr-2 shrink-0">✓</span>
+                <span class="text-gray-800"><%= lo.description %></span>
+              <% else %>
+                <span class="text-gray-400 mr-2 shrink-0">○</span>
+                <span class="text-gray-700"><%= lo.description %></span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="mt-3 text-sm text-blue-700">
+          <% if current_user %>
+            <% completed_count = course_learning_objectives.count { |lo| lo.completed_by?(current_user) } %>
+            <% percentage = course_learning_objectives.any? ? (completed_count.to_f / course_learning_objectives.size * 100).round : 0 %>
+            You've completed <%= completed_count %> of <%= course_learning_objectives.size %> learning objectives (<%= percentage %>%)
+          <% else %>
+            Complete this course to progress toward <%= @course.standard.code %> certification
+          <% end %>
+        </div>
+      <% else %>
+        <p class="text-sm text-blue-700">This course contributes to your understanding of the <%= @course.standard.name %> standard.</p>
+      <% end %>
+      
+      <%= link_to "View All #{@course.standard.code} Courses", courses_standard_path(@course.standard), class: "text-sm text-blue-600 hover:underline mt-2 inline-block" %>
+    </div>
+  <% end %>
+
   <% if @progression && @progression.completed? %>
     <div class="flex justify-center gap-3 m-auto">
       <%= link_to "Restart Course", confirm_start_course_path(@course),
