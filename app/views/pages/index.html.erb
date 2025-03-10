@@ -1,5 +1,5 @@
 <div class="intro-section bg-white text-gray-800 p-8 rounded-lg shadow-lg mb-8">
-  <h2 class="text-3xl font-bold mb-5 text-center">Welcome to the Standards Learning Platform</h2>
+  <h1 class="text-3xl font-bold mb-5 text-center">Welcome to the Standards Learning Platform</h2>
   
   <div class="mb-6">
     <p class="text-lg mb-4">The purpose of this tool is to educate you on standards - what they are, what they do, and how to apply them in real-world contexts.</p>
@@ -8,7 +8,7 @@
 
     <% standard = Standard.find_by(code: "iso_29119") %>
     <% if standard %>
-      <h4 class="text-xl font-semibold mb-3">Example: Structure of the ISO 29119 Standard</h4>
+      <h2 class="text-xl font-semibold mb-3">Example: Structure of the ISO 29119 Standard</h3>
       <div class="mb-8 border border-gray-200 rounded-lg p-4 bg-gray-50" data-controller="toggle">
         <% if standard.top_level_sections.any? %>
           <div class="bg-white rounded-lg border border-gray-200 p-2">
@@ -27,52 +27,52 @@
 </div>
 
 <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg mb-8">
-  <h3 class="text-2xl font-bold mb-5 text-center">How Courses Work</h3>
+  <h2 class="text-2xl font-bold mb-5 text-center">How Courses Work</h2>
   
   <p class="text-lg mb-4">Each course consists of two types of learning steps:</p>
   
   <div class="grid md:grid-cols-2 gap-6 mb-8">
     <div class="p-5 bg-blue-50 rounded-lg border border-blue-100">
-      <h4 class="text-xl font-semibold mb-3 text-blue-700">📚 Information Steps</h4>
+      <h3 class="text-xl font-semibold mb-3 text-blue-700">📚 Information Steps</h3>
       <p>These introduce new content and concepts. Take your time reading and understanding these materials before moving forward.</p>
     </div>
     
     <div class="p-5 bg-green-50 rounded-lg border border-green-100">
-      <h4 class="text-xl font-semibold mb-3 text-green-700">❓ Question Steps</h4>
+      <h3 class="text-xl font-semibold mb-3 text-green-700">❓ Question Steps</h3>
       <p>These test your understanding of the material. Different question types will challenge your knowledge in various ways.</p>
     </div>
   </div>
   
-  <h4 class="text-xl font-semibold mb-4 text-center">Question Types You'll Encounter</h4>
+  <h3 class="text-xl font-semibold mb-4 text-center">Question Types You'll Encounter</h3>
   
   <div class="space-y-6 mb-6">
     <div class="bg-gray-50 rounded-lg p-5 border border-gray-200">
-      <h5 class="text-lg font-medium mb-3 text-gray-800">True/False Questions</h5>
+      <h4 class="text-lg font-medium mb-3 text-gray-800">True/False Questions</h4>
       <p class="mb-3">Determine whether a statement is correct or incorrect.</p>
       <%= render Questions::TrueFalseQuestionComponent.new(mock: true) %>
     </div>
     
     <div class="bg-gray-50 rounded-lg p-5 border border-gray-200">
-      <h5 class="text-lg font-medium mb-3 text-gray-800">Multiple Choice Questions</h5>
+      <h4 class="text-lg font-medium mb-3 text-gray-800">Multiple Choice Questions</h4>
       <p class="mb-3">Select one or more correct answers from a list of options.</p>
       <%= render Questions::MultipleChoiceQuestionComponent.new(mock: true) %>
     </div>
     
     <div class="bg-gray-50 rounded-lg p-5 border border-gray-200">
-      <h5 class="text-lg font-medium mb-3 text-gray-800">Matching Questions</h5>
+      <h4 class="text-lg font-medium mb-3 text-gray-800">Matching Questions</h4>
       <p class="mb-3">Match terms with their correct definitions or related concepts.</p>
       <%= render Questions::MatchingQuestionComponent.new(mock: true) %>
     </div>
     
     <div class="bg-gray-50 rounded-lg p-5 border border-gray-200">
-      <h5 class="text-lg font-medium mb-3 text-gray-800">Ordering Questions</h5>
+      <h4 class="text-lg font-medium mb-3 text-gray-800">Ordering Questions</h4>
       <p class="mb-3">Arrange items in the correct sequence or order.</p>
       <%= render Questions::OrderingQuestionComponent.new(mock: true) %>
     </div>
     </div>
 
     <div class="bg-gray-50 rounded-lg p-5 border border-gray-200">
-      <h5 class="text-lg font-medium mb-3 text-gray-800">Detailed Feedback</h5>
+      <h4 class="text-lg font-medium mb-3 text-gray-800">Detailed Feedback</h4>
       <p class="mb-3">For every question, you'll receive detailed feedback regardless of whether your answer is correct or incorrect.</p>
       <p class="mb-3">This feedback will help you understand the material better and prepare for future questions.</p>
     </div>
@@ -85,35 +85,35 @@
 </div>
 
 <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg mb-8">
-  <h3 class="text-2xl font-bold mb-5 text-center">Gamification Features</h3>
+  <h2 class="text-2xl font-bold mb-5 text-center">Gamification Features</h2>
   
   <p class="text-lg mb-5 text-center">Learning is more fun when it's engaging! Our platform includes several game-like elements:</p>
   
   <div class="grid md:grid-cols-2 gap-6">
     <div class="feature-card p-5 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-      <h4 class="text-xl font-semibold mb-3 flex items-center"><span class="text-2xl mr-2">🪙</span> Earn Coins</h4>
+      <h3 class="text-xl font-semibold mb-3 flex items-center"><span class="text-2xl mr-2">🪙</span> Earn Coins</h3>
       <p>Receive 10 coins for each correct answer. Accumulate coins to level up on the platform!</p>
     </div>
     
     <div class="feature-card p-5 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-      <h4 class="text-xl font-semibold mb-3 flex items-center"><span class="text-2xl mr-2">🏆</span> Collect Badges</h4>
+      <h3 class="text-xl font-semibold mb-3 flex items-center"><span class="text-2xl mr-2">🏆</span> Collect Badges</h3>
       <p>Complete courses to earn badges, showcasing your progress and achievements.</p>
     </div>
     
     <div class="feature-card p-5 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-      <h4 class="text-xl font-semibold mb-3 flex items-center"><span class="text-2xl mr-2">🎯</span> Unlock Achievements</h4>
+      <h3 class="text-xl font-semibold mb-3 flex items-center"><span class="text-2xl mr-2">🎯</span> Unlock Achievements</h3>
       <p>Reach milestones like answering 50 questions correctly or maintaining a 7-day learning streak.</p>
     </div>
     
     <div class="feature-card p-5 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-      <h4 class="text-xl font-semibold mb-3 flex items-center"><span class="text-2xl mr-2">📅</span> Daily Challenges</h4>
+      <h3 class="text-xl font-semibold mb-3 flex items-center"><span class="text-2xl mr-2">📅</span> Daily Challenges</h3>
       <p>Complete special daily tasks to earn bonus coins and keep your learning momentum going.</p>
     </div>
   </div>
 </div>
 
 <div class="bg-white text-gray-800 p-8 rounded-lg shadow-lg mb-8">
-  <h3 class="text-2xl font-bold mb-4 text-center">Certification</h3>
+  <h2 class="text-2xl font-bold mb-4 text-center">Certification</h2>
   
   <div class="flex flex-col md:flex-row items-center gap-6">
     <div class="md:w-2/3">
@@ -130,7 +130,7 @@
               <p class="text-xs text-gray-600">This certifies that</p>
               <h2 class="text-sm font-bold my-1 text-gray-900"><%= sample_certificate.user.login_hash %></h2>
               <p class="text-xs text-gray-600 mb-2">has successfully completed</p>
-              <h3 class="text-sm font-bold text-blue-800"><%= sample_certificate.standard.name %></h3>
+              <h2 class="text-sm font-bold text-blue-800"><%= sample_certificate.standard.name %></h2>
               <p class="text-xs mt-3 text-gray-700">Certificate #: <%= sample_certificate.certificate_number %></p>
             </div>
             <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 hover:bg-opacity-10 transition-opacity">
@@ -151,6 +151,6 @@
 </div>
 
 <div class="mb-8">
-  <h3 class="text-2xl font-bold mb-5 text-center">Available Standards</h3>
+  <h2 class="text-2xl font-bold mb-5 text-center">Available Standards</h2>
   <%= render(Standards::StandardsListComponent.new(standards: @standards)) %>
 </div>

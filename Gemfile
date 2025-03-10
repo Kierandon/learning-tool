@@ -72,4 +72,5 @@ group :test do
   gem "selenium-webdriver"
   gem "factory_bot_rails"
   gem "mocha"
+  gem "axe-core-capybara"
 end
