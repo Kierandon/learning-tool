@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_10_000458) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_10_150521) do
   create_table "achievements", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -424,6 +424,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_000458) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "visibility", default: true, null: false
     t.index ["code"], name: "index_standards_on_code", unique: true
   end
 
