@@ -32,7 +32,7 @@
           <% if completed? %>
             <p class="mt-2">Completed <%= time_ago_in_words(@progression.completed_at) %> ago</p>
             <div class="mt-4">
-              <%= link_to "Review Course", course_path(@course), 
+              <%= link_to "Restart or Review Course", course_path(@course), 
                   class: "inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200" %>
             </div>
           <% else %>
