@@ -92,6 +92,8 @@ steps:
 
   - type: multiple_choice
     title: "Test Plan Components"
+    fulfills_objectives:
+      - p3_lo6
     prompt: "Which of the following is NOT a key component of a test plan according to ISO 29119-3?"
     success_message: "Correct! Detailed code implementation is not part of a test plan, as it focuses on planning the testing process rather than the software's internal design."
     failure_message: "Not quite! Test plans focus on testing scope, risks, and roles—not the internal implementation of software features."
@@ -194,6 +196,8 @@ steps:
 
   - type: matching
     title: "Match the Stakeholders to Their Responsibilities"
+    fulfills_objectives:
+      - p3_lo9
     prompt: "Match each stakeholder to their primary responsibility in test planning:"
     matching_style: "dropdown"
     success_message: "Correct! Each stakeholder plays a specific role in test planning, from coordinating testing to ensuring requirements are covered."
@@ -255,6 +259,8 @@ steps:
   - type: multiple_choice
     title: "Risk Mitigation"
     prompt: "Which of these is a risk mitigation technique in the context of test planning?"
+    fulfills_objectives:
+      - p3_lo11
     success_message: "Correct! Risk-based testing focuses on the most critical and failure-prone areas, helping to mitigate high-impact issues before release."
     failure_message: "Not quite! Risk mitigation involves proactively addressing risks, not ignoring or avoiding them."
     options:
@@ -321,6 +327,8 @@ steps:
   - type: multiple_choice
     title: "Test Strategy Understanding"
     prompt: "Which of the following BEST describes the purpose of a test strategy in an ISO 29119-3 test plan?"
+    fulfills_objectives:
+      - p3_lo8
     success_message: "Correct! The test strategy outlines the overall approach to testing, including techniques, levels, and criteria that will be used to address the project risks."
     failure_message: "Not quite. The test strategy is more than just a list of tests or schedule - it's the comprehensive approach to how testing will be conducted."
     options:
@@ -398,6 +406,8 @@ steps:
 
   - type: ordering
     title: "Estimating Test Activities"
+    fulfills_objectives:
+      - p3_lo13
     prompt: "Place the following steps for estimating test activities in the correct order:"
     success_message: "Great job! You've correctly ordered the steps for estimating test activities."
     failure_message: "That's not quite right. Remember to start by defining the tasks before estimating them."
@@ -451,6 +461,8 @@ steps:
     title: "Tester Reporting Structures"
     prompt: "Testers report only to the Head of Testing in all projects."
     correct_answer: false
+    fulfills_objectives:
+      - p3_lo14
     success_message: "Correct! Tester reporting structures vary. While some testers report to a Head of Testing, many follow a dual-reporting structure where they also report to a project lead, Scrum Master, or Project Manager."
     failure_message: "Not quite! Tester reporting depends on the organization. Many testers report within their project team while also maintaining a reporting line to a Head of Testing."
 
@@ -483,6 +495,8 @@ steps:
         </div>
   - type: multiple_choice
     title: "Test Schedule - Multiple Choice"
+    fulfills_objectives:
+      - p3_lo15
     prompt: "Which of the following is a common method for tracking test schedules in agile projects?"
     success_message: "Correct! Sprint boards, Kanban boards, and iterative tracking methods are commonly used in agile projects."
     failure_message: "That's incorrect. Agile projects rely on dynamic tracking methods rather than static schedules."
@@ -560,6 +574,8 @@ steps:
 
   - type: multiple_choice
     title: "Multiple Choice"
+    fulfills_objectives:
+      - p3_lo7
     prompt: "In an agile project’s test plan for Iteration 3, which of the following is most appropriate to include?"
     success_message: "Correct! In an agile project, the test plan (often brief) should specify the scope and approach for the **current** sprint/iteration."
     failure_message: "That's not right. The test plan should focus on the current sprint, not the entire project or a rigid, unchangeable schedule."
@@ -638,6 +654,8 @@ steps:
 
   - type: matching
     title: "Match the Stakeholders to Their Responsibilities"
+    fulfills_objectives:
+      - p3_lo9
     prompt: "Given the stakeholders that have just been described, match them to the best description of their test-related responsibility in an agile setting:"
     matching_style: "dropdown"
     success_message: "Correct! You've matched the stakeholders to their responsibilities accurately."
@@ -700,6 +718,8 @@ steps:
 
   - type: multiple_choice
     title: "Risk Mitigation in Test Planning"
+    fulfills_objectives:
+      - p3_lo11
     prompt: "Based on the risks identified in Iteration 3, which of the following would be the most appropriate risk mitigation technique for the payment testing limitation?"
     success_message: "Correct! This approach addresses the risk of limited payment testing environments while still enabling thorough testing."
     failure_message: "Not quite! An effective risk mitigation strategy should address the specific challenge without compromising quality."
@@ -774,6 +794,8 @@ steps:
 
   - type: true_false
     title: "Automated Tests and Regression Testing"
+    fulfills_objectives:
+      - p3_lo12
     prompt: "Automated tests can help maintain regression coverage in agile projects."
     correct_answer: true
     success_message: "Correct! Automation supports fast feedback in short sprints."
@@ -863,6 +885,8 @@ steps:
 
   - type: multiple_choice
     title: "Handling Complex User Stories in Testing"
+    fulfills_objectives:
+      - p3_lo14
     prompt: "The team foresees that Story 102, Email Notification, might exceed the planned test effort. How should the test plan reflect this risk?"
     success_message: "Correct! Agile test planning is iterative. If a story has higher complexity, the team should raise this during planning and focus on key risks first."
     failure_message: "Not quite! The best approach is to prioritise testing based on risk, rather than skipping, rigidly following a plan, or outsourcing without coordination."
@@ -996,6 +1020,8 @@ steps:
 
   - type: true_false
     title: "Developers Involvement in Testing"
+    fulfills_objectives:
+      - p3_lo14
     prompt: "In an agile team, developers have no involvement with testing once they finish coding."
     correct_answer: false
     success_message: "Correct! Developers handle unit tests and often assist in integration testing."
@@ -1087,6 +1113,8 @@ steps:
 
   - type: multiple_choice
     title: "Scheduling Improvement"
+    fulfills_objectives:
+      - p3_lo15
     prompt: "Which scheduling approach would be MOST appropriate for this agile team to adopt instead of their current static document approach?"
     success_message: "Correct! A sprint/Kanban board is ideal for agile teams as it provides real-time visibility of work items, allows for easy updates, and aligns with the iterative nature of agile development."
     failure_message: "That's not the best choice for an agile team. Consider what would provide better visibility and flexibility for an iterative approach."
@@ -1103,50 +1131,3 @@ steps:
       - text: "A weekly status email sent to all team members"
         correct: false
         feedback: "Email updates don't provide continuous visibility and can quickly become outdated in a fast-moving agile environment."
-
-  - type: info
-    title: "Congratulations on Completing the Course!"
-    content: |
-      <div class="max-w-4xl mx-auto p-6 bg-white text-gray-800 leading-relaxed font-sans">
-          <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r mb-8">
-              <p class="text-lg font-medium text-blue-700">You've successfully completed this comprehensive exploration of ISO 29119-3 test planning!</p>
-          </div>
-          <h3 class="text-xl font-bold text-blue-700 mb-4">Key Knowledge Acquired</h3>
-          <div class="space-y-5 mb-8">
-              <p class="text-gray-700">Throughout this course, you've gained valuable insights into creating effective test plans aligned with the ISO 29119-3 standard. You've learned how to:</p>
-              <ul class="space-y-2 list-disc ml-6 text-gray-700">
-                  <li><strong>Structure formal test documentation</strong> that meets international standards while maintaining practical utility</li>
-                  <li><strong>Adapt the ISO 29119-3 framework</strong> to different project contexts, from traditional waterfall to agile methodologies</li>
-                  <li><strong>Identify and document critical test plan components</strong> including test contexts, stakeholders, risks, and strategies</li>
-                  <li><strong>Schedule and allocate resources efficiently</strong> to testing activities within project constraints</li>
-                  <li><strong>Implement effective communication planning</strong> to ensure all stakeholders remain informed about test activities</li>
-              </ul>
-              <p class="text-gray-700">You've also worked through a realistic scenario to apply these concepts in practice, building a test plan for a subscription system within an agile environment.</p>
-          </div>
-          <h3 class="text-xl font-bold text-blue-700 mb-4">ISO 29119-3: A Flexible Framework</h3>
-          <div class="space-y-4 mb-8">
-              <p class="text-gray-700">The ISO 29119-3 standard is designed to be scalable and adaptable. You now understand that it provides:</p>
-              <ul class="space-y-2 list-disc ml-6 text-gray-700">
-                  <li>A comprehensive yet flexible structure that can be tailored to projects of any size</li>
-                  <li>Clear documentation standards that facilitate communication among diverse stakeholders</li>
-                  <li>Guidelines that can be implemented fully for regulated industries or selectively for agile teams</li>
-                  <li>Templates that ensure critical testing aspects aren't overlooked during planning</li>
-              </ul>
-              <p class="text-gray-700">Most importantly, you've learned to view ISO 29119-3 not as a rigid checklist, but as a valuable framework to support effective testing practices while meeting compliance requirements.</p>
-          </div>
-          <h3 class="text-xl font-bold text-blue-700 mb-4">Next Steps in Your Journey</h3>
-          <div class="space-y-4 mb-6">
-              <p class="text-gray-700">To continue building your expertise with ISO 29119-3 test planning:</p>
-              <ul class="space-y-2 list-disc ml-6 text-gray-700">
-                  <li>Review the official ISO/IEC/IEEE 29119-3 standard document for deeper understanding</li>
-                  <li>Practice creating test plans for different project types to strengthen your adaptability</li>
-                  <li>Explore other parts of the ISO 29119 family covering test processes, techniques, and keywords</li>
-                  <li>Share your knowledge with colleagues to improve organizational testing practices</li>
-              </ul>
-          </div>
-          <div class="bg-green-50 border border-green-200 rounded-lg p-6 shadow-sm">
-              <p class="text-lg font-medium text-green-800 mb-3">Your path to better testing starts now!</p>
-              <p class="text-green-700">By mastering ISO 29119-3 test planning, you've equipped yourself with internationally recognized skills that will enhance testing efficacy, improve documentation, and ultimately lead to higher quality software delivery.</p>
-              <p class="text-green-800 font-medium mt-3">We wish you continued success in your testing projects and professional growth!</p>
-          </div>
-      </div>
