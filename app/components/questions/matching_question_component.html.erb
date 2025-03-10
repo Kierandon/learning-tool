@@ -12,7 +12,7 @@
                 class="absolute inset-0 pointer-events-none"></canvas>
         <div class="grid grid-cols-2 gap-8 mb-8">
           <div class="space-y-4">
-            <h3 class="font-medium text-gray-900">Terms</h3>
+            <div class="font-medium text-gray-900">Terms</div>
             <% @pairs.each do |pair| %>
               <div class="term-container p-4 bg-white rounded-lg shadow cursor-pointer"
                   data-components--questions--matching-drawing-target="term"
@@ -30,7 +30,7 @@
             <% end %>
           </div>
           <div class="space-y-4">
-            <h3 class="font-medium text-gray-900">Definitions</h3>
+            <div class="font-medium text-gray-900">Definitions</div>
             <% @pairs.each do |pair| %>
               <div class="definition-container p-4 bg-gray-50 rounded-lg cursor-pointer"
                   data-components--questions--matching-drawing-target="definition"
@@ -45,7 +45,7 @@
     <% else %>
       <div class="flex flex-col max-w-full overflow-hidden">
         <div class="space-y-4 mb-6">
-          <h3 class="font-medium text-lg text-gray-900">Terms</h3>
+          <div class="font-medium text-lg text-gray-900">Terms</div>
           <% @pairs.each do |pair| %>
             <div class="term-container p-4 bg-white rounded-lg shadow">
               <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
@@ -61,7 +61,7 @@
           <% end %>
         </div>
         <div class="space-y-4">
-          <h3 class="font-medium text-lg text-gray-900">Definitions</h3>
+          <div class="font-medium text-lg text-gray-900">Definitions</div>
           <% @pairs.each do |pair| %>
             <div class="definition-container p-4 bg-gray-50 rounded-lg">
               <span class="text-gray-700 break-words"><%= pair.definition %></span>

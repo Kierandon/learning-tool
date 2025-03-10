@@ -10,7 +10,7 @@
   <%= form_with url: session_path, scope: :session, local: true, class: "space-y-4" do |form| %>
     <div>
       <%= form.label :login_hash, "Enter your code:", class: "block text-gray-700 font-medium" %>
-      <%= form.text_field :login_hash, autofocus: true, class: "mt-1 block w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-blue-500 focus:border-blue-500" %>
+      <%= form.text_field :login_hash, autofocus: true, class: "mt-1 block w-full p-2 border border-gray-300 rounded shadow-sm focus:ring-blue-500 focus:border-blue-500", id: "login_hash" %>
     </div>
 
     <div class="text-center">

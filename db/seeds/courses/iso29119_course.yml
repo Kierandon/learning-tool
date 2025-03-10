@@ -154,7 +154,7 @@ steps:
     content: |
       <div class="max-w-4xl mx-auto px-4 py-6 text-gray-800">
         <p class="mb-6 leading-relaxed"><em class="italic">Who cares about testing?</em> That's essentially what the <strong class="font-semibold">Stakeholders</strong> section of 29119-3 addresses. Stakeholders are all the people (or roles) who have an interest or stake in the testing of the project. Identifying stakeholders and their needs is important because test planning is not done in isolation – it should involve and inform the right people.</p>
-        <h3 class="text-xl font-bold mb-4 text-gray-900 border-b pb-2">Identifying Key Stakeholders</h3>
+        <h2 class="text-xl font-bold mb-4 text-gray-900 border-b pb-2">Identifying Key Stakeholders</h2>
         <p class="mb-4 leading-relaxed">Typical stakeholders in test planning include:</p>
         <ul class="space-y-3 mb-6 list-disc pl-5">
           <li class="leading-relaxed"><strong class="font-semibold">Test Manager / Test Lead:</strong> Responsible for creating the test plan and ensuring testing is carried out. (They care about all aspects of the plan.)</li>
@@ -166,7 +166,7 @@ steps:
           <li class="leading-relaxed"><strong class="font-semibold">Other Specialists:</strong> This may include operations teams (for deployment concerns), security teams (for security testing), or any domain expert whose area intersects with testing.</li>
         </ul>
         <p class="mb-6 leading-relaxed">Stakeholders come from all parts of the organization, not just the testing team. For example, a database administrator might be a stakeholder if the test environment relies on their database.</p>
-        <h3 class="text-xl font-bold mb-4 text-gray-900 border-b pb-2">Stakeholder Responsibilities and Interests</h3>
+        <h2 class="text-xl font-bold mb-4 text-gray-900 border-b pb-2">Stakeholder Responsibilities and Interests</h2>
         <p class="mb-4 leading-relaxed">For each stakeholder or group, the test plan (or a communication plan) should clarify their involvement. Some examples:</p>
         <ul class="space-y-3 mb-6 list-disc pl-5">
           <li class="leading-relaxed">The <strong class="font-semibold">Test Manager</strong> approves the test plan and ensures execution, coordinating with others.</li>
@@ -175,7 +175,7 @@ steps:
           <li class="leading-relaxed">The <strong class="font-semibold">Business Analyst / Product Owner</strong> verifies that test cases cover all acceptance criteria and may sign off on UAT.</li>
         </ul>
         <p class="mb-6 leading-relaxed">Mapping these out ensures stakeholder needs are met. If customers are stakeholders, you may plan a user acceptance test phase for them.</p>
-        <h3 class="text-xl font-bold mb-4 text-gray-900 border-b pb-2">Communication with Stakeholders</h3>
+        <h2 class="text-xl font-bold mb-4 text-gray-900 border-b pb-2">Communication with Stakeholders</h2>
         <p class="mb-4 leading-relaxed">Once stakeholders are identified, the test plan (often in a "Testing Communication" section) should define how and when to communicate with them.</p>
         <ul class="space-y-3 mb-6 list-disc pl-5">
           <li class="leading-relaxed"><strong class="font-semibold">Test Lead</strong> will provide a <em class="italic">weekly status report</em> to the Project Manager and Product Owner.</li>
@@ -184,7 +184,7 @@ steps:
           <li class="leading-relaxed">After test execution, a <em class="italic">test summary report</em> will be delivered to the client.</li>
         </ul>
         <p class="mb-6 leading-relaxed">This ensures stakeholders stay informed and provide input at the right times. It also sets expectations – e.g., developers know when bug reports will come, and managers know when they'll receive updates.</p>
-        <h3 class="text-xl font-bold mb-4 text-gray-900 border-b pb-2">Why Manage Stakeholders?</h3>
+        <h2 class="text-xl font-bold mb-4 text-gray-900 border-b pb-2">Why Manage Stakeholders?</h2>
         <p class="mb-4 leading-relaxed">A test plan that doesn't consider its audience may fail to get buy-in or miss critical details. Involving stakeholders ensures:</p>
         <ul class="space-y-3 mb-6 list-disc pl-5">
           <li class="leading-relaxed">A more complete plan, incorporating multiple perspectives.</li>
@@ -224,7 +224,7 @@ steps:
         <p class="mb-6 leading-relaxed">ISO 29119-3 expects the test plan to identify risks considered in testing, including relevant risks from an organizational strategy. These risks typically fall into two categories:</p>
         <ul class="mb-6 space-y-6">
           <li class="bg-gray-50 p-4 rounded-lg shadow-sm">
-            <h3 class="font-bold text-lg mb-3 text-gray-900">Product Risks</h3>
+            <h2 class="font-bold text-lg mb-3 text-gray-900">Product Risks</h2>
             <p class="mb-3 leading-relaxed">Risks <em class="italic">to the quality of the product</em>. For example:</p>
             <ul class="list-disc pl-5 space-y-2 mb-3">
               <li class="leading-relaxed">"The new payment module may fail under heavy load."</li>
@@ -233,7 +233,7 @@ steps:
             <p class="leading-relaxed text-gray-700">These risks influence where testing should focus (e.g., load testing, security testing).</p>
           </li>
           <li class="bg-gray-50 p-4 rounded-lg shadow-sm">
-            <h3 class="font-bold text-lg mb-3 text-gray-900">Project (or Process) Risks</h3>
+            <h2 class="font-bold text-lg mb-3 text-gray-900">Project (or Process) Risks</h2>
             <p class="mb-3 leading-relaxed">Risks <em class="italic">to the testing process or project schedule</em>. For example:</p>
             <ul class="list-disc pl-5 space-y-2 mb-3">
               <li class="leading-relaxed">"The test environment might not be ready on time."</li>
@@ -355,7 +355,7 @@ steps:
           <li>Resource needs are identified early.</li>
           <li>Expectations for progress tracking are set.</li>
         </ul>
-        <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Common Test Activities</h3>
+        <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Common Test Activities</h2>
         <p class="mb-4">Typical <strong>test activities</strong> in a test plan include:</p>
         <ul class="list-disc pl-6 mb-6 space-y-2">
           <li><strong class="text-gray-900">Test Planning & Preparation:</strong> E.g., "Finalize test plan document by X date."</li>
@@ -367,14 +367,14 @@ steps:
           <li><strong class="text-gray-900">Test Closure Activities:</strong> Summarizing results, preparing reports, archiving test artifacts.</li>
           <li><strong class="text-gray-900">Meetings and Communication:</strong> Time for daily stand-ups, test reviews, or stakeholder updates.</li>
         </ul>
-        <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Estimating Test Effort</h3>
+        <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Estimating Test Effort</h2>
         <p class="mb-4">The test plan should provide an <strong>estimate</strong> for each activity, using metrics such as person-days, hours, or calendar time. Examples:</p>
         <ul class="list-disc pl-6 mb-6 space-y-1">
           <li>Test case design: <em>~10 person-days</em> (two testers working 1 week).</li>
           <li>Test execution: <em>~20 person-days</em> spread over 3 calendar weeks.</li>
         </ul>
         <p class="mb-6">These estimates are based on past experience or scope complexity analysis.</p>
-        <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Planning Test Activities and Schedule</h3>
+        <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Planning Test Activities and Schedule</h2>
         <p class="mb-4">A structured approach to planning includes:</p>
         <ol class="list-decimal pl-6 mb-6 space-y-2">
           <li><strong class="text-gray-900">Identify and break down tasks</strong> – List all testing tasks.</li>
@@ -383,7 +383,7 @@ steps:
           <li><strong class="text-gray-900">Consider contingencies</strong> – Add buffers for potential delays.</li>
         <li><strong class="text-gray-900">Schedule tasks</strong> – Align test activities with the project timeline.</li>
         </ol>
-        <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Example Test Schedule</h3>
+        <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Example Test Schedule</h2>
         <p class="mb-4">Assuming a two-month project timeline, a test schedule could be:</p>
         <ul class="pl-6 mb-6 space-y-2 list-disc">
           <li><strong class="text-gray-900">Week 1-2:</strong> Test Design</li>
@@ -394,7 +394,7 @@ steps:
           <li><strong class="text-gray-900">Week 8:</strong> Test closure and contingency</li>
         </ul>
         <p class="mb-6">By planning this way, we can identify potential risks like development delays squeezing the testing phase, which could be noted as a risk in the test plan.</p>
-        <h3 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Importance of Estimation in Test Planning</h3>
+        <h2 class="text-xl font-semibold mt-8 mb-4 text-gray-900">Importance of Estimation in Test Planning</h2>
         <p class="mb-4"><strong>Estimation</strong> is challenging but essential. If we say "Execution will be done by March 10," stakeholders will expect that timeline. That's why test plans often include assumptions like:</p>
         <ul class="list-disc pl-6 mb-6 space-y-1">
           <li>"Assuming no major blocker."</li>
@@ -428,7 +428,7 @@ steps:
     content: |
       <div class="max-w-4xl mx-auto p-6 bg-white text-gray-800 leading-relaxed font-sans">
           <p class="mb-4">A test plan isn't complete until it addresses the <strong>people aspect</strong> – who will do the work and how information will flow. The <strong>Staffing</strong> part of the plan outlines human resources for testing, while the <strong>Communication</strong> section details how the test team will interact with project stakeholders.</p>
-          <h3 class="text-xl font-bold text-blue-700 mt-8 mb-4">Staffing (Roles and Responsibilities)</h3>
+          <h2 class="text-xl font-bold text-blue-700 mt-8 mb-4">Staffing (Roles and Responsibilities)</h2>
           <p class="mb-4">Previously, we identified stakeholders and roles at a high level. The staffing section of the test plan provides specifics about the test team's composition. It may include:</p>
           <ul class="mb-6 ml-6 list-disc space-y-2">
             <li><strong class="text-gray-900">Team Structure:</strong> E.g., "We will have 1 Test Lead (Alice) and 3 Test Engineers (Bob, Charlie, Dana) on this project." This may include an org chart if multiple teams are involved.</li>
@@ -438,7 +438,7 @@ steps:
             <li><strong class="text-gray-900">Hiring or Outsourcing:</strong> If additional testers or external contractors are needed, the plan should outline the hiring strategy. E.g., "Plan to hire 2 temporary testers in Feb to help meet the deadline."</li>
           </ul>
           <p class="mb-6">By explicitly defining staffing, stakeholders (especially project managers) can assess whether enough people are assigned and adjust resources if necessary. ISO 29119-3 suggests documenting <strong>hiring needs or training needs</strong> as part of staffing.</p>
-          <h3 class="text-xl font-bold text-blue-700 mt-8 mb-4">Communication and Reporting</h3>
+          <h2 class="text-xl font-bold text-blue-700 mt-8 mb-4">Communication and Reporting</h2>
           <p class="mb-4">Communication overlaps with stakeholders and risk management but focuses on <strong>how information flows</strong> between teams. A dedicated communication plan might include:</p>
           <ul class="mb-6 ml-6 list-disc space-y-3">
             <li><strong class="text-gray-900">Reporting Structure:</strong> Who do testers report to? E.g., "Testers will report daily progress and any blockers to the Test Lead. The Test Lead will attend the Project Scrum meeting to report overall testing status."</li>
@@ -453,7 +453,7 @@ steps:
             <li><strong class="text-gray-900">Tool Usage for Communication:</strong> E.g., "All defects will be logged in JIRA and automatically visible to the dev team. Testing progress will be tracked in JIRA dashboards."</li>
           </ul>
           <p class="mb-6">A well-defined communication plan prevents situations where critical bugs go unnoticed or testers are unclear on whom to contact for missing information.</p>
-          <h3 class="text-xl font-bold text-blue-700 mt-8 mb-4">Reporting Lines Can Vary</h3>
+          <h2 class="text-xl font-bold text-blue-700 mt-8 mb-4">Reporting Lines Can Vary</h2>
           <p class="mb-6">Reporting structures depend on the project organization. In some companies, testers report to a central manager (e.g., Head of Testing/QA), while in others, they report directly to the Project Manager or Scrum Master. In agile teams, testers might functionally report to the Delivery Lead but also maintain a reporting line to a QA Manager. The test plan should clarify these relationships.</p>
         </div>
 
@@ -471,7 +471,7 @@ steps:
     content: |
       <div class="max-w-4xl mx-auto p-6 bg-white text-gray-800 leading-relaxed font-sans">
           <p class="mb-4">The <strong>test schedule</strong> ensures that test activities align with project timelines and deliverables. Scheduling varies based on the development approach:</p>
-          <h3 class="text-xl font-bold text-blue-700 mt-8 mb-4">Traditional Projects</h3>
+          <h2 class="text-xl font-bold text-blue-700 mt-8 mb-4">Traditional Projects</h2>
           <p class="mb-4">In traditional projects, test schedules are typically represented using a <strong>Gantt chart</strong>, which visualises:</p>
           <ul class="mb-6 ml-6 list-disc space-y-2">
             <li>Key milestones such as test planning, execution, and completion dates.</li>
@@ -479,13 +479,13 @@ steps:
             <li>Resource allocation over time.</li>
           </ul>
 
-          <h3 class="text-xl font-bold text-blue-700 mt-8 mb-4">Agile Projects</h3>
+          <h2 class="text-xl font-bold text-blue-700 mt-8 mb-4">Agile Projects</h2>
           <p class="mb-4">Agile teams use different scheduling techniques to track progress in an iterative manner. Common methods include:</p>
           <ul class="mb-6 ml-6 list-disc space-y-2">
             <li><strong class="text-gray-900">Sprint Boards:</strong> Organise tasks into columns such as "To Do," "In Progress," and "Done" to provide visibility into ongoing testing activities.</li>
             <li><strong class="text-gray-900">Kanban Boards:</strong> Help manage test execution flow with work-in-progress limits to prevent bottlenecks.</li>
           </ul>
-          <h3 class="text-xl font-bold text-blue-700 mt-8 mb-4">Importance of Test Scheduling</h3>
+          <h2 class="text-xl font-bold text-blue-700 mt-8 mb-4">Importance of Test Scheduling</h2>
           <p class="mb-4">Regardless of methodology, an effective test schedule:</p>
           <ul class="mb-6 ml-6 list-disc space-y-2">
             <li>Ensures test activities align with release timelines.</li>
@@ -520,7 +520,7 @@ steps:
       <div class="max-w-4xl mx-auto p-6 bg-white text-gray-800 leading-relaxed font-sans">
           <p class="mb-4">Let's explore how the ISO 29119-3 concepts apply to a realistic scenario. We'll examine a fictional company and project to illustrate test planning in action:</p>
           <div class="bg-blue-50 rounded-lg p-5 my-6 border border-blue-100 shadow-sm">
-              <h3 class="text-lg font-bold text-blue-700 mb-3">Our Scenario</h3>
+              <h2 class="text-lg font-bold text-blue-700 mb-3">Our Scenario</h2>
               <p class="mb-3"><strong class="text-gray-900">Agile Corporation</strong> is creating a <strong class="text-gray-900">New Subscription System (NSS)</strong>. The project is using <strong class="text-gray-900">Scrum</strong> with two-week sprints.</p>
               <p class="mb-3">The system handles subscription functions, including <strong class="text-gray-900">sign-ups, payments, renewals, notifications</strong>, and more.</p>
               <p class="mb-0">We're currently preparing for <strong class="text-gray-900">Iteration 3</strong>, which includes:</p>
@@ -531,7 +531,7 @@ steps:
           </div>
           <p class="mb-4">In the next sections, we'll create a test plan for this iteration following the <strong>ISO 29119-3</strong> structure you've learned about. We'll demonstrate how to apply these principles to an agile project.</p>
           <div class="bg-amber-50 border-l-4 border-amber-400 p-5 my-6 rounded-r-lg">
-            <h4 class="text-amber-800 font-bold mb-2">Time for a Break?</h4>
+            <h3 class="text-amber-800 font-bold mb-2">Time for a Break?</h3>
             <p class="text-amber-700 mb-0">If you've been working through this course in one sitting, now might be a good time for a short break! The material can be mentally demanding, and taking time to absorb what you've learned so far will help with understanding the upcoming applied example. Remember, you can return to this course at any time - your progress is saved automatically.</p>
           </div>
         </div>
@@ -607,7 +607,7 @@ steps:
           <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-gray-200">Project Stakeholders & Communication</h2>
           <p class="mb-5">In this scenario, the stakeholders section of our test plan would identify all parties with an interest in the testing activities:</p>
           <div class="bg-gray-50 rounded-lg p-6 mb-8 border border-gray-200 shadow-sm">
-              <h3 class="text-lg font-bold text-blue-700 mb-4">Key Stakeholders in This Project</h3>
+              <h2 class="text-lg font-bold text-blue-700 mb-4">Key Stakeholders in This Project</h2>
               <ul class="space-y-3 mb-0">
                   <li class="flex items-start">
                       <span class="font-bold text-gray-900 min-w-40 inline-block">Product Owner (PO):</span>
@@ -629,7 +629,7 @@ steps:
           </div>
 
           <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-sm">
-              <h3 class="text-lg font-bold text-blue-700 mb-4">Communication Plan</h3>
+              <h2 class="text-lg font-bold text-blue-700 mb-4">Communication Plan</h2>
               <ul class="space-y-3 mb-0">
                   <li class="flex items-start">
                       <span class="font-bold text-gray-900 min-w-40 inline-block">Daily Stand-ups:</span>
@@ -815,7 +815,7 @@ steps:
           <h2 class="text-2xl font-bold text-blue-800 mb-6 pb-2 border-b border-gray-200">Test Schedule</h2>
           <p class="mb-5">Within our two-week sprint for Iteration 3, the testing activities will follow this timeline:</p>
           <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-sm mb-6">
-              <h3 class="text-lg font-bold text-blue-700 mb-4">Sprint Timeline</h3>
+              <h2 class="text-lg font-bold text-blue-700 mb-4">Sprint Timeline</h2>
               <div class="space-y-5">
                   <div class="flex items-start">
                       <div class="min-w-32 font-bold text-gray-900">Sprint Day 1-2:</div>
@@ -854,7 +854,7 @@ steps:
           </div>
 
           <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-sm">
-              <h3 class="text-lg font-bold text-blue-700 mb-4">Resource Allocation</h3>
+              <h2 class="text-lg font-bold text-blue-700 mb-4">Resource Allocation</h2>
               <p class="mb-3">Estimates are allocated per user story:</p>
               <div class="space-y-4">
                   <div class="flex items-start">
@@ -910,7 +910,7 @@ steps:
       <div class="max-w-4xl mx-auto p-6 bg-white text-gray-800 leading-relaxed font-sans">
           <p class="mb-5">For Iteration 3, the following team members will be involved in testing activities:</p>
           <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-sm mb-6">
-              <h3 class="text-lg font-bold text-blue-700 mb-4">Team Composition</h3>
+              <h2 class="text-lg font-bold text-blue-700 mb-4">Team Composition</h2>
               <div class="grid md:grid-cols-2 gap-5">
                   <div class="bg-white p-4 rounded shadow-sm border border-blue-100">
                       <div class="flex items-center mb-3">
@@ -919,7 +919,7 @@ steps:
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                               </svg>
                           </div>
-                          <h4 class="font-bold text-gray-900">Tester A (Maria)</h4>
+                          <h3 class="font-bold text-gray-900">Tester A (Maria)</h3>
                       </div>
                       <p class="text-gray-700">Primary focus on credit card payment functionality and API testing</p>
                       <p class="text-gray-700 mt-1">Automation skills for regression tests</p>
@@ -931,7 +931,7 @@ steps:
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                               </svg>
                           </div>
-                          <h4 class="font-bold text-gray-900">Tester B (James)</h4>
+                          <h3 class="font-bold text-gray-900">Tester B (James)</h3>
                       </div>
                       <p class="text-gray-700">Primary focus on email notifications and UI testing</p>
                       <p class="text-gray-700 mt-1">Exploratory testing expertise</p>
@@ -943,7 +943,7 @@ steps:
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                               </svg>
                           </div>
-                          <h4 class="font-bold text-gray-900">Developer 1 (Alex)</h4>
+                          <h3 class="font-bold text-gray-900">Developer 1 (Alex)</h3>
                       </div>
                       <p class="text-gray-700">Implements payment integration code</p>
                       <p class="text-gray-700 mt-1">Responsible for unit tests on payment module</p>
@@ -955,7 +955,7 @@ steps:
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                               </svg>
                           </div>
-                          <h4 class="font-bold text-gray-900">Developer 2 (Priya)</h4>
+                          <h3 class="font-bold text-gray-900">Developer 2 (Priya)</h3>
                       </div>
                       <p class="text-gray-700">Implements email notification system</p>
                       <p class="text-gray-700 mt-1">Responsible for unit tests on notification module</p>
@@ -967,7 +967,7 @@ steps:
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                               </svg>
                           </div>
-                          <h4 class="font-bold text-gray-900">Product Owner (Sarah)</h4>
+                          <h3 class="font-bold text-gray-900">Product Owner (Sarah)</h3>
                       </div>
                       <p class="text-gray-700">Defines acceptance criteria</p>
                       <p class="text-gray-700 mt-1">Participates in acceptance testing</p>
@@ -979,7 +979,7 @@ steps:
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                               </svg>
                           </div>
-                          <h4 class="font-bold text-gray-900">Delivery Lead (Marcus)</h4>
+                          <h3 class="font-bold text-gray-900">Delivery Lead (Marcus)</h3>
                       </div>
                       <p class="text-gray-700">Tracks progress and removes impediments</p>
                       <p class="text-gray-700 mt-1">Ensures testing resources are available</p>
@@ -988,10 +988,10 @@ steps:
           </div>
 
           <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-sm">
-              <h3 class="text-lg font-bold text-blue-700 mb-4">Collaboration Methods</h3>
+              <h2 class="text-lg font-bold text-blue-700 mb-4">Collaboration Methods</h2>
               <div class="md:flex space-y-4 md:space-y-0 md:space-x-4">
                   <div class="flex-1 bg-white p-4 rounded shadow-sm border border-blue-100">
-                      <h4 class="font-bold text-gray-900 mb-2">Daily Meetings</h4>
+                      <h3 class="font-bold text-gray-900 mb-2">Daily Meetings</h3>
                       <ul class="space-y-2 list-disc ml-5 text-gray-700">
                           <li>15-minute daily standup at 9:30 AM</li>
                           <li>Testing status shared by QA team</li>
@@ -999,7 +999,7 @@ steps:
                       </ul>
                   </div>
                   <div class="flex-1 bg-white p-4 rounded shadow-sm border border-blue-100">
-                      <h4 class="font-bold text-gray-900 mb-2">Paired Testing</h4>
+                      <h3 class="font-bold text-gray-900 mb-2">Paired Testing</h3>
                       <ul class="space-y-2 list-disc ml-5 text-gray-700">
                           <li>Developers and testers pair on complex test cases</li>
                           <li>Testers collaborate on exploratory sessions</li>
@@ -1007,7 +1007,7 @@ steps:
                       </ul>
                   </div>
                   <div class="flex-1 bg-white p-4 rounded shadow-sm border border-blue-100">
-                      <h4 class="font-bold text-gray-900 mb-2">Communication Tools</h4>
+                      <h3 class="font-bold text-gray-900 mb-2">Communication Tools</h3>
                       <ul class="space-y-2 list-disc ml-5 text-gray-700">
                           <li>JIRA for defect tracking</li>
                           <li>Slack channel for real-time communication</li>
@@ -1051,11 +1051,11 @@ steps:
     content: |
       <div class="max-w-4xl mx-auto p-6 bg-white text-gray-800 leading-relaxed font-sans">
           <div class="mb-6 bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r">
-              <h3 class="font-bold text-amber-800 mb-2">Current Process Assessment</h3>
+              <h2 class="font-bold text-amber-800 mb-2">Current Process Assessment</h2>
               <p class="text-amber-700 mb-0">For Iteration 3, our current test scheduling approach has revealed several inefficiencies that need to be addressed:</p>
           </div>
           <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 shadow-sm mb-6">
-              <h3 class="text-lg font-bold text-blue-700 mb-4">Existing Schedule Management Issues</h3>
+              <h2 class="text-lg font-bold text-blue-700 mb-4">Existing Schedule Management Issues</h2>
               <div class="space-y-4">
                   <div class="flex items-start">
                       <div class="text-red-500 mr-3 mt-1">
