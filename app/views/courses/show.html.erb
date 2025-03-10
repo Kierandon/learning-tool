@@ -52,7 +52,7 @@
         <p class="text-sm text-blue-700">This course contributes to your understanding of the <%= @course.standard.name %> standard.</p>
       <% end %>
       
-      <%= link_to "View All #{@course.standard.code} Courses", courses_standard_path(@course.standard), class: "text-sm text-blue-600 hover:underline mt-2 inline-block" %>
+      <%= link_to "View All #{@course.standard.name} Courses", courses_standard_path(@course.standard), class: "text-sm text-blue-600 hover:underline mt-2 inline-block" %>
     </div>
   <% end %>
 
