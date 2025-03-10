@@ -433,7 +433,6 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  axe-core-api
   axe-core-capybara
   bootsnap
   brakeman
