@@ -20,7 +20,7 @@
       <% all_steps.each do |step| %>
         <% status = get_step_status(step) %>
         <% if status == 'completed' %>
-          <a href="<%= course_step_path(@course, step) %>" class="relative h-4 flex items-center" style="z-index: 10;" data-tooltip="<%= step.title %>">
+          <a href="<%= course_step_path(@course, step) %>" class="relative h-4 flex items-center" style="z-index: 10;" data-tooltip="<%= step.title %>" aria-label="<%= step.title %> (completed)">
         <% else %>
           <div class="relative h-4 flex items-center" style="z-index: 10;" data-tooltip="<%= step.title %>">
         <% end %>
@@ -29,6 +29,7 @@
                       <%= status != 'upcoming' ? 'border-2 border-white' : '' %> 
                       shadow-md"></div>
         <% if status == 'completed' %>
+            <span class="sr-only">Go to <%= step.title %></span>
           </a>
         <% else %>
           </div>
