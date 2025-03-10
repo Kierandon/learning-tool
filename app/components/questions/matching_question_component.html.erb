@@ -1,5 +1,5 @@
 <div class="matching-question pb-4" 
-    data-controller="<%= @mock ? nil : (@question.questionable.matching_style == 'drawing' ? 'components--questions--matching-drawing' : 'components--questions--matching') %>"
+    data-controller="<%= @question.questionable.matching_style == 'drawing' ? 'components--questions--matching-drawing' : 'components--questions--matching' %>"
      data-components--questions--matching-drawing-answered-value="<%= @just_answered %>">
   <fieldset class="space-y-6">
     <legend class="text-lg font-semibold text-gray-900 mb-4">

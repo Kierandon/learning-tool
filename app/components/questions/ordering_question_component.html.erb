@@ -1,5 +1,4 @@
-<div class="ordering-question pb-4" <%= 'data-controller="components--questions--ordering"' unless @mock %>
-  data-components--questions--ordering-answered-value="<%= @just_answered %>">
+<div class="ordering-question pb-4" data-controller="components--questions--ordering" data-components--questions--ordering-answered-value="<%= @just_answered %>">
   <fieldset class="space-y-6">
     <legend class="text-lg font-semibold text-gray-900 mb-4">
       <%= @question.prompt %>
