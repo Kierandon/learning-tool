@@ -36,7 +36,7 @@ def create_test_standard
   test_standard = Standard.find_or_create_by!(code: "test_standard") do |s|
     s.name = "Test Standard for Demo"
     s.description = "A sample standard used for demonstration purposes."
-    s.visibility = true
+    s.visibility = false
     puts "Test standard created: #{s.name}"
   end
 
