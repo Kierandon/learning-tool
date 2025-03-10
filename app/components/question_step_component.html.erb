@@ -1,4 +1,8 @@
-<div class="question-content">
+<div class="question-content relative">
+  <% if @step.learning_objectives.any? %>
+    <%= render CoreQuestionIconComponent.new %>
+  <% end %>
+
   <p class="mb-4"><%= @step.content %></p>
   <%= form_with url: course_step_answers_path(@course, @step), local: true do |f| %>
     <% @step.questions.each do |question| %>
