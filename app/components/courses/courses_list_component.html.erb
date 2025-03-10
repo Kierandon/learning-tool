@@ -4,7 +4,7 @@
   </div>
   <div class="space-y-4 mt-4">
     <% @courses&.each do |course| %>
-      <%= render CourseCardComponent.new(course: course, user: current_user) %>
+      <%= render Courses::CourseCardComponent.new(course: course, user: current_user) %>
     <% end %>
   </div>
 </div>

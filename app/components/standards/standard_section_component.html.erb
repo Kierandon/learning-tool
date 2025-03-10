@@ -134,7 +134,7 @@
   <% if @section.subsections.any? %>
     <div id="section-<%= @section.id %>-children" class="hidden <%= @level > 0 ? 'pl-' + (@level*4).to_s : '' %>" data-toggle-target="content">
       <% @section.subsections.each do |subsection| %>
-        <%= render StandardSectionComponent.new(
+        <%= render Standards::StandardSectionComponent.new(
           section: subsection, 
           level: @level + 1, 
           user: @user

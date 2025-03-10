@@ -51,7 +51,7 @@
     <% if @user.progressions.any? %>
       <% @user.progressions.includes(:course).each do |progression| %>
         <div class="mb-4">
-          <%= render CourseCardComponent.new(course: progression.course, user: @user, show_description: false) %>
+          <%= render Courses::CourseCardComponent.new(course: progression.course, user: @user, show_description: false) %>
         </div>
       <% end %>
     <% else %>
@@ -67,7 +67,7 @@
 
   <div class="bg-white shadow rounded-lg p-6">
     <h2 class="text-xl font-bold text-gray-900 mb-4">Your Streak</h2>
-    <%= render(StreakCalendarComponent.new(user: @user)) %>
+    <%= render(Progress::StreakCalendarComponent.new(user: @user)) %>
     <div class="mt-8">
       <h2 class="text-xl font-bold text-gray-900 mb-4">All Your Badges</h2>
       <% if @user.badges.any? %>
@@ -128,5 +128,5 @@
     </div>
   </div>
 
-  <%= render(DailyQuestsComponent.new) %>
+  <%= render(Quests::DailyQuestsComponent.new) %>
 </div>

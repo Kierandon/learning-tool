@@ -13,7 +13,7 @@
         <% if standard.top_level_sections.any? %>
           <div class="bg-white rounded-lg border border-gray-200 p-2">
             <% standard.top_level_sections.each do |section| %>
-              <%= render StandardSectionComponent.new(
+              <%= render Standards::StandardSectionComponent.new(
                 section: section, 
                 level: 0,
                 user: nil
@@ -80,7 +80,7 @@
   <div class="bg-white p-4 rounded border border-red-300 mt-4">
     <p class="font-bold text-center mb-2">IMPORTANT</p>
     <p class="text-center">Pay special attention to questions with a <span class="font-semibold">'Core Question'</span> label. These are critical for your progression through the standard.</p>
-    <div class="flex justify-center mt-3"><%= render CoreQuestionIconComponent.new(float_right: false) %></div>
+    <div class="flex justify-center mt-3"><%= render Questions::CoreQuestionIconComponent.new(float_right: false) %></div>
   </div>
 </div>
 
@@ -152,5 +152,5 @@
 
 <div class="mb-8">
   <h3 class="text-2xl font-bold mb-5 text-center">Available Standards</h3>
-  <%= render(StandardsListComponent.new(standards: @standards)) %>
+  <%= render(Standards::StandardsListComponent.new(standards: @standards)) %>
 </div>

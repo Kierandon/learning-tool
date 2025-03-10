@@ -1,12 +1,12 @@
 <div class="question-content relative">
   <% if render_core_question_icon? %>
-    <%= render CoreQuestionIconComponent.new %>
+    <%= render Questions::CoreQuestionIconComponent.new %>
   <% end %>
 
   <p class="mb-4"><%= @step.content %></p>
   <%= form_with url: form_url, local: true do |f| %>
     <% questions.each do |question| %>
-      <%= render Questions::QuestionContainerComponent.new(question: question, form: f, just_answered: @just_answered) %>
+      <%= render Questions::Containers::QuestionContainerComponent.new(question: question, form: f, just_answered: @just_answered) %>
     <% end %>
     <div class="flex flex-col items-center">
       <% unless all_questions_answered?(current_user) %>

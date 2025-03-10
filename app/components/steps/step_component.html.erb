@@ -3,5 +3,5 @@
   <div class="mb-6">
     <%= render content_component %>
   </div>
-  <%= render StepNavigationComponent.new(step: @step, course: @course, user: current_user) %>
+  <%= render Steps::StepNavigationComponent.new(step: @step, course: @course, user: current_user) %>
 </div>
