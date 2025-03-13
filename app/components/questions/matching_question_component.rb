@@ -1,16 +1,7 @@
-require "ostruct"
-
-class Questions::MatchingQuestionComponent < ViewComponent::Base
+class Questions::MatchingQuestionComponent < Questions::BaseQuestionComponent
   def initialize(question: nil, form: nil, just_answered: false, mock: false)
-    @mock = mock
-    @question = mock ? mock_question : question
-    @form = form
-    @just_answered = just_answered
+    super
     @pairs = @question.questionable.matching_pairs
-  end
-
-  def before_render
-    @just_answered ||= question_answered?
   end
 
   private
@@ -29,26 +20,9 @@ class Questions::MatchingQuestionComponent < ViewComponent::Base
     )
   end
 
-  def all_correct?
-    return false unless @just_answered
-    latest_answer&.correct
-  end
-
   def incorrect_pairs
     return [] unless @just_answered
     latest_answer&.answer_data[:incorrect_pairs]
-  end
-
-  def question_answered?
-    return false if @mock
-    @question.user_answers.where(
-      user: current_user,
-      progression: @question.course.progressions.where(user: current_user).order(created_at: :desc).first
-    ).exists?
-  end
-
-  def latest_answer
-    @latest_answer ||= @question.user_answers.where(user: current_user).last
   end
 
   def success_message
