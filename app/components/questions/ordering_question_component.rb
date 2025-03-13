@@ -1,16 +1,7 @@
-require "ostruct"
-
-class Questions::OrderingQuestionComponent < ViewComponent::Base
+class Questions::OrderingQuestionComponent < Questions::BaseQuestionComponent
   def initialize(question: nil, form: nil, just_answered: false, mock: false)
-    @mock = mock
-    @question = mock ? mock_question : question
-    @form = form
-    @just_answered = just_answered
+    super
     @items = @question.questionable.ordering_items
-  end
-
-  def before_render
-    @just_answered ||= question_answered?
   end
 
   private
@@ -29,10 +20,6 @@ class Questions::OrderingQuestionComponent < ViewComponent::Base
     )
   end
 
-  def latest_answer
-    @latest_answer ||= @question.user_answers.where(user: current_user).last
-  end
-
   def submitted_order
     return [] unless @just_answered
     latest_answer&.answer_data&.dig(:submitted_order) || []
@@ -41,19 +28,6 @@ class Questions::OrderingQuestionComponent < ViewComponent::Base
   def correct_order
     return [] unless @just_answered
     latest_answer&.answer_data&.dig(:correct_order) || []
-  end
-
-  def all_correct?
-    return false unless @just_answered
-    latest_answer&.correct
-  end
-
-  def question_answered?
-    return false if @mock
-    @question.user_answers.where(
-      user: current_user,
-      progression: @question.course.progressions.where(user: current_user).order(created_at: :desc).first
-    ).exists?
   end
 
   def success_message
