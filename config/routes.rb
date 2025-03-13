@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :standards, only: [ :show ] do
+  resources :standards, only: [ :index, :show ] do
     member do
       get :courses
       post :generate_certificate

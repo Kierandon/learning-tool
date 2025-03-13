@@ -1,6 +1,10 @@
 class StandardsController < ApplicationController
   before_action :set_standard, only: [ :courses, :generate_certificate, :certificate ]
 
+  def index
+    @standards = Standard.where(visibility: true)
+  end
+
   def courses
     @standard = Standard.find(params[:id])
   end
