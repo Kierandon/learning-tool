@@ -1,39 +1,72 @@
-<div class="course-details-container card-container p-8 bg-white rounded-lg shadow-lg">
-  <h1 class="text-2xl font-bold mb-4"><%= @course.title %></h1>
-
-  <div class="mb-4 m-auto flex justify-center w-80">
-  <% if @course.image_url.present? %>
-      <img src="<%= @course.image_url %>" alt="<%= @course.title %>" class="rounded">
-    <% else %>
-      <img src="https://placehold.co/600x400" alt="Placeholder image" class="rounded">
-    <% end %>
-  </div>
-  
-  <div class="mb-4 text-gray-700">
-    <%= @course.description.html_safe %>
-  </div>
-
-  <% if @course.standard.present? %>
-    <div class="bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6">
-      <div class="flex items-center mb-3">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-700 mr-2" viewBox="0 0 20 20" fill="currentColor">
-          <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-        </svg>
-        <h2 class="font-semibold text-blue-800">This course is part of the <span class="font-bold"><%= @course.standard.name %></span> standard</h3>
-      </div>        
-      <div class="mt-3 text-sm text-blue-700">
-        <% if current_user %>
-          <% course_learning_objectives = @course.learning_objectives %>
-          <% completed_count = course_learning_objectives.count { |lo| lo.completed_by?(current_user) } %>
-          <% percentage = course_learning_objectives.any? ? (completed_count.to_f / course_learning_objectives.size * 100).round : 0 %>
-          You've completed <%= completed_count %> of <%= course_learning_objectives.size %> learning objectives (<%= percentage %>%)
-        <% else %>
-          Complete this course to progress toward <%= @course.standard.name %> certification
-        <% end %>
+<div class="max-w-4xl mx-auto">
+  <div class="bg-white shadow rounded-lg p-6 mb-8">
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900"><%= @course.title %></h1>
+        <div class="mt-2 text-sm text-gray-600">
+          Part of <%= link_to @course.standard.name, standard_path(@course.standard), class: "text-blue-600 hover:underline" %>
+        </div>
       </div>
-      <%= link_to "View All #{@course.standard.name} Courses", courses_standard_path(@course.standard), class: "text-sm text-blue-600 hover:underline mt-2 inline-block" %>
+      
+      <% if current_user %>
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center px-3 py-2 rounded bg-yellow-50">
+            <svg class="h-5 w-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 4a6 6 0 110 12 6 6 0 010-12z"/>
+              <path fill-rule="evenodd" d="M10 6a4 4 0 100 8 4 4 0 000-8z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-medium text-yellow-800"><%= current_user.points %></span>
+          </div>
+          <%= link_to profile_path, class: "px-3 py-2 rounded bg-gray-100 hover:bg-gray-200 transition duration-150 flex items-center" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            View Profile
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+
+    <% if @course.description.present? %>
+      <div class="prose max-w-none mb-6">
+        <%= @course.description %>
+      </div>
+    <% end %>
+
+    <% if @course.learning_objectives.any? %>
+      <div class="mb-6">
+        <h2 class="text-lg font-semibold text-gray-900 mb-3">Learning Objectives</h2>
+        <ul class="space-y-2">
+          <% @course.learning_objectives.each do |objective| %>
+            <li class="flex items-start">
+              <% if current_user && objective.completed_by?(current_user) %>
+                <svg class="h-5 w-5 text-green-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              <% else %>
+                <svg class="h-5 w-5 text-gray-400 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              <% end %>
+              <span class="text-gray-700"><%= objective.description %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mt-3 text-sm text-blue-700">
+      <% if current_user %>
+        <% course_learning_objectives = @course.learning_objectives %>
+        <% completed_count = course_learning_objectives.count { |lo| lo.completed_by?(current_user) } %>
+        <% percentage = course_learning_objectives.any? ? (completed_count.to_f / course_learning_objectives.size * 100).round : 0 %>
+        You've completed <%= completed_count %> of <%= course_learning_objectives.size %> learning objectives (<%= percentage %>%)
+      <% else %>
+        Complete this course to progress toward <%= @course.standard.name %> certification
+      <% end %>
+    </div>
+    <%= link_to "View All #{@course.standard.name} Courses", courses_standard_path(@course.standard), class: "text-sm text-blue-600 hover:underline mt-2 inline-block" %>
+  </div>
 
   <% if @progression && @progression.completed? %>
     <div class="flex justify-center gap-3 m-auto">

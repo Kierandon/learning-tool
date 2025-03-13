@@ -1,25 +1,50 @@
-<div class="flex justify-between mt-6">
-  <% if previous_step_path %>
-    <%= link_to "Back", previous_step_path, 
-      class: "rounded-full px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", 
-      role: "button" %>
-  <% else %>
-    <div></div>
-  <% end %>
+<div class="max-w-4xl mx-auto">
+  <div class="grid grid-cols-3">
+    <div class="flex items-center justify-start">
+      <% if previous_step_path %>
+        <%= link_to previous_step_path, 
+            class: "px-6 py-3 text-gray-700 hover:text-gray-900 flex items-center rounded-lg hover:bg-gray-100 transition-colors duration-200",
+            aria: { label: "Go to previous step" } do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+          Previous
+        <% end %>
+      <% end %>
+    </div>
+      
+    <div class="flex items-center justify-center">
+      <%= link_to courses_standard_path(@course.standard), 
+          class: "px-6 py-3 text-gray-700 hover:text-gray-900 flex items-center rounded-lg hover:bg-gray-100 transition-colors duration-200",
+          aria: { label: "Return to standard overview" } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
+        Standard Overview
+      <% end %>
+    </div>
 
-  <% if next_step_path %>
-    <% update_param = @step.step_type == "info" ? "?update_progression=true" : "" %>
-    <%= link_to "Next", "#{next_step_path}#{update_param}", 
-      class: "rounded-full px-6 py-3 bg-blue-600 text-white font-bold hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500", 
-      role: "button" %>
-  <% elsif reviewing_course? %>
-    <%= link_to "Finish Review", courses_standard_path(@course.standard, @course),
-      class: "rounded-full px-6 py-3 bg-purple-600 text-white font-bold hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500",
-      role: "button" %>
-  <% elsif show_complete_button? %>
-    <%= link_to "Complete Course", complete_course_path(@course),
-      class: "rounded-full px-6 py-3 bg-green-600 text-white font-bold hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500",
-      role: "button",
-      data: { turbo: false } %>
-  <% end %>
+    <div class="flex items-center justify-end">
+      <% if next_step_path %>
+        <%= link_to next_step_path, 
+            class: "px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center transition-colors duration-200 shadow-sm",
+            aria: { label: "Go to next step" } do %>
+          Next
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        <% end %>
+      <% elsif show_complete_button? %>
+        <%= button_to complete_course_path(@course), 
+            method: :post,
+            class: "px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center transition-colors duration-200 shadow-sm",
+            aria: { label: "Complete course" } do %>
+          Complete Course
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
