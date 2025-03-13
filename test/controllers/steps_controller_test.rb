@@ -3,7 +3,8 @@ require "test_helper"
 class StepsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @user = create(:user)
-    @course = create(:course)
+    @standard = create(:standard)
+    @course = create(:course, standard: @standard)
     @step = create(:step, course: @course)
     @progression = create(:progression, user: @user, course: @course)
 

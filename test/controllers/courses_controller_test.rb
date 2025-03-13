@@ -2,7 +2,8 @@ require "test_helper"
 
 class CoursesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @course = create(:course)
+    @standard = create(:standard)
+    @course = create(:course, standard: @standard)
     @user = create(:user)
     @step = create(:step, course: @course)
   end
