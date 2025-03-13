@@ -7,13 +7,6 @@
       <div class="flex items-center space-x-4 ml-4">
         <%= link_to "Standards", standards_path, class: "px-3 py-2 rounded hover:bg-gray-100 transition duration-150 flex items-center" %>
         <%= link_to "Daily Quests", profile_path, class: "px-3 py-2 rounded hover:bg-gray-100 transition duration-150 flex items-center" %>
-        <div class="flex items-center px-3 py-2 rounded bg-yellow-50">
-          <svg class="h-5 w-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM10 4a6 6 0 110 12 6 6 0 010-12z"/>
-            <path fill-rule="evenodd" d="M10 6a4 4 0 100 8 4 4 0 000-8z" clip-rule="evenodd"/>
-          </svg>
-          <span class="font-medium text-yellow-800"><%= current_user.points %></span>
-        </div>
       </div>
     <% end %>
   </div>
