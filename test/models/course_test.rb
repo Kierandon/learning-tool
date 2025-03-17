@@ -20,7 +20,7 @@ class CourseTest < ActiveSupport::TestCase
 
     assert_equal first_progression.user_id, second_progression.user_id
     assert_equal first_progression.course_id, second_progression.course_id
-    assert_equal first_progression.current_step_id, second_progression.current_step_id
-    assert_equal first_progression.completed_at, second_progression.completed_at
+    assert_nil second_progression.current_step_id
+    assert_nil second_progression.completed_at
   end
 end
